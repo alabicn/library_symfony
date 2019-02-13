@@ -27,6 +27,7 @@ class RegistrationController extends Controller {
             //on active par défaut
             $user->setIsActive(true);
             //$user->addRole("ROLE_ADMIN");
+            $user->setRegistrationDate(new \DateTime());
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -36,7 +37,7 @@ class RegistrationController extends Controller {
             $this->addFlash('success', 'Votre compte à bien été enregistré.');
             //return $this->redirectToRoute('login');
         }
-        return $this->render('registration/register.html.twig', ['form' => $form->createView(), 'mainNavRegistration' => true, 'title' => 'Inscription']);
+        return $this->render('registration/register.html.twig', ['form' => $form->createView(), 'mainNavRegistration' => true, 'title' => 'Registration']);
     }
 
 }

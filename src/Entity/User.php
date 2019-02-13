@@ -62,36 +62,37 @@ class User implements UserInterface, \Serializable {
     /**
      * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $registration_date = 'CURRENT_TIMESTAMP';
+    private $registration_date;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $gender;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $src_photo;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $alt_photo;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $title_photo;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Book", inversedBy="users")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserBook", mappedBy="users")
      */
-    private $books;
+    private $userbooks;
 
     public function __construct() {
         $this->isActive = true;
         $this->books = new ArrayCollection();
+        $this->userbooks = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
@@ -278,6 +279,44 @@ class User implements UserInterface, \Serializable {
     {
         if ($this->books->contains($book)) {
             $this->books->removeElement($book);
+        }
+
+        return $this;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserBook[]
+     */
+    public function getUserbooks(): Collection
+    {
+        return $this->userbooks;
+    }
+
+    public function addUserbook(UserBook $userbook): self
+    {
+        if (!$this->userbooks->contains($userbook)) {
+            $this->userbooks[] = $userbook;
+            $userbook->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserbook(UserBook $userbook): self
+    {
+        if ($this->userbooks->contains($userbook)) {
+            $this->userbooks->removeElement($userbook);
+            // set the owning side to null (unless already changed)
+            if ($userbook->getUsers() === $this) {
+                $userbook->setUsers(null);
+            }
         }
 
         return $this;

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>
             {% block title %}
-                {% if title is defined %}{{title}}{% else %}Title{% endif %} | Nom du site
+                {% if title is defined %}{{title}}{% else %}Title{% endif %} | Library
             {% endblock %}
         </title>
         {% block stylesheets %}
@@ -47,14 +47,14 @@
                 <ul class="navbar-nav ml-auto">
                     {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{path('logout')}}">Déconnexion</a>
+                            <a class="nav-link" href="{{path('logout')}}">Sign Out</a>
                         </li>
                     {% else %}
                         <li class="nav-item {% if mainNavLogin is defined %}active{% endif %}">
-                            <a class="nav-link" href="{{path('login')}}">Connexion</a>
+                            <a class="nav-link" href="{{path('login')}}">Sign In</a>
                         </li>
                         <li class="nav-item {% if mainNavRegistration is defined %}active{% endif %}">
-                            <a class="nav-link" href="{{path('app_registration_register')}}">Inscription</a>
+                            <a class="nav-link" href="{{path('app_registration_register')}}">Sign Up</a>
                         </li>
                     {% endif %}
                 </ul>

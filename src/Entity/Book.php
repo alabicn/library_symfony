@@ -84,9 +84,9 @@ class Book
     private $SKU;
     
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="books")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserBook", mappedBy="books", fetch="EXTRA_LAZY")
      */
-    private $users;
+    private $userbooks;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Library", mappedBy="books")
@@ -120,6 +120,7 @@ class Book
         $this->types = new ArrayCollection();
         $this->genres = new ArrayCollection();
         $this->shoppingCarts = new ArrayCollection();
+        $this->userbooks = new ArrayCollection();
     }    
 
     public function getId(): ?int
@@ -430,6 +431,37 @@ class Book
         if ($this->shoppingCarts->contains($shoppingCart)) {
             $this->shoppingCarts->removeElement($shoppingCart);
             $shoppingCart->removeBook($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserBook[]
+     */
+    public function getUserbooks(): Collection
+    {
+        return $this->userbooks;
+    }
+
+    public function addUserbook(UserBook $userbook): self
+    {
+        if (!$this->userbooks->contains($userbook)) {
+            $this->userbooks[] = $userbook;
+            $userbook->setBooks($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserbook(UserBook $userbook): self
+    {
+        if ($this->userbooks->contains($userbook)) {
+            $this->userbooks->removeElement($userbook);
+            // set the owning side to null (unless already changed)
+            if ($userbook->getBooks() === $this) {
+                $userbook->setBooks(null);
+            }
         }
 
         return $this;
