@@ -21,7 +21,7 @@ class ShoppingCart
     /**
      * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $creation_date = 'CURRENT_TIMESTAMP';
+    private $creation_date;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -29,13 +29,14 @@ class ShoppingCart
     private $ip_adress;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Book", inversedBy="shoppingCarts")
+     * @ORM\OneToMany(targetEntity="App\Entity\OnlineShoppingCart", mappedBy="shoppingCarts")
      */
-    private $books;
+    private $shoppingcartbooks;
 
     public function __construct()
     {
         $this->books = new ArrayCollection();
+        $this->shoppingcartbooks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,6 +89,37 @@ class ShoppingCart
     {
         if ($this->books->contains($book)) {
             $this->books->removeElement($book);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OnlineShoppingCart[]
+     */
+    public function getShoppingcartbooks(): Collection
+    {
+        return $this->shoppingcartbooks;
+    }
+
+    public function addShoppingcartbook(OnlineShoppingCart $shoppingcartbook): self
+    {
+        if (!$this->shoppingcartbooks->contains($shoppingcartbook)) {
+            $this->shoppingcartbooks[] = $shoppingcartbook;
+            $shoppingcartbook->setShoppingCarts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingcartbook(OnlineShoppingCart $shoppingcartbook): self
+    {
+        if ($this->shoppingcartbooks->contains($shoppingcartbook)) {
+            $this->shoppingcartbooks->removeElement($shoppingcartbook);
+            // set the owning side to null (unless already changed)
+            if ($shoppingcartbook->getShoppingCarts() === $this) {
+                $shoppingcartbook->setShoppingCarts(null);
+            }
         }
 
         return $this;

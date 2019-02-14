@@ -84,7 +84,7 @@ class Book
     private $SKU;
     
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserBook", mappedBy="books", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="books", fetch="EXTRA_LAZY")
      */
     private $userbooks;
 
@@ -99,9 +99,9 @@ class Book
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Type", mappedBy="books")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Edition", mappedBy="books")
      */
-    private $types;
+    private $editions;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Genre", mappedBy="books")
@@ -109,9 +109,11 @@ class Book
     private $genres;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ShoppingCart", mappedBy="books")
+     * @ORM\OneToMany(targetEntity="App\Entity\OnlineShoppingCart", mappedBy="books", fetch="EXTRA_LAZY")
      */
-    private $shoppingCarts;
+    private $shoppingcartbooks;
+
+    const VAT = 1.2;
 
     public function __construct()
     {
@@ -121,6 +123,8 @@ class Book
         $this->genres = new ArrayCollection();
         $this->shoppingCarts = new ArrayCollection();
         $this->userbooks = new ArrayCollection();
+        $this->shoppingcartbooks = new ArrayCollection();
+        $this->editions = new ArrayCollection();
     }    
 
     public function getId(): ?int
@@ -262,6 +266,8 @@ class Book
 
     public function getPrice(): ?float
     {
+        $this->price = round(($this->price * self::VAT),2);
+
         return $this->price;
     }
 
@@ -355,26 +361,26 @@ class Book
     /**
      * @return Collection|Type[]
      */
-    public function getTypes(): Collection
+    public function getEditions(): Collection
     {
-        return $this->types;
+        return $this->editions;
     }
 
-    public function addType(Type $type): self
+    public function addEdition(Edition $edition): self
     {
-        if (!$this->types->contains($type)) {
-            $this->types[] = $type;
-            $type->addBook($this);
+        if (!$this->editions->contains($edition)) {
+            $this->editions[] = $edition;
+            $edition->addBook($this);
         }
 
         return $this;
     }
 
-    public function removeType(Type $type): self
+    public function removeEdition(Edition $edition): self
     {
-        if ($this->types->contains($type)) {
-            $this->types->removeElement($type);
-            $type->removeBook($this);
+        if ($this->editions->contains($edition)) {
+            $this->editions->removeElement($edition);
+            $edition->removeBook($this);
         }
 
         return $this;
@@ -461,6 +467,37 @@ class Book
             // set the owning side to null (unless already changed)
             if ($userbook->getBooks() === $this) {
                 $userbook->setBooks(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OnlineShoppingCart[]
+     */
+    public function getShoppingcartbooks(): Collection
+    {
+        return $this->shoppingcartbooks;
+    }
+
+    public function addShoppingcartbook(OnlineShoppingCart $shoppingcartbook): self
+    {
+        if (!$this->shoppingcartbooks->contains($shoppingcartbook)) {
+            $this->shoppingcartbooks[] = $shoppingcartbook;
+            $shoppingcartbook->setBooks($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingcartbook(OnlineShoppingCart $shoppingcartbook): self
+    {
+        if ($this->shoppingcartbooks->contains($shoppingcartbook)) {
+            $this->shoppingcartbooks->removeElement($shoppingcartbook);
+            // set the owning side to null (unless already changed)
+            if ($shoppingcartbook->getBooks() === $this) {
+                $shoppingcartbook->setBooks(null);
             }
         }
 

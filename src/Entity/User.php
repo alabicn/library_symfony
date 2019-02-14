@@ -23,6 +23,13 @@ class User implements UserInterface, \Serializable {
      */
     private $id;
 
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     */
+    private $username;
+
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank()
@@ -85,7 +92,7 @@ class User implements UserInterface, \Serializable {
     private $title_photo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserBook", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="users")
      */
     private $userbooks;
 
@@ -292,14 +299,14 @@ class User implements UserInterface, \Serializable {
     }
 
     /**
-     * @return Collection|UserBook[]
+     * @return Collection|Evaluation[]
      */
     public function getUserbooks(): Collection
     {
         return $this->userbooks;
     }
 
-    public function addUserbook(UserBook $userbook): self
+    public function addUserbook(Evaluation $userbook): self
     {
         if (!$this->userbooks->contains($userbook)) {
             $this->userbooks[] = $userbook;
@@ -309,7 +316,7 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    public function removeUserbook(UserBook $userbook): self
+    public function removeUserbook(Evaluation $userbook): self
     {
         if ($this->userbooks->contains($userbook)) {
             $this->userbooks->removeElement($userbook);
@@ -321,5 +328,25 @@ class User implements UserInterface, \Serializable {
 
         return $this;
     }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
 
 }
