@@ -435,6 +435,10 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\QuoteRepository" class="App\Repository\QuoteRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\ShoppingCartRepository" class="App\Repository\ShoppingCartRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -2755,7 +2759,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.sxf1PfJ"/>
+      <argument type="service" id=".service_locator.r3IRTl9"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4442,6 +4446,8 @@
     <service id=".abstract.instanceof.App\Repository\GenreRepository" class="App\Repository\GenreRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LibraryRepository" class="App\Repository\LibraryRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\LibraryRepository" class="App\Repository\LibraryRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\QuoteRepository" class="App\Repository\QuoteRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\QuoteRepository" class="App\Repository\QuoteRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ShoppingCartRepository" class="App\Repository\ShoppingCartRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ShoppingCartRepository" class="App\Repository\ShoppingCartRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="maker.auto_command.make_auth" class="Symfony\Bundle\MakerBundle\Command\MakerCommand" public="false">
@@ -4699,7 +4705,7 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.sxf1PfJ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.r3IRTl9" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AuthorRepository" type="service" id="App\Repository\AuthorRepository"/>
@@ -4707,6 +4713,7 @@
         <argument key="App\Repository\EditionRepository" type="service" id="App\Repository\EditionRepository"/>
         <argument key="App\Repository\GenreRepository" type="service" id="App\Repository\GenreRepository"/>
         <argument key="App\Repository\LibraryRepository" type="service" id="App\Repository\LibraryRepository"/>
+        <argument key="App\Repository\QuoteRepository" type="service" id="App\Repository\QuoteRepository"/>
         <argument key="App\Repository\ShoppingCartRepository" type="service" id="App\Repository\ShoppingCartRepository"/>
       </argument>
     </service>

@@ -38,9 +38,30 @@ class Author
      */
     private $books;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $src_image;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alt_image;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title_image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Quote", mappedBy="author")
+     */
+    private $quotes;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
+        $this->quotes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,4 +135,72 @@ class Author
 
         return $this;
     }
+
+    public function getSrcImage(): ?string
+    {
+        return $this->src_image;
+    }
+
+    public function setSrcImage(?string $src_image): self
+    {
+        $this->src_image = $src_image;
+
+        return $this;
+    }
+
+    public function getAltImage(): ?string
+    {
+        return $this->alt_image;
+    }
+
+    public function setAltImage(?string $alt_image): self
+    {
+        $this->alt_image = $alt_image;
+
+        return $this;
+    }
+
+    public function getTitleImage(): ?string
+    {
+        return $this->title_image;
+    }
+
+    public function setTitleImage(?string $title_image): self
+    {
+        $this->title_image = $title_image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Quote[]
+     */
+    public function getQuotes(): Collection
+    {
+        return $this->quotes;
+    }
+
+    public function addQuote(Quote $quote): self
+    {
+        if (!$this->quotes->contains($quote)) {
+            $this->quotes[] = $quote;
+            $quote->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuote(Quote $quote): self
+    {
+        if ($this->quotes->contains($quote)) {
+            $this->quotes->removeElement($quote);
+            // set the owning side to null (unless already changed)
+            if ($quote->getAuthor() === $this) {
+                $quote->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

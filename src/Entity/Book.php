@@ -77,11 +77,6 @@ class Book
      * @ORM\Column(type="float")
      */
     private $price;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $SKU;
     
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="books", fetch="EXTRA_LAZY")
@@ -140,7 +135,6 @@ class Book
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -152,7 +146,6 @@ class Book
     public function setSrcImage(string $src_image): self
     {
         $this->src_image = $src_image;
-
         return $this;
     }
 
@@ -164,7 +157,6 @@ class Book
     public function setAltImage(string $alt_image): self
     {
         $this->alt_image = $alt_image;
-
         return $this;
     }
 
@@ -176,7 +168,6 @@ class Book
     public function setTitleImage(string $title_image): self
     {
         $this->title_image = $title_image;
-
         return $this;
     }
 
@@ -188,7 +179,6 @@ class Book
     public function setDetails(string $details): self
     {
         $this->details = $details;
-
         return $this;
     }
 
@@ -200,7 +190,6 @@ class Book
     public function setPublicationDate(\DateTimeInterface $publication_date): self
     {
         $this->publication_date = $publication_date;
-
         return $this;
     }
 
@@ -212,7 +201,6 @@ class Book
     public function setPublisher(string $publisher): self
     {
         $this->publisher = $publisher;
-
         return $this;
     }
 
@@ -224,7 +212,6 @@ class Book
     public function setOriginalTitle(string $original_title): self
     {
         $this->original_title = $original_title;
-
         return $this;
     }
 
@@ -236,7 +223,6 @@ class Book
     public function setEditionLanguage(string $edition_language): self
     {
         $this->edition_language = $edition_language;
-
         return $this;
     }
 
@@ -248,7 +234,6 @@ class Book
     public function setPages(int $pages): self
     {
         $this->pages = $pages;
-
         return $this;
     }
 
@@ -260,33 +245,31 @@ class Book
     public function setFirstPublished(\DateTimeInterface $first_published): self
     {
         $this->first_published = $first_published;
-
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): ?array
     {
-        $this->price = round(($this->price * self::VAT),2);
-
-        return $this->price;
+        $priceTable = array();
+        
+        foreach($this->getEditions() as $e){
+            if($e->getName() == 'Hardback'){
+                $priceTable[$e->getId()] = $this->price*2*self::VAT;
+            }
+            elseif($e->getName() == 'eBook'){
+                $priceTable[$e->getId()] = $this->price/2*self::VAT;
+            }
+            else{
+                $priceTable[$e->getId()] = $this->price*self::VAT;
+            }
+        }
+           
+        return $priceTable;
     }
 
     public function setPrice(float $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getSKU(): ?int
-    {
-        return $this->SKU;
-    }
-
-    public function setSKU(int $SKU): self
-    {
-        $this->SKU = $SKU;
-        
         return $this;
     }
 
@@ -304,7 +287,6 @@ class Book
             $this->users[] = $user;
             $user->addBook($this);
         }
-
         return $this;
     }
 
@@ -314,7 +296,6 @@ class Book
             $this->users->removeElement($user);
             $user->removeBook($this);
         }
-
         return $this;
     }
 
@@ -332,7 +313,6 @@ class Book
             $this->libraries[] = $library;
             $library->addBook($this);
         }
-
         return $this;
     }
 
@@ -342,7 +322,6 @@ class Book
             $this->libraries->removeElement($library);
             $library->removeBook($this);
         }
-
         return $this;
     }
 
@@ -354,7 +333,6 @@ class Book
     public function setAuthor(?Author $author): self
     {
         $this->author = $author;
-
         return $this;
     }
 
@@ -372,7 +350,6 @@ class Book
             $this->editions[] = $edition;
             $edition->addBook($this);
         }
-
         return $this;
     }
 
@@ -382,7 +359,6 @@ class Book
             $this->editions->removeElement($edition);
             $edition->removeBook($this);
         }
-
         return $this;
     }
 
@@ -400,7 +376,6 @@ class Book
             $this->genres[] = $genre;
             $genre->addBook($this);
         }
-
         return $this;
     }
 
@@ -410,7 +385,6 @@ class Book
             $this->genres->removeElement($genre);
             $genre->removeBook($this);
         }
-
         return $this;
     }
 
@@ -428,7 +402,6 @@ class Book
             $this->shoppingCarts[] = $shoppingCart;
             $shoppingCart->addBook($this);
         }
-
         return $this;
     }
 
@@ -438,7 +411,6 @@ class Book
             $this->shoppingCarts->removeElement($shoppingCart);
             $shoppingCart->removeBook($this);
         }
-
         return $this;
     }
 
@@ -456,7 +428,6 @@ class Book
             $this->userbooks[] = $userbook;
             $userbook->setBooks($this);
         }
-
         return $this;
     }
 
@@ -469,7 +440,6 @@ class Book
                 $userbook->setBooks(null);
             }
         }
-
         return $this;
     }
 
@@ -487,7 +457,6 @@ class Book
             $this->shoppingcartbooks[] = $shoppingcartbook;
             $shoppingcartbook->setBooks($this);
         }
-
         return $this;
     }
 
@@ -500,7 +469,6 @@ class Book
                 $shoppingcartbook->setBooks(null);
             }
         }
-
         return $this;
     }
 }

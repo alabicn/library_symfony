@@ -21,17 +21,9 @@
     <h1>{{ book.author.name ~ " " ~ book.author.surname|upper}}</h1>
     <h3>{{ book.title }}</h3>
     <img src="{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" />
-    {% for edition in book.editions %}
-    <ul>
-    {% if edition.name == "Hardback" %}
-    {{ edition.name ~ " : " ~ book.price * 2|round(2, 'floor') }}
-    {% elseif edition.name == "eBook" %}
-    {{ edition.name ~ " : " ~ book.price / 4|round(2, 'floor') }}
-    {% else %}
-    {{ book.price|round(1, 'floor') }}
-    <li>{{ edition.name ~ " : " ~ book.price }}</li>
-    {% endif %}
-    </ul>
+    
+    {% for e in book.editions %}
+        {{ e.name }} : {{ book.price[e.id]|number_format(2, '.', ' ') }} €<br/>
     {% endfor %}
 </div>
 {% endblock %}

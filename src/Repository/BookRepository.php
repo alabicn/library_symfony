@@ -46,4 +46,18 @@ class BookRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }*/
+
+    /*public function price() {
+        $edition = $this->getDoctrine()
+        ->getRepository(Edition::class)
+        ->find($id);
+
+        if ($edition->getName() == 'Hardback') {
+            $book->setPrice($book->getPrice() * 4);
+        } elseif($edition->getName() == 'eBook') {
+            $book->setPrice($book->getPrice() * 5);
+        } else {
+            $book->setPrice($book->getPrice());
+        }
+    }*/
 }

@@ -47,10 +47,8 @@ class Edition
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * @return Collection|Book[]
      */
@@ -64,16 +62,14 @@ class Edition
         if (!$this->books->contains($book)) {
             $this->books[] = $book;
         }
-
         return $this;
     }
-
+    
     public function removeBook(Book $book): self
     {
         if ($this->books->contains($book)) {
             $this->books->removeElement($book);
         }
-
         return $this;
     }
 }

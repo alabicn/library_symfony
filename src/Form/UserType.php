@@ -33,8 +33,8 @@ class UserType extends AbstractType {
                 ])
                 ->add('gender', ChoiceType::class, [
                     'choices' => [
-                        'Male' => true,
-                        'Female' => false,
+                        'Male' => '0',
+                        'Female' => '1',
                     ]])
                 ->add('submit', SubmitType::class, ['label'=>'Sign Up', 'attr'=>['class'=>'btn-primary btn-block']])
         ;

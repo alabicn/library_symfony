@@ -24,11 +24,6 @@ class ShoppingCart
     private $creation_date;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $ip_adress;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\OnlineShoppingCart", mappedBy="shoppingCarts")
      */
     private $shoppingcartbooks;
@@ -52,18 +47,6 @@ class ShoppingCart
     public function setCreationDate(\DateTimeInterface $creation_date): self
     {
         $this->creation_date = $creation_date;
-
-        return $this;
-    }
-
-    public function getIpAdress(): ?string
-    {
-        return $this->ip_adress;
-    }
-
-    public function setIpAdress(string $ip_adress): self
-    {
-        $this->ip_adress = $ip_adress;
 
         return $this;
     }

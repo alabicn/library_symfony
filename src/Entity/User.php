@@ -72,7 +72,7 @@ class User implements UserInterface, \Serializable {
     private $registration_date;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="string", length=5)
      */
     private $gender;
 
