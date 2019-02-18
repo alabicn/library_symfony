@@ -30,32 +30,34 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         $this->regexpList = [
             0 => '{^(?'
                     .'|/book/show/([^/]++)(*:26)'
+                    .'|/genre/([^/]++)(*:48)'
                     .'|/_(?'
-                        .'|error/(\\d+)(?:\\.([^/]++))?(*:64)'
-                        .'|wdt/([^/]++)(*:83)'
+                        .'|error/(\\d+)(?:\\.([^/]++))?(*:86)'
+                        .'|wdt/([^/]++)(*:105)'
                         .'|profiler/([^/]++)(?'
                             .'|/(?'
-                                .'|search/results(*:128)'
-                                .'|router(*:142)'
+                                .'|search/results(*:151)'
+                                .'|router(*:165)'
                                 .'|exception(?'
-                                    .'|(*:162)'
-                                    .'|\\.css(*:175)'
+                                    .'|(*:185)'
+                                    .'|\\.css(*:198)'
                                 .')'
                             .')'
-                            .'|(*:185)'
+                            .'|(*:208)'
                         .')'
                     .')'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
             26 => [[['_route' => 'show_book', '_controller' => 'App\\Controller\\BookController::show'], ['id'], null, null, false, true, null]],
-            64 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-            83 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-            128 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-            142 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-            162 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
-            175 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
-            185 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+            48 => [[['_route' => 'show_genre', '_controller' => 'App\\Controller\\GenreController::show'], ['name'], null, null, false, true, null]],
+            86 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+            105 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+            151 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+            165 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+            185 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
+            198 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
+            208 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         ];
     }
 }

@@ -20,10 +20,11 @@
 <div>
     <h1>{{ book.author.name ~ " " ~ book.author.surname|upper}}</h1>
     <h3>{{ book.title }}</h3>
-    <img src="{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" />
+    <img src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" />
     
-    {% for e in book.editions %}
+    <h1>{% for e in book.editions %}
         {{ e.name }} : {{ book.price[e.id]|number_format(2, '.', ' ') }} €<br/>
     {% endfor %}
+    </h1>
 </div>
 {% endblock %}

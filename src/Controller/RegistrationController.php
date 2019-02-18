@@ -28,13 +28,18 @@ class RegistrationController extends Controller {
             $user->setIsActive(true);
             //$user->addRole("ROLE_ADMIN");
             $user->setRegistrationDate(new \DateTime());
+
+            $user->setSrcPhoto('img_user/user.png');
+            $user->setAltPhoto('user.png (default image)');
+            $user->setTitlePhoto('Default image');
+
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
-            $this->addFlash('success', 'Votre compte à bien été enregistré.');
+            $this->addFlash('success', 'Your account has been saved.');
             //return $this->redirectToRoute('login');
         }
         return $this->render('registration/register.html.twig', ['form' => $form->createView(), 'mainNavRegistration' => true, 'title' => 'Registration']);

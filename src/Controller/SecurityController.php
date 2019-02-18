@@ -25,7 +25,7 @@ class SecurityController extends Controller {
                 ->add('ok', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class, ['label' => 'Sign In', 'attr' => ['class' => 'btn-primary btn-block']])
                 ->getForm();
         return $this->render('security/login.html.twig', [
-                    'mainNavLogin' => true, 'title' => 'Conection',
+                    'mainNavLogin' => true, 'title' => 'Connection',
                     //
                     'form' => $form->createView(),
                     'last_username' => $lastUsername,

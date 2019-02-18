@@ -47,4 +47,11 @@ class QuoteRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllOrderedByName() {
+        $qb = $this->createQueryBuilder('quote')
+                ->getQuery();
+
+        return $qb->execute();
+    }
 }

@@ -254,10 +254,10 @@ class Book
         
         foreach($this->getEditions() as $e){
             if($e->getName() == 'Hardback'){
-                $priceTable[$e->getId()] = $this->price*2*self::VAT;
+                $priceTable[$e->getId()] = $this->price*1.35*self::VAT;
             }
             elseif($e->getName() == 'eBook'){
-                $priceTable[$e->getId()] = $this->price/2*self::VAT;
+                $priceTable[$e->getId()] = $this->price/1.80*self::VAT;
             }
             else{
                 $priceTable[$e->getId()] = $this->price*self::VAT;

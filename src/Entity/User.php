@@ -72,7 +72,7 @@ class User implements UserInterface, \Serializable {
     private $registration_date;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=10)
      */
     private $gender;
 
@@ -106,6 +106,10 @@ class User implements UserInterface, \Serializable {
 
     public function getUsername() {
         return $this->email;
+    }
+
+    public function getUname() {
+        return $this->username;
     }
 
     public function getSalt() {
@@ -217,12 +221,12 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    public function getGender(): ?bool
+    public function getGender(): ?string
     {
         return $this->gender;
     }
 
-    public function setGender(bool $gender): self
+    public function setGender(string $gender): self
     {
         $this->gender = $gender;
 

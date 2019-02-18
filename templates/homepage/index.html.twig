@@ -17,4 +17,16 @@
         <li>Your template at <code><a href="{{ 'C:/wamp/www/library/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a></code></li>
     </ul>
 </div>
+
+    {% for genre in genres %}
+    <a href=""><h4>{{genre.name}}</h4></a>
+    {% endfor %}
+
+    <h2>Quotes :</h2><br>
+
+    {% for quote in quotes %}
+    <img width="50px" src="/assets/img/{{ quote.author.srcImage }}" alt="{{ quote.author.altImage }}" title="{{ quote.author.titleImage }}"/>
+    <span>"{{ quote.text }}"</span><br>
+    <span> ~ {{ quote.author.name ~ " " ~ quote.author.surname|upper }}</span><hr>
+    {% endfor %}
 {% endblock %}

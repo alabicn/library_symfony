@@ -47,4 +47,22 @@ class GenreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllOrderedByName() {
+        $qb = $this->createQueryBuilder('genre')
+                ->orderBy('genre.name', 'ASC')
+                ->getQuery();
+
+        return $qb->execute();
+    }
+
+    public function findOneByName($name): ?Genre
+    {
+        return $this->createQueryBuilder('genre')
+            ->andWhere('genre.name = :val')
+            ->setParameter('val', $name)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
