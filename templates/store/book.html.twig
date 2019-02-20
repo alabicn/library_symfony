@@ -26,5 +26,24 @@
         {{ e.name }} : {{ book.price[e.id]|number_format(2, '.', ' ') }} €<br/>
     {% endfor %}
     </h1>
+   <div class="example-wrapper">
+
+  <p>All messages:</p>
+        
+        {% for evaluation in book.evaluations %}
+            <ul>
+                <li><strong>{{ evaluation.comment}}</strong>
+                <span>{{ evaluation.users.uname }} answered : {{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h") }}</span>
+                <span>{{ evaluation.users.uname }} rated : {{ evaluation.rating }} favorite: {{ evaluation.favorite }}</span></li>
+
+            </ul>
+        {% endfor %}
 </div>
+   
+   
+   
+
+    
+</div>
+
 {% endblock %}

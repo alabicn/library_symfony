@@ -19,7 +19,7 @@
 </div>
 
     {% for genre in genres %}
-    <a href=""><h4>{{genre.name}}</h4></a>
+        <a href={{ path("show_genre", {'name': genre.name}) }}><h4>{{genre.name}}</h4></a>
     {% endfor %}
 
     <h2>Quotes :</h2><br>

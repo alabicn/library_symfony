@@ -94,12 +94,12 @@ class User implements UserInterface, \Serializable {
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="users")
      */
-    private $userbooks;
+    private $evaluations;
 
     public function __construct() {
         $this->isActive = true;
         $this->books = new ArrayCollection();
-        $this->userbooks = new ArrayCollection();
+        $this->evaluations = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }

@@ -80,8 +80,9 @@ class Book
     
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="books", fetch="EXTRA_LAZY")
+     * @ORM\OrderBy({"dateEvaluation" = "DESC"})
      */
-    private $userbooks;
+    private $evaluations;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Library", mappedBy="books")
@@ -100,6 +101,7 @@ class Book
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Genre", mappedBy="books")
+     * @ORM\OrderBy({"name" = "DESC"})
      */
     private $genres;
 
@@ -417,27 +419,27 @@ class Book
     /**
      * @return Collection|UserBook[]
      */
-    public function getUserbooks(): Collection
+    public function getEvaluations(): Collection
     {
-        return $this->userbooks;
+        return $this->evaluations;
     }
 
-    public function addUserbook(UserBook $userbook): self
+    public function addEvaluation(Evaluation $evaluation): self
     {
-        if (!$this->userbooks->contains($userbook)) {
-            $this->userbooks[] = $userbook;
-            $userbook->setBooks($this);
+        if (!$this->evaluations->contains($evaluation)) {
+            $this->evaluations[] = $evaluation;
+            $evaluation->setBooks($this);
         }
         return $this;
     }
 
-    public function removeUserbook(UserBook $userbook): self
+    public function removeEvaluation(Evaluation $evaluation): self
     {
-        if ($this->userbooks->contains($userbook)) {
-            $this->userbooks->removeElement($userbook);
+        if ($this->evaluations->contains($evaluation)) {
+            $this->evaluations->removeElement($evaluation);
             // set the owning side to null (unless already changed)
-            if ($userbook->getBooks() === $this) {
-                $userbook->setBooks(null);
+            if ($evaluation->getBooks() === $this) {
+                $evaluation->setBooks(null);
             }
         }
         return $this;

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="evaluation")
+ * @ORM\Entity(repositoryClass="App\Repository\EvaluationRepository")
  */
  class Evaluation
          {
@@ -18,13 +19,13 @@ use Doctrine\ORM\Mapping as ORM;
              private $id;
          
              /**
-              * @ORM\ManyToOne(targetEntity="Book", inversedBy="userbooks")
+              * @ORM\ManyToOne(targetEntity="Book", inversedBy="evaluations")
              * @ORM\JoinColumn(nullable=false)
              */
              private $books;
          
              /**
-              * @ORM\ManyToOne(targetEntity="User", inversedBy="userbooks")
+              * @ORM\ManyToOne(targetEntity="User", inversedBy="evaluations")
              * @ORM\JoinColumn(nullable=false)
              */
              private $users;
@@ -45,7 +46,7 @@ use Doctrine\ORM\Mapping as ORM;
              private $favorite;
       
              /**
-              * @ORM\Column(type="datetime")
+              * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
               */
              private $dateEvaluation;
          

@@ -22,7 +22,7 @@
 
 {% for book in genre.books %}
 
-<p>{{book.author.name ~ " " ~ book.author.surname|upper  ~ " : " ~ book.title}}</p>
+<a href={{ path("show_book", {'id': book.id}) }}><p>{{book.author.name ~ " " ~ book.author.surname|upper  ~ " : " ~ book.title}}</p></a>
 
 {% endfor %}
 
