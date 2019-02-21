@@ -14,30 +14,6 @@ use App\Entity\User;
 class SecurityController extends Controller {
 
     /**
-     * @Route("/login", name="login")
-     */
-    public function login(Request $request, AuthenticationUtils $authenticationUtils) {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-        //
-        $form = $this->get('form.factory')
-                ->createNamedBuilder(null)
-                ->add('_username', null, ['label' => 'Email'])
-                ->add('_password', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class, ['label' => 'Password'])
-                ->add('ok', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class, ['label' => 'Sign In', 'attr' => ['class' => 'btn-primary btn-block']])
-                ->getForm();
-        return $this->render('security/login.html.twig', [
-                    'mainNavLogin' => true, 'title' => 'Connection',
-                    //
-                    'form' => $form->createView(),
-                    'last_username' => $lastUsername,
-                    'error' => $error,
-        ]);
-    }
-
-    /**
      * @Route("/register")
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
@@ -70,4 +46,33 @@ class SecurityController extends Controller {
         }
         return $this->render('security/register.html.twig', ['form' => $form->createView(), 'mainNavRegistration' => true, 'title' => 'Registration']);
     }    
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login(Request $request, AuthenticationUtils $authenticationUtils) {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+        //
+        $form = $this->get('form.factory')
+                ->createNamedBuilder(null)
+                ->add('_username', null, ['label' => 'Email'])
+                ->add('_password', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class, ['label' => 'Password'])
+                ->add('ok', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class, ['label' => 'Sign In', 'attr' => ['class' => 'btn-primary btn-block']])
+                ->getForm();
+
+        return $this->render('security/login.html.twig', [
+                    'mainNavLogin' => true, 'title' => 'Connection',
+                    'form' => $form->createView(),
+                    'last_username' => $lastUsername,
+                    'error' => $error,
+        ]);
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout() {}
 }

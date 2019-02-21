@@ -28,11 +28,19 @@
     </h1>
    <div class="example-wrapper">
 
-  <p>All messages:</p>
+    {#{ form_start(evaluationForm) }}
+    {{ form_row(evaluationForm.rating, {'attr': {'placeholder': 'Your rating?'}}) }}
+    {{ form_row(evaluationForm.comment, {'attr': {'placeholder': 'Your comment...'}}) }}
+    {{ form_end(evaluationForm) }#}
+
+  <h2>{{ book.evaluations | length }} messages</h2>
+
+
         
         {% for evaluation in book.evaluations %}
+
             <ul>
-                <li><strong>{{ evaluation.comment}}</strong>
+                <li><strong>{{ evaluation.comment}}<br></strong>
                 <span>{{ evaluation.users.uname }} answered : {{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h") }}</span>
                 <span>{{ evaluation.users.uname }} rated : {{ evaluation.rating }} favorite: {{ evaluation.favorite }}</span></li>
 

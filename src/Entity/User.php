@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Table(name="user")
  * @UniqueEntity(fields="email")
+ * @UniqueEntity(fields="username")
  * @ORM\Entity()
  */
 class User implements UserInterface, \Serializable {
@@ -40,6 +41,7 @@ class User implements UserInterface, \Serializable {
     /**
      * @Assert\NotBlank()
      * @Assert\Length(max=250)
+     * @Assert\Length(min="8", minMessage="Your password must have at least 8 characters")
      */
     private $plainPassword;
 
@@ -63,6 +65,7 @@ class User implements UserInterface, \Serializable {
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\LessThan("-18 years")
      */
     private $birthdate;
 

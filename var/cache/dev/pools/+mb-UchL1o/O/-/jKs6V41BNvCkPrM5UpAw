@@ -4,6 +4,7 @@
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Validator\\Constraints\\NotBlank'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\NotBlank')),
             clone ($p['Symfony\\Component\\Validator\\Constraints\\Length'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+            clone $p['Symfony\\Component\\Validator\\Constraints\\Length'],
         ],
         null,
         [
@@ -15,15 +16,25 @@
                     [
                         'Default',
                     ],
+                    [
+                        'Default',
+                    ],
                 ],
                 'max' => [
                     1 => 250,
+                ],
+                'minMessage' => [
+                    2 => 'Your password must have at least 8 characters',
+                ],
+                'min' => [
+                    2 => '8',
                 ],
             ],
         ],
         [
             $o[0],
             $o[1],
+            $o[2],
         ],
         []
     );

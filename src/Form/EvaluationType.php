@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class EvaluationType extends AbstractType {
 
-    /*public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('rating', ChoiceType::class, [
                     'choices' => [
@@ -29,11 +29,8 @@ class EvaluationType extends AbstractType {
                     'expanded' => true
                 ])
                 ->add('comment', TextType::class)
-                ->add('favorite', CheckboxType::class, [
-                    'label'    => 'Favorite?',
-                    'required' => false,
-                ])
+
                 ->add('save', SubmitType::class, array('label' => 'POST'))
                 ;
-    }*/
+    }
 }

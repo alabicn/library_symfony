@@ -4,6 +4,7 @@
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
             clone ($p['Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity')),
+            clone $p['Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity'],
             clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
         ],
         null,
@@ -14,9 +15,13 @@
                 ],
                 'fields' => [
                     1 => 'email',
+                    'username',
                 ],
                 'groups' => [
                     1 => [
+                        'Default',
+                    ],
+                    [
                         'Default',
                     ],
                 ],
@@ -26,6 +31,7 @@
             $o[0],
             $o[1],
             $o[2],
+            $o[3],
         ],
         []
     );
