@@ -35,7 +35,8 @@
                     </li>
                     {% if is_granted('ROLE_USER') %}
                         <li class="nav-item {% if mainNavMember is defined %}active{% endif %}">
-                            <a class="nav-link" href="{{path('app_member_index')}}">Member</a>
+                            <a class="nav-link" href="{{path('app_member_index')}}"><img style="width : 25px;" src="/assets/img/{{ app.user.srcPhoto }}" alt="{{ app.user.altPhoto }}" title="{{ app.user.titlePhoto }}" />
+                            </a>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}

@@ -110,6 +110,8 @@ class Book
      */
     private $shoppingcartbooks;
 
+    private $average;
+
     const VAT = 1.2;
 
     public function __construct()
@@ -472,5 +474,22 @@ class Book
             }
         }
         return $this;
+    }
+
+    public function getAverage()
+    {
+        $nbr = count($this->getEvaluations());
+        
+        $somme = 0;
+
+        foreach($this->getEvaluations() as $ev){
+            $somme+= $ev->getRating();
+        }
+        
+        $this->average = round(($somme / $nbr), 1);
+    
+        
+        return $this->average;
+        
     }
 }

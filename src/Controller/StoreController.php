@@ -3,21 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+
 use App\Entity\Genre;
 
 use App\Entity\Edition;
-
 use App\Entity\Evaluation;
+
 use App\Form\EvaluationType;
-
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -28,16 +28,18 @@ class StoreController extends AbstractController
      */
     public function showBook(Book $book, Request $request, ObjectManager $manager) {
        
-        $book = $this->getDoctrine()->getRepository(Book::class)->find($book->getid());
+        $book = $this->getDoctrine()->getRepository(Book::class)->find($book->getId());
         
-        /*$evaluation = new Evaluation();
+        $evaluation = new Evaluation();
         $form = $this->createForm(EvaluationType::class, $evaluation);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
 
             $evaluation->setDateEvaluation(new \DateTime())
-                       ->setBooks($book);
+                       ->setBooks($book)
+                       ->setUsers($this->getUser());
+
                        
 
             $manager->persist($evaluation);
@@ -47,12 +49,12 @@ class StoreController extends AbstractController
         }
         
         
-        dump($evaluation);*/
+        dump($book);
 
         return $this->render('store/book.html.twig', [
             'book' => $book,
             'evaluations' => $book->getEvaluations(),
-           // 'evaluationForm' => $form->createView()
+            'evaluationForm' => $form->createView()
         ]);
     }
 

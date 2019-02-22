@@ -49,6 +49,8 @@ use Doctrine\ORM\Mapping as ORM;
               * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
               */
              private $dateEvaluation;
+
+             private $average;
          
              public function getId(): ?int
              {
@@ -126,8 +128,6 @@ use Doctrine\ORM\Mapping as ORM;
 
                  return $this;
              }
-         
-         
          }
 
 

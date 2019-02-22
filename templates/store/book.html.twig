@@ -26,23 +26,42 @@
         {{ e.name }} : {{ book.price[e.id]|number_format(2, '.', ' ') }} €<br/>
     {% endfor %}
     </h1>
-   <div class="example-wrapper">
-
-    {#{ form_start(evaluationForm) }}
-    {{ form_row(evaluationForm.rating, {'attr': {'placeholder': 'Your rating?'}}) }}
-    {{ form_row(evaluationForm.comment, {'attr': {'placeholder': 'Your comment...'}}) }}
-    {{ form_end(evaluationForm) }#}
-
-  <h2>{{ book.evaluations | length }} messages</h2>
-
 
         
+
+
+   <div class="example-wrapper">
+
+    
+    {% if app.user %}
+
+    {{ form_start(evaluationForm) }}
+    {{ form_row(evaluationForm.rating, {'attr': {'placeholder': 'Your rating?'}}) }}
+    {{ form_row(evaluationForm.comment, {'attr': {'placeholder': 'Your comment...'}}) }}
+    {{ form_end(evaluationForm) }}
+
+    {% else %}
+
+    <a href ="{{path('login')}}">To see what others thought of this book, please sign up.</a>
+
+    {% endif %}
+
+    <h2>{{ book.evaluations | length }} messages</h2>
+    
+
+
+    <p>
+    Average rating : {{ book.average }}/5
+        
+    </p>
+        
+
         {% for evaluation in book.evaluations %}
 
             <ul>
                 <li><strong>{{ evaluation.comment}}<br></strong>
                 <span>{{ evaluation.users.uname }} answered : {{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h") }}</span>
-                <span>{{ evaluation.users.uname }} rated : {{ evaluation.rating }} favorite: {{ evaluation.favorite }}</span></li>
+                <span>{{ evaluation.users.uname }} rated : {{ evaluation.rating }}/5 favorite: {{ evaluation.favorite }}</span></li>
 
             </ul>
         {% endfor %}
