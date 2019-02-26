@@ -5,18 +5,17 @@ namespace App\Controller;
 use App\Entity\Book;
 
 use App\Entity\Genre;
-
 use App\Entity\Edition;
+
 use App\Entity\Evaluation;
-
 use App\Form\EvaluationType;
-use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,10 +36,8 @@ class StoreController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
 
             $evaluation->setDateEvaluation(new \DateTime())
-                       ->setBooks($book)
-                       ->setUsers($this->getUser());
-
-                       
+                       ->setBook($book)
+                       ->setUser($this->getUser());           
 
             $manager->persist($evaluation);
             $manager->flush();
@@ -48,8 +45,6 @@ class StoreController extends AbstractController
             return $this->redirectToRoute('show_book', ['id' => $book->getId()]);
         }
         
-        
-        dump($book);
 
         return $this->render('store/book.html.twig', [
             'book' => $book,
@@ -69,4 +64,5 @@ class StoreController extends AbstractController
             'genre' => $genre,
         ]);
     }
+
 }

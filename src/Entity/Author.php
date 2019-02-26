@@ -29,7 +29,7 @@ class Author
     private $surname;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $about;
 

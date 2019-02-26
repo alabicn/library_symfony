@@ -24,42 +24,42 @@ class Book
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $src_image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $alt_image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $title_image;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $details;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $publication_date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $publisher;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $original_title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $edition_language;
 
@@ -69,17 +69,17 @@ class Book
     private $pages;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $first_published;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $price;
-    
+
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="books", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="book", fetch="EXTRA_LAZY")
      * @ORM\OrderBy({"dateEvaluation" = "DESC"})
      */
     private $evaluations;
@@ -124,14 +124,15 @@ class Book
         $this->userbooks = new ArrayCollection();
         $this->shoppingcartbooks = new ArrayCollection();
         $this->editions = new ArrayCollection();
-    }    
+        $this->evaluations = new ArrayCollection();
+    }
 
-    public function getId(): ?int
+    public function getId(): ? int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): ? string
     {
         return $this->title;
     }
@@ -142,7 +143,7 @@ class Book
         return $this;
     }
 
-    public function getSrcImage(): ?string
+    public function getSrcImage(): ? string
     {
         return $this->src_image;
     }
@@ -153,7 +154,7 @@ class Book
         return $this;
     }
 
-    public function getAltImage(): ?string
+    public function getAltImage(): ? string
     {
         return $this->alt_image;
     }
@@ -164,7 +165,7 @@ class Book
         return $this;
     }
 
-    public function getTitleImage(): ?string
+    public function getTitleImage(): ? string
     {
         return $this->title_image;
     }
@@ -175,7 +176,7 @@ class Book
         return $this;
     }
 
-    public function getDetails(): ?string
+    public function getDetails(): ? string
     {
         return $this->details;
     }
@@ -186,7 +187,7 @@ class Book
         return $this;
     }
 
-    public function getPublicationDate(): ?\DateTimeInterface
+    public function getPublicationDate(): ? \DateTimeInterface
     {
         return $this->publication_date;
     }
@@ -197,7 +198,7 @@ class Book
         return $this;
     }
 
-    public function getPublisher(): ?string
+    public function getPublisher(): ? string
     {
         return $this->publisher;
     }
@@ -208,7 +209,7 @@ class Book
         return $this;
     }
 
-    public function getOriginalTitle(): ?string
+    public function getOriginalTitle(): ? string
     {
         return $this->original_title;
     }
@@ -219,7 +220,7 @@ class Book
         return $this;
     }
 
-    public function getEditionLanguage(): ?string
+    public function getEditionLanguage(): ? string
     {
         return $this->edition_language;
     }
@@ -230,7 +231,7 @@ class Book
         return $this;
     }
 
-    public function getPages(): ?int
+    public function getPages(): ? int
     {
         return $this->pages;
     }
@@ -241,7 +242,7 @@ class Book
         return $this;
     }
 
-    public function getFirstPublished(): ?\DateTimeInterface
+    public function getFirstPublished(): ? \DateTimeInterface
     {
         return $this->first_published;
     }
@@ -252,22 +253,20 @@ class Book
         return $this;
     }
 
-    public function getPrice(): ?array
+    public function getPrice(): ? array
     {
         $priceTable = array();
-        
-        foreach($this->getEditions() as $e){
-            if($e->getName() == 'Hardback'){
-                $priceTable[$e->getId()] = $this->price*1.35*self::VAT;
-            }
-            elseif($e->getName() == 'eBook'){
-                $priceTable[$e->getId()] = $this->price/1.80*self::VAT;
-            }
-            else{
-                $priceTable[$e->getId()] = $this->price*self::VAT;
+
+        foreach ($this->getEditions() as $e) {
+            if ($e->getName() == 'Hardback') {
+                $priceTable[$e->getId()] = $this->price * 1.35 * self::VAT;
+            } elseif ($e->getName() == 'eBook') {
+                $priceTable[$e->getId()] = $this->price / 1.80 * self::VAT;
+            } else {
+                $priceTable[$e->getId()] = $this->price * self::VAT;
             }
         }
-           
+
         return $priceTable;
     }
 
@@ -329,12 +328,12 @@ class Book
         return $this;
     }
 
-    public function getAuthor(): ?Author
+    public function getAuthor(): ? Author
     {
         return $this->author;
     }
 
-    public function setAuthor(?Author $author): self
+    public function setAuthor(? Author $author): self
     {
         $this->author = $author;
         return $this;
@@ -476,20 +475,40 @@ class Book
         return $this;
     }
 
-    public function getAverage()
+    public function getAverage(): ? float
     {
-        $nbr = count($this->getEvaluations());
-        
-        $somme = 0;
 
-        foreach($this->getEvaluations() as $ev){
-            $somme+= $ev->getRating();
+        $nbr = count($this->getEvaluations());
+
+        if ($nbr > 0) {
+
+            $somme = 0;
+
+            foreach ($this->getEvaluations() as $ev) {
+                $somme += $ev->getRating();
+            }
+
+            $this->average = round(($somme / $nbr), 1);
+
+
+            return $this->average;
         }
-        
-        $this->average = round(($somme / $nbr), 1);
-    
-        
-        return $this->average;
-        
+
+        return false;
+    }
+
+    public function ratedByUser($userid)
+    {
+
+        foreach ($this->evaluations as $evaluation) {
+
+            if ($evaluation->getUser()->getId() == $userid) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }
+

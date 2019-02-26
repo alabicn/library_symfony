@@ -32,40 +32,53 @@
 
    <div class="example-wrapper">
 
-    
-    {% if app.user %}
 
-    {{ form_start(evaluationForm) }}
-    {{ form_row(evaluationForm.rating, {'attr': {'placeholder': 'Your rating?'}}) }}
-    {{ form_row(evaluationForm.comment, {'attr': {'placeholder': 'Your comment...'}}) }}
-    {{ form_end(evaluationForm) }}
+    {% if app.user and book.ratedByUser(app.user.id) == false %}
 
-    {% else %}
+        {{ form_start(evaluationForm) }}
+        {{ form_row(evaluationForm.rating, {'attr': {'placeholder': 'Your rating?'}}) }}
+        {{ form_row(evaluationForm.comment, {'attr': {'placeholder': 'Your comment...'}}) }}
+        {{ form_end(evaluationForm) }}
 
-    <a href ="{{path('login')}}">To see what others thought of this book, please sign up.</a>
-
+   
     {% endif %}
 
-    <h2>{{ book.evaluations | length }} messages</h2>
+    {#% if (evaluation.users.id) ==(app.user.id) %} <mark>{{ evaluation.users.id ~ ' = ' ~ app.user.id }}</mark> {% endif %#}
+
     
 
+    
+    
 
+    
+     <h2>{{ book.evaluations | length }} messages</h2>
+
+    
     <p>
-    Average rating : {{ book.average }}/5
-        
+    
+        Average rating : 
+        {% if book.average %}
+            {{ book.average }}/5
+        {% else %}
+            No ratings yet.
+        {% endif %}
     </p>
         
-
+        
         {% for evaluation in book.evaluations %}
 
             <ul>
                 <li><strong>{{ evaluation.comment}}<br></strong>
-                <span>{{ evaluation.users.uname }} answered : {{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h") }}</span>
-                <span>{{ evaluation.users.uname }} rated : {{ evaluation.rating }}/5 favorite: {{ evaluation.favorite }}</span></li>
+                <span><a href={{ path("show_user", {'id': evaluation.user.id}) }}>{{ evaluation.user.uname }}</a> answered : {{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h", "Europe/Paris") }}</span>
+                <span>{{ evaluation.user.uname }} rated : {{ evaluation.rating }}/5</span></li>
 
+               
+
+            
             </ul>
         {% endfor %}
-</div>
+        
+    </div>
    
    
    

@@ -23,6 +23,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'app_admin_homepage_index' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::index'], [], [['text', '/admin/']], [], []],
         'app_homepage_index' => [[], ['_controller' => 'App\\Controller\\HomepageController::index'], [], [['text', '/']], [], []],
         'app_member_index' => [[], ['_controller' => 'App\\Controller\\MemberController::index'], [], [['text', '/member/']], [], []],
+        'show_user' => [['id'], ['_controller' => 'App\\Controller\\MemberController::showUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/member/user']], [], []],
         'app_security_register' => [[], ['_controller' => 'App\\Controller\\SecurityController::registerAction'], [], [['text', '/register']], [], []],
         'login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
         'show_book' => [['id'], ['_controller' => 'App\\Controller\\StoreController::showBook'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/book/show']], [], []],

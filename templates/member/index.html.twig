@@ -7,10 +7,6 @@
     <p>Age : {{ app.user.birthdate | age }}</p>
     <p>Member since : {{ app.user.registrationDate | date("F Y") }}</p>
 
-    <img src="/assets/img/{{ app.user.srcPhoto }}" alt="{{ app.user.altPhoto }}" title="{{ app.user.titlePhoto }}" />
-    {% if(app.user) %}
-        <p>Jte vois</p>
-    {% else %}
-        <p> jte vois pas</p>
-    {% endif %}
+    <img src="/assets/img/{{ app.user.srcPhoto }}" alt="{{ app.user.altPhoto }}" title="{{ app.user.titlePhoto }}" style="width : 50px;" />
+
 {% endblock %}

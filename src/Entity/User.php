@@ -95,13 +95,12 @@ class User implements UserInterface, \Serializable {
     private $title_photo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="user")
      */
     private $evaluations;
 
     public function __construct() {
         $this->isActive = true;
-        $this->books = new ArrayCollection();
         $this->evaluations = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
@@ -272,32 +271,6 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    /**
-     * @return Collection|Book[]
-     */
-    public function getBooks(): Collection
-    {
-        return $this->books;
-    }
-
-    public function addBook(Book $book): self
-    {
-        if (!$this->books->contains($book)) {
-            $this->books[] = $book;
-        }
-
-        return $this;
-    }
-
-    public function removeBook(Book $book): self
-    {
-        if ($this->books->contains($book)) {
-            $this->books->removeElement($book);
-        }
-
-        return $this;
-    }
-
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -308,28 +281,28 @@ class User implements UserInterface, \Serializable {
     /**
      * @return Collection|Evaluation[]
      */
-    public function getUserbooks(): Collection
+    public function getEvaluations(): Collection
     {
-        return $this->userbooks;
+        return $this->evaluations;
     }
 
-    public function addUserbook(Evaluation $userbook): self
+    public function addEvaluation(Evaluation $evaluation): self
     {
-        if (!$this->userbooks->contains($userbook)) {
-            $this->userbooks[] = $userbook;
-            $userbook->setUsers($this);
+        if (!$this->evaluations->contains($evaluation)) {
+            $this->evaluations[] = $evaluation;
+            $evaluation->setUsers($this);
         }
 
         return $this;
     }
 
-    public function removeUserbook(Evaluation $userbook): self
+    public function removeEvaluation(Evaluation $evaluation): self
     {
-        if ($this->userbooks->contains($userbook)) {
-            $this->userbooks->removeElement($userbook);
+        if ($this->evaluations->contains($evaluation)) {
+            $this->evaluations->removeElement($evaluation);
             // set the owning side to null (unless already changed)
-            if ($userbook->getUsers() === $this) {
-                $userbook->setUsers(null);
+            if ($evaluation->getUsers() === $this) {
+                $evaluation->setUsers(null);
             }
         }
 
@@ -354,6 +327,5 @@ class User implements UserInterface, \Serializable {
 
         return $this;
     }
-
 
 }
