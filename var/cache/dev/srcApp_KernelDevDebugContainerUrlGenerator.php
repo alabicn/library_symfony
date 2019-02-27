@@ -22,10 +22,11 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
             self::$declaredRoutes = [
         'app_admin_homepage_index' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::index'], [], [['text', '/admin/']], [], []],
         'app_homepage_index' => [[], ['_controller' => 'App\\Controller\\HomepageController::index'], [], [['text', '/']], [], []],
-        'app_member_index' => [[], ['_controller' => 'App\\Controller\\MemberController::index'], [], [['text', '/member/']], [], []],
+        'profile_page' => [[], ['_controller' => 'App\\Controller\\MemberController::index'], [], [['text', '/member/']], [], []],
         'show_user' => [['id'], ['_controller' => 'App\\Controller\\MemberController::showUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/member/user']], [], []],
         'app_security_register' => [[], ['_controller' => 'App\\Controller\\SecurityController::registerAction'], [], [['text', '/register']], [], []],
         'login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
+        'resetpassword' => [[], ['_controller' => 'App\\Controller\\SecurityController::resetPassword'], [], [['text', '/resetpassword']], [], []],
         'show_book' => [['id'], ['_controller' => 'App\\Controller\\StoreController::showBook'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/book/show']], [], []],
         'show_genre' => [['name'], ['_controller' => 'App\\Controller\\StoreController::listeGenre'], [], [['variable', '/', '[^/]++', 'name', true], ['text', '/genre']], [], []],
         '_twig_error_test' => [['code', '_format'], ['_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], []],

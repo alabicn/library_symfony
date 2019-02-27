@@ -35,7 +35,6 @@ class FakerFixtures extends Fixture
 
             $user = new User();
 
-
             $user->setUsername($faker->username)
                 ->setEmail('user@symfony.com')
                 ->setPassword('123456789')
