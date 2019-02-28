@@ -14,6 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\PasswordUpdate;
+use App\Form\PasswordUpdateType;
 
 class SecurityController extends Controller
 {
@@ -48,7 +50,7 @@ class SecurityController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
             $this->addFlash('success', 'Your account has been saved.');
-            //return $this->redirectToRoute('login');
+            return $this->redirectToRoute('login');
         }
         return $this->render('security/register.html.twig', ['form' => $form->createView(), 'mainNavRegistration' => true, 'title' => 'Registration']);
     }
@@ -85,44 +87,47 @@ class SecurityController extends Controller
     { }
 
     /**
-     * @Route("/resetpassword", name="resetpassword")
+     * Modification of the password
      *
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param ObjectManager $manager
-     * @return void
+     * @Route("/password-update", name="password_update")
+     * 
+     * @return Response
      */
-    public function resetPassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, ObjectManager $manager)
+    public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager)
     {
-        $em = $this->getDoctrine()->getManager();
+        $passwordUpdate = new PasswordUpdate();
+
         $user = $this->getUser();
-        $form = $this->createForm(ResetPasswordType::class, $user);
+
+        $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $oldPassword = $user->getPlainPassword();
-            dump($oldPassword);
+            if (!password_verify($passwordUpdate->getOldPassword(), $user->getPassword())) {
 
-            // Si l'ancien mot de passe est bon
-            if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
-                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-                $user->setPassword($newEncodedPassword);
-
-                $em->persist($user);
-                $em->flush();
-
-                $this->addFlash('notice', 'You have changed your password !');
-
-                return $this->redirectToRoute('profile');
+                $form->get('oldPassword')->addError(new FormError("The password that you have inserted is not your current password !"));
             } else {
-                $form->addError(new FormError('Old password is incorrect'));
+                $newPassword = $passwordUpdate->getNewPassword();
+                $hash = $encoder->encodePassword($user, $newPassword);
+
+                $user->setPassword($hash);
+
+                $manager->persist($user);
+                $manager->flush();
+
+                $this->addFlash(
+                    'success',
+                    "Your password have been succefully changed"
+                );
+
+                return $this->redirectToRoute('profile_page');
             }
         }
 
-        return $this->render('security/resetpassword.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return $this->render('security/updatepassword.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

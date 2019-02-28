@@ -2,25 +2,18 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\UploadRepository")
- */
 class Upload
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @Assert\File(
+        *     maxSize = "1M",
+        *     mimeTypes = {"image/jpeg", "image/png"},
+        *     mimeTypesMessage = "Please upload a valid image"
+        *     )
      */
-    private $id;
-
     private $name;
-
-    public function getId(): ? int
-    {
-        return $this->id;
-    }
 
     public function getName()
     {

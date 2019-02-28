@@ -15,7 +15,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(fields="username")
  * @ORM\Entity()
  */
-class User implements UserInterface, \Serializable {
+class User implements UserInterface, \Serializable
+{
 
     /**
      * @ORM\Id
@@ -81,6 +82,11 @@ class User implements UserInterface, \Serializable {
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(
+        *     maxSize = "1M",
+        *     mimeTypes = {"image/jpeg", "image/png"},
+        *     mimeTypesMessage = "Please upload a valid image"
+        *     )
      */
     private $src_photo;
 
@@ -99,107 +105,124 @@ class User implements UserInterface, \Serializable {
      */
     private $evaluations;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->isActive = true;
         $this->evaluations = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->email;
     }
 
-    public function getUname() {
+    public function getUname()
+    {
         return $this->username;
     }
 
-    public function getSalt() {
+    public function getSalt()
+    {
         // you *may* need a real salt depending on your encoder
         // see section on salt below
         return null;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    function setPassword($password) {
+    function setPassword($password)
+    {
         $this->password = $password;
     }
 
-    public function getRoles() {
+    public function getRoles()
+    {
         if (empty($this->roles)) {
             return ['ROLE_USER'];
         }
         return $this->roles;
     }
 
-    function addRole($role) {
+    function addRole($role)
+    {
         $this->roles[] = $role;
     }
 
-    public function eraseCredentials() {
-        
-    }
+    public function eraseCredentials()
+    { }
 
     /** @see \Serializable::serialize() */
-    public function serialize() {
+    public function serialize()
+    {
         return serialize(array(
             $this->id,
             $this->email,
             $this->password,
             $this->isActive,
-                // see section on salt below
-                // $this->salt,
+            // see section on salt below
+            // $this->salt,
         ));
     }
 
     /** @see \Serializable::unserialize() */
-    public function unserialize($serialized) {
-        list (
-                $this->id,
-                $this->email,
-                $this->password,
-                $this->isActive,
-                // see section on salt below
-                // $this->salt
-                ) = unserialize($serialized);
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->isActive,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 
-    function getId() {
+    function getId()
+    {
         return $this->id;
     }
 
-    function getEmail() {
+    function getEmail()
+    {
         return $this->email;
     }
 
-    function getPlainPassword() {
+    function getPlainPassword()
+    {
         return $this->plainPassword;
     }
 
-    function getIsActive() {
+    function getIsActive()
+    {
         return $this->isActive;
     }
 
-    function setId($id) {
+    function setId($id)
+    {
         $this->id = $id;
     }
 
-    function setEmail($email) {
+    function setEmail($email)
+    {
         $this->email = $email;
     }
 
-    function setPlainPassword($plainPassword) {
+    function setPlainPassword($plainPassword)
+    {
         $this->plainPassword = $plainPassword;
     }
 
-    function setIsActive($isActive) {
+    function setIsActive($isActive)
+    {
         $this->isActive = $isActive;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    public function getBirthdate(): ? \DateTimeInterface
     {
         return $this->birthdate;
     }
@@ -211,7 +234,7 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    public function getRegistrationDate(): ?\DateTimeInterface
+    public function getRegistrationDate(): ? \DateTimeInterface
     {
         return $this->registration_date;
     }
@@ -223,7 +246,7 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    public function getGender(): ?string
+    public function getGender(): ? string
     {
         return $this->gender;
     }
@@ -235,7 +258,7 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    public function getSrcPhoto(): ?string
+    public function getSrcPhoto(): ? string
     {
         return $this->src_photo;
     }
@@ -247,7 +270,7 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    public function getAltPhoto(): ?string
+    public function getAltPhoto(): ? string
     {
         return $this->alt_photo;
     }
@@ -259,7 +282,7 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    public function getTitlePhoto(): ?string
+    public function getTitlePhoto(): ? string
     {
         return $this->title_photo;
     }
@@ -309,7 +332,7 @@ class User implements UserInterface, \Serializable {
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): ? string
     {
         return $this->name;
     }
@@ -327,5 +350,5 @@ class User implements UserInterface, \Serializable {
 
         return $this;
     }
-
 }
+
