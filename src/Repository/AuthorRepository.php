@@ -47,4 +47,13 @@ class AuthorRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllOrderedByName()
+    {
+        $qb = $this->createQueryBuilder('author')
+            ->orderBy('author.surname', 'ASC')
+            ->getQuery();
+
+        return $qb->execute();
+    }
 }

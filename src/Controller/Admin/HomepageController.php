@@ -2,18 +2,25 @@
 
 namespace App\Controller\Admin;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Entity\Author;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /** @Route("/admin") */
-class HomepageController extends Controller {
+class HomepageController extends Controller
+{
 
     /**
      * @Route("/")
      */
-    public function index() {
-        return $this->render('admin/homepage/index.html.twig', ['mainNavAdmin' => true, 'title' => 'Espace Admin']);
+    public function index()
+    {
+
+        $author = $this->getDoctrine()->getRepository(Author::class)->findAllOrderedByName();
+
+        return $this->render('admin/homepage/index.html.twig', [
+            'author' => $author,
+            'mainNavAdmin' => true, 'title' => 'Espace Admin'
+        ]);
     }
-
 }
-

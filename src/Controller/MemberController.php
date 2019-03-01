@@ -32,7 +32,7 @@ class MemberController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $upload->getName();
             $fileName = 'user' . $this->getUser()->getId() . '.' . $file->guessExtension();
-            $file->move($this->getParameter('upload_directory'), $fileName);
+            $file->move($this->getParameter('upload_directory_user'), $fileName);
             $this->getUser()->setSrcPhoto('img_user/' . $fileName);
             $this->getUser()->setAltPhoto($fileName);
             $this->getUser()->setTitlePhoto($this->getUser()->getUname() . '\'s profile photo');

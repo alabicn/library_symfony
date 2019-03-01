@@ -64,12 +64,12 @@ class Author
         $this->quotes = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ? int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): ? string
     {
         return $this->name;
     }
@@ -81,7 +81,7 @@ class Author
         return $this;
     }
 
-    public function getSurname(): ?string
+    public function getSurname(): ? string
     {
         return $this->surname;
     }
@@ -93,7 +93,7 @@ class Author
         return $this;
     }
 
-    public function getAbout(): ?string
+    public function getAbout(): ? string
     {
         return $this->about;
     }
@@ -136,36 +136,36 @@ class Author
         return $this;
     }
 
-    public function getSrcImage(): ?string
+    public function getSrcImage(): ? string
     {
         return $this->src_image;
     }
 
-    public function setSrcImage(?string $src_image): self
+    public function setSrcImage(? string $src_image): self
     {
         $this->src_image = $src_image;
 
         return $this;
     }
 
-    public function getAltImage(): ?string
+    public function getAltImage(): ? string
     {
         return $this->alt_image;
     }
 
-    public function setAltImage(?string $alt_image): self
+    public function setAltImage(? string $alt_image): self
     {
         $this->alt_image = $alt_image;
 
         return $this;
     }
 
-    public function getTitleImage(): ?string
+    public function getTitleImage(): ? string
     {
         return $this->title_image;
     }
 
-    public function setTitleImage(?string $title_image): self
+    public function setTitleImage(? string $title_image): self
     {
         $this->title_image = $title_image;
 
@@ -202,5 +202,4 @@ class Author
 
         return $this;
     }
-
 }

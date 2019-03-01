@@ -8,12 +8,14 @@ use App\Entity\Book;
 use App\Entity\Genre;
 use App\Entity\Quote;
 
-class HomepageController extends Controller {
+class HomepageController extends Controller
+{
 
     /**
      * @Route("/")
      */
-    public function index() {
+    public function index()
+    {
 
 
         $genres = $this->getDoctrine()->getRepository(Genre::class)->findAllOrderedByName();
@@ -21,14 +23,11 @@ class HomepageController extends Controller {
 
 
         return $this->render('homepage/index.html.twig', [
-            'mainNavHome'=>true, 
-            'title'=>'Accueil',
-     
+            'mainNavHome' => true,
+            'title' => 'Accueil',
+
             'genres' => $genres,
             'quotes' => $quotes
         ]);
-    
-    
     }
-
 }

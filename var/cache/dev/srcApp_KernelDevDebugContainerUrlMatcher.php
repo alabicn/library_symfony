@@ -16,6 +16,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         $this->context = $context;
         $this->staticRoutes = [
             '/admin' => [[['_route' => 'app_admin_homepage_index', '_controller' => 'App\\Controller\\Admin\\HomepageController::index'], null, null, null, true, false, null]],
+            '/admin/addAuthor' => [[['_route' => 'add_author', '_controller' => 'App\\Controller\\Admin\\StoreController::insertAuthor'], null, null, null, false, false, null]],
             '/' => [[['_route' => 'app_homepage_index', '_controller' => 'App\\Controller\\HomepageController::index'], null, null, null, false, false, null]],
             '/member' => [[['_route' => 'profile_page', '_controller' => 'App\\Controller\\MemberController::index'], null, null, null, true, false, null]],
             '/register' => [[['_route' => 'app_security_register', '_controller' => 'App\\Controller\\SecurityController::registerAction'], null, null, null, false, false, null]],
@@ -30,37 +31,39 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         ];
         $this->regexpList = [
             0 => '{^(?'
-                    .'|/member/user/([^/]++)(*:28)'
-                    .'|/book/show/([^/]++)(*:54)'
-                    .'|/genre/([^/]++)(*:76)'
+                    .'|/admin/author/show/([^/]++)(*:34)'
+                    .'|/member/user/([^/]++)(*:62)'
+                    .'|/book/show/([^/]++)(*:88)'
+                    .'|/genre/([^/]++)(*:110)'
                     .'|/_(?'
-                        .'|error/(\\d+)(?:\\.([^/]++))?(*:114)'
-                        .'|wdt/([^/]++)(*:134)'
+                        .'|error/(\\d+)(?:\\.([^/]++))?(*:149)'
+                        .'|wdt/([^/]++)(*:169)'
                         .'|profiler/([^/]++)(?'
                             .'|/(?'
-                                .'|search/results(*:180)'
-                                .'|router(*:194)'
+                                .'|search/results(*:215)'
+                                .'|router(*:229)'
                                 .'|exception(?'
-                                    .'|(*:214)'
-                                    .'|\\.css(*:227)'
+                                    .'|(*:249)'
+                                    .'|\\.css(*:262)'
                                 .')'
                             .')'
-                            .'|(*:237)'
+                            .'|(*:272)'
                         .')'
                     .')'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
-            28 => [[['_route' => 'show_user', '_controller' => 'App\\Controller\\MemberController::showUser'], ['id'], null, null, false, true, null]],
-            54 => [[['_route' => 'show_book', '_controller' => 'App\\Controller\\StoreController::showBook'], ['id'], null, null, false, true, null]],
-            76 => [[['_route' => 'show_genre', '_controller' => 'App\\Controller\\StoreController::listeGenre'], ['name'], null, null, false, true, null]],
-            114 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-            134 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-            180 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-            194 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-            214 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
-            227 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
-            237 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+            34 => [[['_route' => 'show_author', '_controller' => 'App\\Controller\\Admin\\StoreController::showAuthor'], ['id'], null, null, false, true, null]],
+            62 => [[['_route' => 'show_user', '_controller' => 'App\\Controller\\MemberController::showUser'], ['id'], null, null, false, true, null]],
+            88 => [[['_route' => 'show_book', '_controller' => 'App\\Controller\\StoreController::showBook'], ['id'], null, null, false, true, null]],
+            110 => [[['_route' => 'show_genre', '_controller' => 'App\\Controller\\StoreController::listeGenre'], ['name'], null, null, false, true, null]],
+            149 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+            169 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+            215 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+            229 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+            249 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
+            262 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
+            272 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         ];
     }
 }

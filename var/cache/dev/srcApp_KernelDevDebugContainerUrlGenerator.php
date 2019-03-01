@@ -21,6 +21,8 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         if (null === self::$declaredRoutes) {
             self::$declaredRoutes = [
         'app_admin_homepage_index' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::index'], [], [['text', '/admin/']], [], []],
+        'add_author' => [[], ['_controller' => 'App\\Controller\\Admin\\StoreController::insertAuthor'], [], [['text', '/admin/addAuthor']], [], []],
+        'show_author' => [['id'], ['_controller' => 'App\\Controller\\Admin\\StoreController::showAuthor'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/author/show']], [], []],
         'app_homepage_index' => [[], ['_controller' => 'App\\Controller\\HomepageController::index'], [], [['text', '/']], [], []],
         'profile_page' => [[], ['_controller' => 'App\\Controller\\MemberController::index'], [], [['text', '/member/']], [], []],
         'show_user' => [['id'], ['_controller' => 'App\\Controller\\MemberController::showUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/member/user']], [], []],
