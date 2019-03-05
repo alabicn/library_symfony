@@ -64,7 +64,6 @@ class MemberController extends Controller
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($user->getId());
 
-        dump($user);
 
 
 

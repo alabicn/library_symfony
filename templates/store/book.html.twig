@@ -36,7 +36,7 @@
     <img src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" />
 
     <h1>{% for e in book.editions %}
-        {{ e.name }} : {{ book.price[e.id]|number_format(2, '.', ' ') }} €<br />
+        {{ e.name }} : {{ book.prices[e.id]|number_format(2, '.', ' ') }} €<br />
         {% endfor %}
     </h1>
 
@@ -56,7 +56,7 @@
 
         {% endif %}
 
-        {#% if (evaluation.users.id) ==(app.user.id) %} <mark>{{ evaluation.users.id ~ ' = ' ~ app.user.id }}</mark> {% endif %#}
+    
 
 
 

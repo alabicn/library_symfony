@@ -56,4 +56,5 @@ class AuthorRepository extends ServiceEntityRepository
 
         return $qb->execute();
     }
+
 }

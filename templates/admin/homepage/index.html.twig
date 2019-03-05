@@ -1,37 +1,47 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Hello HomepageController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper {
-        margin: 1em auto;
-        max-width: 800px;
-        width: 95%;
-        font: 18px/1.5 sans-serif;
-    }
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+    <div class="example-wrapper">
+        <h1>Hello ✅</h1>
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at
+                <code>
+                    <a href="{{ 'C:/wamp/www/library/src/Controller/HomepageController.php'|file_link(0) }}">src/Controller/HomepageController.php</a>
+                </code>
+            </li>
+            <li>Your template at
+                <code>
+                    <a href="{{ 'C:/wamp/www/library/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a>
+                </code>
+            </li>
+        </ul>
+        <a href={{ path("add_author") }}>Add Author</a><br>
+        <a href={{ path("add_book") }}>Add Book</a>
+        <hr>
 
-    .example-wrapper code {
-        background: #F5F5F5;
-        padding: 2px 6px;
-    }
-</style>
+        {% for author in author %}
 
-<div class="example-wrapper">
-    <h1>Hello ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at
-            <code><a href="{{ 'C:/wamp/www/library/src/Controller/HomepageController.php'|file_link(0) }}">src/Controller/HomepageController.php</a></code>
-        </li>
-        <li>Your template at
-            <code><a href="{{ 'C:/wamp/www/library/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a></code>
-        </li>
-    </ul>
-
-    <a href={{ path("add_author") }}>Add Author</a>
-
-    <a href={#{ path("show_author", {'id': author.id}) }#}>
-</div>
-{% endblock %}
+        <a href={{ path("edit_image_author", {'surname': author.surname} ) }}>
+            <p>
+                {{author.name ~ " " ~ author.surname|upper}}</p>
+        </a>
+        {% endfor %}
+<hr>
+<h2>GENRES : </h2>
+        {% for genre in genres %}
+            <a href={{ path("show_genre", {'name': genre.name}) }}><h4>{{genre.name}}</h4></a>
+        {% endfor %}
+    {% endblock %}

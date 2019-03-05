@@ -74,7 +74,7 @@ class Book
     private $first_published;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float")
      */
     private $price;
 
@@ -83,11 +83,6 @@ class Book
      * @ORM\OrderBy({"dateEvaluation" = "DESC"})
      */
     private $evaluations;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Library", mappedBy="books")
-     */
-    private $libraries;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
@@ -117,7 +112,6 @@ class Book
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->libraries = new ArrayCollection();
         $this->types = new ArrayCollection();
         $this->genres = new ArrayCollection();
         $this->shoppingCarts = new ArrayCollection();
@@ -253,7 +247,7 @@ class Book
         return $this;
     }
 
-    public function getPrice(): ? array
+    public function getPrices(): ? array
     {
         $priceTable = array();
 
@@ -298,32 +292,6 @@ class Book
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             $user->removeBook($this);
-        }
-        return $this;
-    }
-
-    /**
-     * @return Collection|Library[]
-     */
-    public function getLibraries(): Collection
-    {
-        return $this->libraries;
-    }
-
-    public function addLibrary(Library $library): self
-    {
-        if (!$this->libraries->contains($library)) {
-            $this->libraries[] = $library;
-            $library->addBook($this);
-        }
-        return $this;
-    }
-
-    public function removeLibrary(Library $library): self
-    {
-        if ($this->libraries->contains($library)) {
-            $this->libraries->removeElement($library);
-            $library->removeBook($this);
         }
         return $this;
     }
@@ -509,6 +477,10 @@ class Book
         }
 
         return false;
+    }
+
+    public function getPrice() {
+        return $this->price;
     }
 }
 

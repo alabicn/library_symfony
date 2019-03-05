@@ -11,8 +11,11 @@
                 'type' => [
                     'date',
                 ],
+                'message' => [
+                    1 => 'You have to be at least 16 years old',
+                ],
                 'value' => [
-                    1 => '-18 years',
+                    1 => '-16 years',
                 ],
                 'groups' => [
                     1 => [

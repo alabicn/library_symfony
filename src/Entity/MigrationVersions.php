@@ -33,7 +33,7 @@ class MigrationVersions
         return $this->version;
     }
 
-    public function getExecutedAt(): ?\DateTimeImmutable
+    public function getExecutedAt()
     {
         return $this->executedAt;
     }

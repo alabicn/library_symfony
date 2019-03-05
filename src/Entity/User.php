@@ -66,7 +66,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\LessThan("-18 years")
+     * @Assert\LessThan("-16 years", message="You have to be at least 16 years old")
      */
     private $birthdate;
 

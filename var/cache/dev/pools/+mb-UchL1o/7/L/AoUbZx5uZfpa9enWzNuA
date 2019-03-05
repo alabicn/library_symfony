@@ -10,9 +10,6 @@
                 'type' => [
                     'float',
                 ],
-                'nullable' => [
-                    true,
-                ],
             ],
         ],
         [

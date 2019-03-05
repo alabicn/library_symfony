@@ -7,6 +7,7 @@ parameters:
     locale: 'en'
     upload_directory_user: '%kernel.project_dir%/public\assets\img\img_user'
     upload_directory_author: '%kernel.project_dir%/public\assets\img\img_author'
+    upload_directory_book: '%kernel.project_dir%/public\assets\img\img_book'
 
 services:
     # default configuration for services in *this* file

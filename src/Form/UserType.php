@@ -27,11 +27,7 @@ class UserType extends AbstractType
                 'second_options' => array('label' => 'Retype password'),
             ))
             ->add('birthdate', BirthdayType::class, [
-                'placeholder' => [
-                    'year' => 'Year',
-                    'month' => 'Month',
-                    'day' => 'Day',
-                ]
+                'widget' => 'single_text',
             ])
             ->add('gender', ChoiceType::class, array(
                 'choices'  => array(
