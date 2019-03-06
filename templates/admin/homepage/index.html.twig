@@ -34,7 +34,7 @@
 
         {% for author in author %}
 
-        <a href={{ path("edit_image_author", {'surname': author.surname} ) }}>
+        <a href={{ path("edit_author", {'surname': author.surname} ) }}>
             <p>
                 {{author.name ~ " " ~ author.surname|upper}}</p>
         </a>

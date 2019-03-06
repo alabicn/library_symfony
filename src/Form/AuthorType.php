@@ -19,6 +19,14 @@ class AuthorType extends AbstractType
             ->add('name', TextType::class)
             ->add('surname', TextType::class)
             ->add('about', TextareaType::class)
+            ->add('src_image', FileType::class, [
+                'attr' => [
+                    'placeholder' => 'Upload your photo'
+                ],
+                'label' => 'Author image',
+                'mapped' => false,
+                'required' => false
+            ])
             ->add('save', SubmitType::class, array('label' => 'POST'));
     }
 

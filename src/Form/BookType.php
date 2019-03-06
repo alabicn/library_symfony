@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class BookType extends AbstractType
 {
@@ -40,9 +41,8 @@ class BookType extends AbstractType
             ->add('title', TextType::class)
             ->add('genres', EntityType::class, [
                 'class' => Genre::class,
-                'choice_label' => function ($genre) {
-                    return $genre->getName();
-                },
+                'choice_label' => 'name',
+                
                 'query_builder' => function (EntityRepository $genre) {
                     return $genre->createQueryBuilder('genre')
                     ->orderBy('genre.name', 'ASC');
@@ -70,6 +70,13 @@ class BookType extends AbstractType
                 'expanded' => true,
             ])
             ->add('price', MoneyType::class)
+            ->add('src_image', FileType::class, [
+                'attr' => [
+                    'placeholder' => 'Upload your photo'
+                ],
+                'label' => 'Book cover',
+                'required' => false
+            ])
             ->add('save', SubmitType::class, array('label' => 'POST'));
         ;
     }

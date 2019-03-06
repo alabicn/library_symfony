@@ -25,7 +25,7 @@ class Edition
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Book", inversedBy="editions")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Book", mappedBy="editions")
      */
     private $books;
 

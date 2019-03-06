@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
@@ -45,6 +46,7 @@ class Book
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\LessThan("today", message="Unknown date")
      */
     private $publication_date;
 
@@ -70,6 +72,7 @@ class Book
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\LessThan("today", message="Unknown date")
      */
     private $first_published;
 
@@ -90,12 +93,12 @@ class Book
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Edition", mappedBy="books")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Edition", inversedBy="books")
      */
     private $editions;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Genre", mappedBy="books")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Genre", inversedBy="books")
      * @ORM\OrderBy({"name" = "DESC"})
      */
     private $genres;

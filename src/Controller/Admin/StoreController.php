@@ -40,9 +40,22 @@ class StoreController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $author->setSrcImage('img_author/default.png');
-            $author->setAltImage('default.png');
-            $author->setTitleImage('Default photo');
+            $data = $form['src_image']->getData();
+
+            if($data === '' || $data === NULL)
+            {
+                $author->setSrcImage('img_author/default.png');
+                $author->setAltImage('default.png');
+                $author->setTitleImage('Default photo');                    
+            }
+            else {
+                $file = $data;
+                $fileName = self::stripAccents($author->getName()) . " " . self::stripAccents($author->getSurname()) . "." . $file->guessExtension();
+                $file->move($this->getParameter('upload_directory_author'), $fileName);
+                $author->setSrcImage('img_author/' . $fileName);
+                $author->setAltImage($fileName);
+                $author->setTitleImage($author->getName() . " " . $author->getSurname()); 
+            }
 
             $manager->persist($author);
             $manager->flush();
@@ -63,36 +76,56 @@ class StoreController extends Controller
 
 
     /**
-     * @Route("/author/{surname}", name="edit_image_author")
+     * @Route("/author/{surname}", name="edit_author")
      */
     public function editAuthor(Author $author, Request $request, ObjectManager $manager)
     {
         $author = $this->getDoctrine()->getRepository(Author::class)->find($author->getId());
-        $upload = new Upload();
-        $form = $this->createForm(UploadType::class, $upload);
+
+        $form = $this->createForm(AuthorType::class, $author);
+
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $upload->getName();
-            $fileName = self::stripAccents($author->getName()) . " " . self::stripAccents($author->getSurname()) . "." . $file->guessExtension();
-            $file->move($this->getParameter('upload_directory_author'), $fileName);
-            $author->setSrcImage('img_author/' . $fileName);
-            $author->setAltImage($fileName);
-            $author->setTitleImage($author->getName() . " " . $author->getSurname());
+
+            $data = $form['src_image']->getData();
+
+            if ($author->getSrcImage() !== 'img_author/' . self::stripAccents($author->getName()) . " " . self::stripAccents($author->getSurname()) . ".jpeg") 
+            {
+                if($data === '' || $data === NULL)
+                {
+                    $author->setSrcImage('img_author/default.png');
+                    $author->setAltImage('default.png');
+                    $author->setTitleImage('Default photo');                    
+                }
+                else {
+                    $file = $data;
+                    $fileName = self::stripAccents($author->getName()) . " " . self::stripAccents($author->getSurname()) . "." . $file->guessExtension();
+                    $file->move($this->getParameter('upload_directory_author'), $fileName);
+
+                    $author->setSrcImage('img_author/' . $fileName);
+                    $author->setAltImage($fileName);
+                    $author->setTitleImage($author->getName() . " " . $author->getSurname());
+                }
+            }
+            
             $manager->persist($author);
             $manager->flush();
+
             $this->addFlash(
                 'success',
-                "You have changed " . $author->getName() . " " . $author->getSurname() . "'s photo "
+                "You have changed " . $author->getName() . " " . $author->getSurname() . "'s details"
             );
-            return $this->redirectToRoute('edit_image_author', ['surname' => $author->getSurname()]);
+
+            return $this->redirectToRoute('edit_author', ['surname' => $author->getSurname()]);
         }
-        return $this->render('admin/store/editImageAuthor.html.twig', [
+        return $this->render('admin/store/editAuthor.html.twig', [
             'author' => $author,
             'form' => $form->createView(),
             'mainNavAdmin' => true,
             'title' => 'Espace Admin'
         ]);
-    }
+    } 
 
     /**
      * @Route("/addBook", name="add_book")
@@ -102,15 +135,28 @@ class StoreController extends Controller
         $book = new Book();
 
         $form = $this->createForm(BookType::class, $book);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $book->setSrcImage('img_book/default.jpg');
-            $book->setAltImage('default.jpg');
-            $book->setTitleImage('Default photo');
-
+            $data = $form['src_image']->getData();
+            
+            if($data === '' || $data === NULL)
+            {
+                $book = $form->getData();
+                $book->setSrcImage('img_book/default.jpg');
+                $book->setAltImage('default.jpg');
+                $book->setTitleImage('Default photo');                     
+            }
+            else {
+                $file = $data;
+                $fileName = self::stripAccents($book->getAuthor()->getName()) . " " . self::stripAccents(strtoupper($book->getAuthor()->getSurname())) . " - " . self::stripAccents($book->getTitle()) . "." . $file->guessExtension();
+                $file->move($this->getParameter('upload_directory_book'), $fileName);
+                $book->setSrcImage('img_book/' . $fileName);
+                $book->setAltImage($fileName);
+                $book->setTitleImage($book->getTitle() . " by " . $book->getAuthor()->getName() . " " . strtoupper($book->getAuthor()->getSurname()) . " (cover photo)");  
+            }
+    
             $manager->persist($book);
             $manager->flush();
 

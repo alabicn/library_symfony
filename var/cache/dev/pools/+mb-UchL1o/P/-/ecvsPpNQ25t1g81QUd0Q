@@ -11,7 +11,7 @@
                 'targetEntity' => [
                     'App\\Entity\\Genre',
                 ],
-                'mappedBy' => [
+                'inversedBy' => [
                     'books',
                 ],
                 'value' => [

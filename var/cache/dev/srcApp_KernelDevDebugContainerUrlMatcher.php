@@ -59,7 +59,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
-            32 => [[['_route' => 'edit_image_author', '_controller' => 'App\\Controller\\Admin\\StoreController::editAuthor'], ['surname'], null, null, false, true, null]],
+            32 => [[['_route' => 'edit_author', '_controller' => 'App\\Controller\\Admin\\StoreController::editAuthor'], ['surname'], null, null, false, true, null]],
             52 => [[['_route' => 'edit_cover_book', '_controller' => 'App\\Controller\\Admin\\StoreController::editBook'], ['id'], null, null, false, true, null]],
             81 => [[['_route' => 'show_user', '_controller' => 'App\\Controller\\MemberController::showUser'], ['id'], null, null, false, true, null]],
             107 => [[['_route' => 'show_book', '_controller' => 'App\\Controller\\StoreController::showBook'], ['id'], null, null, false, true, null]],

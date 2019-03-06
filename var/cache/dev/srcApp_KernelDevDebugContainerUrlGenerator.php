@@ -22,7 +22,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
             self::$declaredRoutes = [
         'app_admin_homepage_index' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::index'], [], [['text', '/admin/']], [], []],
         'add_author' => [[], ['_controller' => 'App\\Controller\\Admin\\StoreController::insertAuthor'], [], [['text', '/admin/addAuthor']], [], []],
-        'edit_image_author' => [['surname'], ['_controller' => 'App\\Controller\\Admin\\StoreController::editAuthor'], [], [['variable', '/', '[^/]++', 'surname', true], ['text', '/admin/author']], [], []],
+        'edit_author' => [['surname'], ['_controller' => 'App\\Controller\\Admin\\StoreController::editAuthor'], [], [['variable', '/', '[^/]++', 'surname', true], ['text', '/admin/author']], [], []],
         'add_book' => [[], ['_controller' => 'App\\Controller\\Admin\\StoreController::insertBook'], [], [['text', '/admin/addBook']], [], []],
         'edit_cover_book' => [['id'], ['_controller' => 'App\\Controller\\Admin\\StoreController::editBook'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/book']], [], []],
         'add_genre' => [[], ['_controller' => 'App\\Controller\\Admin\\StoreController::insertGenre'], [], [['text', '/admin/addGenre']], [], []],
