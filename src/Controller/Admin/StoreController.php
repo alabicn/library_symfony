@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
-
 use App\Entity\Genre;
 use App\Entity\Author;
 use App\Entity\Upload;
@@ -18,114 +17,12 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
 /** @Route("/admin") */
 class StoreController extends Controller
 {
 
-    public function stripAccents($str) {
-        return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
-    }
-
-    /**
-     * @Route("/addAuthor", name="add_author")
-     */
-    public function insertAuthor(Request $request, ObjectManager $manager)
-    {
-        $author = new Author();
-
-        $form = $this->createForm(AuthorType::class, $author);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $data = $form['src_image']->getData();
-
-            if($data === '' || $data === NULL)
-            {
-                $author->setSrcImage('img_author/default.png');
-                $author->setAltImage('default.png');
-                $author->setTitleImage('Default photo');                    
-            }
-            else {
-                $file = $data;
-                $fileName = self::stripAccents($author->getName()) . " " . self::stripAccents($author->getSurname()) . "." . $file->guessExtension();
-                $file->move($this->getParameter('upload_directory_author'), $fileName);
-                $author->setSrcImage('img_author/' . $fileName);
-                $author->setAltImage($fileName);
-                $author->setTitleImage($author->getName() . " " . $author->getSurname()); 
-            }
-
-            $manager->persist($author);
-            $manager->flush();
-
-            $this->addFlash(
-                'success',
-                "You have added new Author"
-            );
-
-            return $this->redirectToRoute('add_author');
-        }
-        return $this->render('admin/store/insertAuthor.html.twig', [
-            'form' => $form->createView(),
-            'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
-        ]);
-    }
 
 
-    /**
-     * @Route("/author/{surname}", name="edit_author")
-     */
-    public function editAuthor(Author $author, Request $request, ObjectManager $manager)
-    {
-        $author = $this->getDoctrine()->getRepository(Author::class)->find($author->getId());
-
-        $form = $this->createForm(AuthorType::class, $author);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $data = $form['src_image']->getData();
-
-            if ($author->getSrcImage() !== 'img_author/' . self::stripAccents($author->getName()) . " " . self::stripAccents($author->getSurname()) . ".jpeg") 
-            {
-                if($data === '' || $data === NULL)
-                {
-                    $author->setSrcImage('img_author/default.png');
-                    $author->setAltImage('default.png');
-                    $author->setTitleImage('Default photo');                    
-                }
-                else {
-                    $file = $data;
-                    $fileName = self::stripAccents($author->getName()) . " " . self::stripAccents($author->getSurname()) . "." . $file->guessExtension();
-                    $file->move($this->getParameter('upload_directory_author'), $fileName);
-
-                    $author->setSrcImage('img_author/' . $fileName);
-                    $author->setAltImage($fileName);
-                    $author->setTitleImage($author->getName() . " " . $author->getSurname());
-                }
-            }
-            
-            $manager->persist($author);
-            $manager->flush();
-
-            $this->addFlash(
-                'success',
-                "You have changed " . $author->getName() . " " . $author->getSurname() . "'s details"
-            );
-
-            return $this->redirectToRoute('edit_author', ['surname' => $author->getSurname()]);
-        }
-        return $this->render('admin/store/editAuthor.html.twig', [
-            'author' => $author,
-            'form' => $form->createView(),
-            'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
-        ]);
-    } 
 
     /**
      * @Route("/addBook", name="add_book")
@@ -133,38 +30,31 @@ class StoreController extends Controller
     public function insertBook(Request $request, ObjectManager $manager)
     {
         $book = new Book();
-
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $data = $form['src_image']->getData();
-            
-            if($data === '' || $data === NULL)
-            {
+
+            if ($data === '' || $data === null) {
                 $book = $form->getData();
                 $book->setSrcImage('img_book/default.jpg');
                 $book->setAltImage('default.jpg');
-                $book->setTitleImage('Default photo');                     
-            }
-            else {
+                $book->setTitleImage('Default photo');
+            } else {
                 $file = $data;
                 $fileName = self::stripAccents($book->getAuthor()->getName()) . " " . self::stripAccents(strtoupper($book->getAuthor()->getSurname())) . " - " . self::stripAccents($book->getTitle()) . "." . $file->guessExtension();
                 $file->move($this->getParameter('upload_directory_book'), $fileName);
                 $book->setSrcImage('img_book/' . $fileName);
                 $book->setAltImage($fileName);
-                $book->setTitleImage($book->getTitle() . " by " . $book->getAuthor()->getName() . " " . strtoupper($book->getAuthor()->getSurname()) . " (cover photo)");  
+                $book->setTitleImage($book->getTitle() . " by " . $book->getAuthor()->getName() . " " . strtoupper($book->getAuthor()->getSurname()) . " (cover photo)");
             }
-    
+
             $manager->persist($book);
             $manager->flush();
-
             $this->addFlash(
                 'success',
                 "You have added new Book"
             );
-
             return $this->redirectToRoute('add_book');
         }
         return $this->render('admin/store/insertBook.html.twig', [
@@ -173,7 +63,6 @@ class StoreController extends Controller
             'title' => 'Espace Admin'
         ]);
     }
-
     /**
      * @Route("/book/{id}", name="edit_cover_book")
      */
@@ -205,29 +94,21 @@ class StoreController extends Controller
             'title' => 'Espace Admin'
         ]);
     }
-
     /**
      * @Route("/addGenre", name="add_genre" )
      */
-
-     public function insertGenre(Request $request, ObjectManager $manager) {
-
+    public function insertGenre(Request $request, ObjectManager $manager)
+    {
         $genre = new Genre();
-
         $form = $this->createForm(GenreType::class, $genre);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $manager->persist($genre);
             $manager->flush();
-
             $this->addFlash(
                 'success',
                 "You have added new Genre"
             );
-
             return $this->redirectToRoute('add_genre');
         }
         return $this->render('admin/store/insertGenre.html.twig', [
@@ -235,30 +116,22 @@ class StoreController extends Controller
             'mainNavAdmin' => true,
             'title' => 'Espace Admin'
         ]);
-     }
-
-     /**
+    }
+    /**
      * @Route("/addEdition", name="add_edition" )
      */
-
-    public function insertEdition(Request $request, ObjectManager $manager) {
-
+    public function insertEdition(Request $request, ObjectManager $manager)
+    {
         $edition = new Edition();
-
         $form = $this->createForm(EditionType::class, $edition);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $manager->persist($edition);
             $manager->flush();
-
             $this->addFlash(
                 'success',
                 "You have added new Edition"
             );
-
             return $this->redirectToRoute('add_edition');
         }
         return $this->render('admin/store/insertEdition.html.twig', [
@@ -266,5 +139,5 @@ class StoreController extends Controller
             'mainNavAdmin' => true,
             'title' => 'Espace Admin'
         ]);
-     }
+    }
 }

@@ -20,7 +20,8 @@ class UploadType extends AbstractType
             ->add('name', FileType::class, [
                 'attr' => [
                     'placeholder' => 'Upload your photo'
-                ]
+                ],
+                'label' => ' '
             ])
             ->add('submit', SubmitType::class);
     }
