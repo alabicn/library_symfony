@@ -20,14 +20,16 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         $this->defaultLocale = $defaultLocale;
         if (null === self::$declaredRoutes) {
             self::$declaredRoutes = [
-        'app_admin_homepage_index' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::index'], [], [['text', '/admin/']], [], []],
+        'home_admin' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::index'], [], [['text', '/admin/']], [], []],
+        'remove_evaluation' => [['id'], ['_controller' => 'App\\Controller\\Admin\\HomepageController::removeEvaluation'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/evaluation']], [], []],
         'add_author' => [[], ['_controller' => 'App\\Controller\\Admin\\ManageAuthorController::insertAuthor'], [], [['text', '/admin/manage/author/addAuthor']], [], []],
         'edit_author' => [['surname'], ['_controller' => 'App\\Controller\\Admin\\ManageAuthorController::editAuthorDetails'], [], [['variable', '/', '[^/]++', 'surname', true], ['text', '/admin/manage/author']], [], []],
         'edit_author_image' => [['surname'], ['_controller' => 'App\\Controller\\Admin\\ManageAuthorController::editAuthorImage'], [], [['variable', '/', '[^/]++', 'surname', true], ['text', '/admin/manage/author/Image']], [], []],
-        'add_book' => [[], ['_controller' => 'App\\Controller\\Admin\\StoreController::insertBook'], [], [['text', '/admin/addBook']], [], []],
-        'edit_cover_book' => [['id'], ['_controller' => 'App\\Controller\\Admin\\StoreController::editBook'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/book']], [], []],
-        'add_genre' => [[], ['_controller' => 'App\\Controller\\Admin\\StoreController::insertGenre'], [], [['text', '/admin/addGenre']], [], []],
-        'add_edition' => [[], ['_controller' => 'App\\Controller\\Admin\\StoreController::insertEdition'], [], [['text', '/admin/addEdition']], [], []],
+        'add_book' => [[], ['_controller' => 'App\\Controller\\Admin\\ManageBookController::insertBook'], [], [['text', '/admin/addBook']], [], []],
+        'edit_book' => [['id'], ['_controller' => 'App\\Controller\\Admin\\ManageBookController::editBookDetails'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/book']], [], []],
+        'edit_book_image' => [['id'], ['_controller' => 'App\\Controller\\Admin\\ManageBookController::editBookImage'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/manage/book/Image']], [], []],
+        'add_genre' => [[], ['_controller' => 'App\\Controller\\Admin\\ManageBookController::insertGenre'], [], [['text', '/admin/addGenre']], [], []],
+        'add_edition' => [[], ['_controller' => 'App\\Controller\\Admin\\ManageBookController::insertEdition'], [], [['text', '/admin/addEdition']], [], []],
         'app_homepage_index' => [[], ['_controller' => 'App\\Controller\\HomepageController::index'], [], [['text', '/']], [], []],
         'profile_page' => [[], ['_controller' => 'App\\Controller\\MemberController::index'], [], [['text', '/member/']], [], []],
         'show_user' => [['id'], ['_controller' => 'App\\Controller\\MemberController::showUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/member/user']], [], []],

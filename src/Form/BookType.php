@@ -36,16 +36,16 @@ class BookType extends AbstractType
                     return $author->createQueryBuilder('author')
                         ->orderBy('author.surname', 'ASC');
                 },
-                
+
             ])
             ->add('title', TextType::class)
             ->add('genres', EntityType::class, [
                 'class' => Genre::class,
                 'choice_label' => 'name',
-                
+
                 'query_builder' => function (EntityRepository $genre) {
                     return $genre->createQueryBuilder('genre')
-                    ->orderBy('genre.name', 'ASC');
+                        ->orderBy('genre.name', 'ASC');
                 },
                 'multiple' => true,
                 'expanded' => true,
@@ -63,22 +63,14 @@ class BookType extends AbstractType
             ])
             ->add('editions', EntityType::class, [
                 'class' => Edition::class,
-                'choice_label' => function($edition) {
+                'choice_label' => function ($edition) {
                     return $edition->getName();
                 },
                 'multiple' => true,
                 'expanded' => true,
             ])
             ->add('price', MoneyType::class)
-            ->add('src_image', FileType::class, [
-                'attr' => [
-                    'placeholder' => 'Upload your photo'
-                ],
-                'label' => 'Book cover',
-                'required' => false
-            ])
-            ->add('save', SubmitType::class, array('label' => 'POST'));
-        ;
+            ->add('save', SubmitType::class, array('label' => 'POST'));;
     }
 
     public function configureOptions(OptionsResolver $resolver)

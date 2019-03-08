@@ -85,7 +85,10 @@
                 <span><a href={{ path("show_user", {'id': evaluation.user.id}) }}>{{ evaluation.user.uname }}</a>
                     answered : {{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h", "Europe/Paris") }}</span>
                 <span>{{ evaluation.user.uname }} rated : {{ evaluation.rating }}/5</span>
-                ></li>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href={{path("remove_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">DELETE?</a></li>
+                {% endif %}
 
 
 

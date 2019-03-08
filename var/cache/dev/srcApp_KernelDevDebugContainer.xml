@@ -256,6 +256,10 @@
       <parameter key="ROLE_ADMIN" type="collection">
         <parameter>ROLE_USER</parameter>
       </parameter>
+      <parameter key="ROLE_SUPER_ADMIN" type="collection">
+        <parameter>ROLE_ADMIN</parameter>
+        <parameter>ROLE_ALLOWED_TO_SWITCH</parameter>
+      </parameter>
     </parameter>
     <parameter key="security.access.denied_url">null</parameter>
     <parameter key="security.authentication.manager.erase_credentials">true</parameter>
@@ -408,7 +412,7 @@
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Admin\ManageAuthorController"/>
       </call>
     </service>
-    <service id="App\Controller\Admin\StoreController" class="App\Controller\Admin\StoreController" public="true" autowire="true" autoconfigure="true">
+    <service id="App\Controller\Admin\ManageBookController" class="App\Controller\Admin\ManageBookController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
     <service id="App\Controller\HomepageController" class="App\Controller\HomepageController" public="true" autowire="true" autoconfigure="true">
@@ -3234,6 +3238,13 @@
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
       <call method="add">
+        <argument type="service" id=".security.request_matcher.WuLe.YL"/>
+        <argument type="collection">
+          <argument>ROLE_SUPER_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
         <argument type="service" id=".security.request_matcher.5dJADCx"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
@@ -3725,6 +3736,9 @@
       <argument type="collection">
         <argument key="security.firewall.map.context.main" type="service" id="security.firewall.map.context.main"/>
       </argument>
+    </service>
+    <service id=".security.request_matcher.WuLe.YL" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/god</argument>
     </service>
     <service id=".security.request_matcher.5dJADCx" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/admin</argument>
@@ -4513,8 +4527,8 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\ManageAuthorController" class="App\Controller\Admin\ManageAuthorController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\ManageAuthorController" class="App\Controller\Admin\ManageAuthorController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\ManageAuthorController" class="App\Controller\Admin\ManageAuthorController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\Admin\StoreController" class="App\Controller\Admin\StoreController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\Admin\StoreController" class="App\Controller\Admin\StoreController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\Admin\ManageBookController" class="App\Controller\Admin\ManageBookController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\ManageBookController" class="App\Controller\Admin\ManageBookController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\HomepageController" class="App\Controller\HomepageController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HomepageController" class="App\Controller\HomepageController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\MemberController" class="App\Controller\MemberController" autowire="true" abstract="true"/>
@@ -4729,6 +4743,13 @@
         <argument>make:migration</argument>
       </call>
     </service>
+    <service id=".service_locator..RLxaGU" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="evaluation" type="service" id=".errored..service_locator..RLxaGU.App\Entity\Evaluation"/>
+        <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
     <service id=".service_locator.Txvqv4R" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4774,29 +4795,33 @@
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.UYX190l" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.yQdX2ff" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\Admin\HomepageController::removeEvaluation" type="service" id=".service_locator..RLxaGU"/>
         <argument key="App\Controller\Admin\ManageAuthorController::editAuthorDetails" type="service" id=".service_locator.rWgnM0C"/>
         <argument key="App\Controller\Admin\ManageAuthorController::editAuthorImage" type="service" id=".service_locator.rWgnM0C"/>
         <argument key="App\Controller\Admin\ManageAuthorController::insertAuthor" type="service" id=".service_locator.Txvqv4R"/>
-        <argument key="App\Controller\Admin\StoreController::editBook" type="service" id=".service_locator.jdwkqq_"/>
-        <argument key="App\Controller\Admin\StoreController::insertBook" type="service" id=".service_locator.Txvqv4R"/>
-        <argument key="App\Controller\Admin\StoreController::insertEdition" type="service" id=".service_locator.Txvqv4R"/>
-        <argument key="App\Controller\Admin\StoreController::insertGenre" type="service" id=".service_locator.Txvqv4R"/>
+        <argument key="App\Controller\Admin\ManageBookController::editBookDetails" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\Admin\ManageBookController::editBookImage" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\Admin\ManageBookController::insertBook" type="service" id=".service_locator.Txvqv4R"/>
+        <argument key="App\Controller\Admin\ManageBookController::insertEdition" type="service" id=".service_locator.Txvqv4R"/>
+        <argument key="App\Controller\Admin\ManageBookController::insertGenre" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\MemberController::index" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\MemberController::showUser" type="service" id=".service_locator.wypGnUQ"/>
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\SecurityController::registerAction" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController::updatePassword" type="service" id=".service_locator.czKK4py"/>
         <argument key="App\Controller\StoreController::showBook" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\Admin\HomepageController:removeEvaluation" type="service" id=".service_locator..RLxaGU"/>
         <argument key="App\Controller\Admin\ManageAuthorController:editAuthorDetails" type="service" id=".service_locator.rWgnM0C"/>
         <argument key="App\Controller\Admin\ManageAuthorController:editAuthorImage" type="service" id=".service_locator.rWgnM0C"/>
         <argument key="App\Controller\Admin\ManageAuthorController:insertAuthor" type="service" id=".service_locator.Txvqv4R"/>
-        <argument key="App\Controller\Admin\StoreController:editBook" type="service" id=".service_locator.jdwkqq_"/>
-        <argument key="App\Controller\Admin\StoreController:insertBook" type="service" id=".service_locator.Txvqv4R"/>
-        <argument key="App\Controller\Admin\StoreController:insertEdition" type="service" id=".service_locator.Txvqv4R"/>
-        <argument key="App\Controller\Admin\StoreController:insertGenre" type="service" id=".service_locator.Txvqv4R"/>
+        <argument key="App\Controller\Admin\ManageBookController:editBookDetails" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\Admin\ManageBookController:editBookImage" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\Admin\ManageBookController:insertBook" type="service" id=".service_locator.Txvqv4R"/>
+        <argument key="App\Controller\Admin\ManageBookController:insertEdition" type="service" id=".service_locator.Txvqv4R"/>
+        <argument key="App\Controller\Admin\ManageBookController:insertGenre" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\MemberController:index" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\MemberController:showUser" type="service" id=".service_locator.wypGnUQ"/>
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.EbLunuf"/>
@@ -5176,10 +5201,11 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.UYX190l"/>
+      <argument type="service" id=".service_locator.yQdX2ff"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
+    <service id=".errored..service_locator..RLxaGU.App\Entity\Evaluation" class="App\Entity\Evaluation"/>
     <service id=".errored..service_locator.rWgnM0C.App\Entity\Author" class="App\Entity\Author"/>
     <service id=".errored..service_locator.jdwkqq_.App\Entity\Book" class="App\Entity\Book"/>
     <service id=".errored..service_locator.wypGnUQ.App\Entity\User" class="App\Entity\User"/>
@@ -5524,7 +5550,7 @@
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.UYX190l"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.yQdX2ff"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

@@ -15,11 +15,11 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
     {
         $this->context = $context;
         $this->staticRoutes = [
-            '/admin' => [[['_route' => 'app_admin_homepage_index', '_controller' => 'App\\Controller\\Admin\\HomepageController::index'], null, null, null, true, false, null]],
+            '/admin' => [[['_route' => 'home_admin', '_controller' => 'App\\Controller\\Admin\\HomepageController::index'], null, null, null, true, false, null]],
             '/admin/manage/author/addAuthor' => [[['_route' => 'add_author', '_controller' => 'App\\Controller\\Admin\\ManageAuthorController::insertAuthor'], null, null, null, false, false, null]],
-            '/admin/addBook' => [[['_route' => 'add_book', '_controller' => 'App\\Controller\\Admin\\StoreController::insertBook'], null, null, null, false, false, null]],
-            '/admin/addGenre' => [[['_route' => 'add_genre', '_controller' => 'App\\Controller\\Admin\\StoreController::insertGenre'], null, null, null, false, false, null]],
-            '/admin/addEdition' => [[['_route' => 'add_edition', '_controller' => 'App\\Controller\\Admin\\StoreController::insertEdition'], null, null, null, false, false, null]],
+            '/admin/addBook' => [[['_route' => 'add_book', '_controller' => 'App\\Controller\\Admin\\ManageBookController::insertBook'], null, null, null, false, false, null]],
+            '/admin/addGenre' => [[['_route' => 'add_genre', '_controller' => 'App\\Controller\\Admin\\ManageBookController::insertGenre'], null, null, null, false, false, null]],
+            '/admin/addEdition' => [[['_route' => 'add_edition', '_controller' => 'App\\Controller\\Admin\\ManageBookController::insertEdition'], null, null, null, false, false, null]],
             '/' => [[['_route' => 'app_homepage_index', '_controller' => 'App\\Controller\\HomepageController::index'], null, null, null, false, false, null]],
             '/member' => [[['_route' => 'profile_page', '_controller' => 'App\\Controller\\MemberController::index'], null, null, null, true, false, null]],
             '/register' => [[['_route' => 'app_security_register', '_controller' => 'App\\Controller\\SecurityController::registerAction'], null, null, null, false, false, null]],
@@ -35,46 +35,52 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         $this->regexpList = [
             0 => '{^(?'
                     .'|/admin/(?'
-                        .'|manage/author/(?'
-                            .'|([^/]++)(*:42)'
-                            .'|Image/([^/]++)(*:63)'
+                        .'|evaluation/([^/]++)(*:36)'
+                        .'|manage/(?'
+                            .'|author/(?'
+                                .'|([^/]++)(*:71)'
+                                .'|Image/([^/]++)(*:92)'
+                            .')'
+                            .'|book/Image/([^/]++)(*:119)'
                         .')'
-                        .'|book/([^/]++)(*:84)'
+                        .'|book/([^/]++)(*:141)'
                     .')'
-                    .'|/member/user/([^/]++)(*:113)'
-                    .'|/book/show/([^/]++)(*:140)'
-                    .'|/genre/([^/]++)(*:163)'
+                    .'|/member/user/([^/]++)(*:171)'
+                    .'|/book/show/([^/]++)(*:198)'
+                    .'|/genre/([^/]++)(*:221)'
                     .'|/_(?'
-                        .'|error/(\\d+)(?:\\.([^/]++))?(*:202)'
-                        .'|wdt/([^/]++)(*:222)'
+                        .'|error/(\\d+)(?:\\.([^/]++))?(*:260)'
+                        .'|wdt/([^/]++)(*:280)'
                         .'|profiler/([^/]++)(?'
                             .'|/(?'
-                                .'|search/results(*:268)'
-                                .'|router(*:282)'
+                                .'|search/results(*:326)'
+                                .'|router(*:340)'
                                 .'|exception(?'
-                                    .'|(*:302)'
-                                    .'|\\.css(*:315)'
+                                    .'|(*:360)'
+                                    .'|\\.css(*:373)'
                                 .')'
                             .')'
-                            .'|(*:325)'
+                            .'|(*:383)'
                         .')'
                     .')'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
-            42 => [[['_route' => 'edit_author', '_controller' => 'App\\Controller\\Admin\\ManageAuthorController::editAuthorDetails'], ['surname'], null, null, false, true, null]],
-            63 => [[['_route' => 'edit_author_image', '_controller' => 'App\\Controller\\Admin\\ManageAuthorController::editAuthorImage'], ['surname'], null, null, false, true, null]],
-            84 => [[['_route' => 'edit_cover_book', '_controller' => 'App\\Controller\\Admin\\StoreController::editBook'], ['id'], null, null, false, true, null]],
-            113 => [[['_route' => 'show_user', '_controller' => 'App\\Controller\\MemberController::showUser'], ['id'], null, null, false, true, null]],
-            140 => [[['_route' => 'show_book', '_controller' => 'App\\Controller\\StoreController::showBook'], ['id'], null, null, false, true, null]],
-            163 => [[['_route' => 'show_genre', '_controller' => 'App\\Controller\\StoreController::listeGenre'], ['name'], null, null, false, true, null]],
-            202 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-            222 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-            268 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-            282 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-            302 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
-            315 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
-            325 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+            36 => [[['_route' => 'remove_evaluation', '_controller' => 'App\\Controller\\Admin\\HomepageController::removeEvaluation'], ['id'], null, null, false, true, null]],
+            71 => [[['_route' => 'edit_author', '_controller' => 'App\\Controller\\Admin\\ManageAuthorController::editAuthorDetails'], ['surname'], null, null, false, true, null]],
+            92 => [[['_route' => 'edit_author_image', '_controller' => 'App\\Controller\\Admin\\ManageAuthorController::editAuthorImage'], ['surname'], null, null, false, true, null]],
+            119 => [[['_route' => 'edit_book_image', '_controller' => 'App\\Controller\\Admin\\ManageBookController::editBookImage'], ['id'], null, null, false, true, null]],
+            141 => [[['_route' => 'edit_book', '_controller' => 'App\\Controller\\Admin\\ManageBookController::editBookDetails'], ['id'], null, null, false, true, null]],
+            171 => [[['_route' => 'show_user', '_controller' => 'App\\Controller\\MemberController::showUser'], ['id'], null, null, false, true, null]],
+            198 => [[['_route' => 'show_book', '_controller' => 'App\\Controller\\StoreController::showBook'], ['id'], null, null, false, true, null]],
+            221 => [[['_route' => 'show_genre', '_controller' => 'App\\Controller\\StoreController::listeGenre'], ['name'], null, null, false, true, null]],
+            260 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+            280 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+            326 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+            340 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+            360 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
+            373 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
+            383 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         ];
     }
 }

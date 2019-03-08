@@ -18,7 +18,6 @@ class ManageAuthorController extends AbstractController
     /**
      * @Route("/manage/author/addAuthor", name="add_author")
      */
-
     public function insertAuthor(Request $request, ObjectManager $manager)
     {
         $author = new Author();
@@ -51,7 +50,6 @@ class ManageAuthorController extends AbstractController
     /**
      * @Route("/manage/author/{surname}", name="edit_author")
      */
-
     public function editAuthorDetails(Author $author, Request $request, ObjectManager $manager)
     {
         $author = $this->getDoctrine()->getRepository(Author::class)->find($author->getId());
@@ -65,7 +63,7 @@ class ManageAuthorController extends AbstractController
             $manager->flush();
             $this->addFlash(
                 'success',
-                "You have changed " . $author->getName() . " " . $author->getSurname() . "'s details"
+                "You have modified " . $author->getName() . " " . $author->getSurname() . "'s details"
             );
             return $this->redirectToRoute('edit_author', ['surname' => $author->getSurname()]);
         }
@@ -77,11 +75,9 @@ class ManageAuthorController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/manage/author/Image/{surname}", name="edit_author_image")
      */
-
     public function editAuthorImage(Author $author, Request $request, ObjectManager $manager)
     {
         $author = $this->getDoctrine()->getRepository(Author::class)->find($author->getId());
