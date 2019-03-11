@@ -424,12 +424,22 @@
     <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="App\Controller\ShoppingCartController" class="App\Controller\ShoppingCartController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\ShoppingCartController"/>
+      </call>
+    </service>
     <service id="App\Controller\StoreController" class="App\Controller\StoreController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\StoreController"/>
       </call>
+    </service>
+    <service id="App\Controller\SuperAdmin\RoleController" class="App\Controller\SuperAdmin\RoleController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
     </service>
     <service id="App\DataFixtures\FakerFixtures" class="App\DataFixtures\FakerFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
@@ -454,6 +464,9 @@
       <tag name="form.type"/>
     </service>
     <service id="App\Form\PasswordUpdateType" class="App\Form\PasswordUpdateType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\QuoteType" class="App\Form\QuoteType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\UploadType" class="App\Form\UploadType" autowire="true" autoconfigure="true">
@@ -499,6 +512,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\UploadRepository" class="App\Repository\UploadRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -769,6 +786,7 @@
         <argument>App\Form\EvaluationType</argument>
         <argument>App\Form\GenreType</argument>
         <argument>App\Form\PasswordUpdateType</argument>
+        <argument>App\Form\QuoteType</argument>
         <argument>App\Form\UploadType</argument>
         <argument>App\Form\UserType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
@@ -1014,7 +1032,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.Nlif1yF"/>
+      <argument type="service" id=".service_locator.SRVWrZL"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -2829,7 +2847,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.RIWjSR_"/>
+      <argument type="service" id=".service_locator.CbO.Ris"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4535,9 +4553,14 @@
     <service id=".abstract.instanceof.App\Controller\MemberController" class="App\Controller\MemberController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ShoppingCartController" class="App\Controller\ShoppingCartController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ShoppingCartController" class="App\Controller\ShoppingCartController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ShoppingCartController" class="App\Controller\ShoppingCartController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StoreController" class="App\Controller\StoreController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StoreController" class="App\Controller\StoreController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\StoreController" class="App\Controller\StoreController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.App\Controller\SuperAdmin\RoleController" class="App\Controller\SuperAdmin\RoleController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\SuperAdmin\RoleController" class="App\Controller\SuperAdmin\RoleController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\FakerFixtures" class="App\DataFixtures\FakerFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\FakerFixtures" class="App\DataFixtures\FakerFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ApplicationType" class="App\Form\ApplicationType" autowire="true" abstract="true"/>
@@ -4554,6 +4577,8 @@
     <service id=".abstract.instanceof.App\Form\GenreType" class="App\Form\GenreType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PasswordUpdateType" class="App\Form\PasswordUpdateType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PasswordUpdateType" class="App\Form\PasswordUpdateType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\QuoteType" class="App\Form\QuoteType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\QuoteType" class="App\Form\QuoteType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UploadType" class="App\Form\UploadType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UploadType" class="App\Form\UploadType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserType" class="App\Form\UserType" autowire="true" abstract="true"/>
@@ -4578,6 +4603,8 @@
     <service id=".abstract.instanceof.App\Repository\ShoppingCartRepository" class="App\Repository\ShoppingCartRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UploadRepository" class="App\Repository\UploadRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UploadRepository" class="App\Repository\UploadRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Twig_ExtensionInterface.0.twig.extension.date" class="Guzzlefry\Twig\AgeExtension" autowire="true" abstract="true"/>
     <service id=".instanceof.Twig\Extension\ExtensionInterface.0.twig.extension.date" class="Guzzlefry\Twig\AgeExtension" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.twig.extension.date" class="Guzzlefry\Twig\AgeExtension" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4763,10 +4790,31 @@
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
+    <service id=".service_locator.2QXEeBa" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="quote" type="service" id=".errored..service_locator.2QXEeBa.App\Entity\Quote"/>
+      </argument>
+    </service>
     <service id=".service_locator.jdwkqq_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="book" type="service" id=".errored..service_locator.jdwkqq_.App\Entity\Book"/>
+        <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.4hVL9Q5" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="genre" type="service" id=".errored..service_locator.4hVL9Q5.App\Entity\Genre"/>
+        <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.lGhVljE" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="edition" type="service" id=".errored..service_locator.lGhVljE.App\Entity\Edition"/>
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
@@ -4795,15 +4843,35 @@
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.yQdX2ff" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.dC40b3y" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="book" type="service" id=".errored..service_locator.dC40b3y.App\Entity\Book"/>
+        <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="shoppingCart" type="service" id=".errored..service_locator.dC40b3y.App\Entity\ShoppingCart"/>
+      </argument>
+    </service>
+    <service id=".service_locator..NmEFk5" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="user" type="service" id=".errored..service_locator..NmEFk5.App\Entity\User"/>
+      </argument>
+    </service>
+    <service id=".service_locator.de6MT9Z" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\HomepageController::removeEvaluation" type="service" id=".service_locator..RLxaGU"/>
+        <argument key="App\Controller\Admin\ManageAuthorController::addQuote" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\Admin\ManageAuthorController::editAuthorDetails" type="service" id=".service_locator.rWgnM0C"/>
         <argument key="App\Controller\Admin\ManageAuthorController::editAuthorImage" type="service" id=".service_locator.rWgnM0C"/>
+        <argument key="App\Controller\Admin\ManageAuthorController::editQuote" type="service" id=".service_locator.2QXEeBa"/>
         <argument key="App\Controller\Admin\ManageAuthorController::insertAuthor" type="service" id=".service_locator.Txvqv4R"/>
+        <argument key="App\Controller\Admin\ManageAuthorController::removeQuote" type="service" id=".service_locator.2QXEeBa"/>
         <argument key="App\Controller\Admin\ManageBookController::editBookDetails" type="service" id=".service_locator.jdwkqq_"/>
         <argument key="App\Controller\Admin\ManageBookController::editBookImage" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\Admin\ManageBookController::editEdition" type="service" id=".service_locator.lGhVljE"/>
+        <argument key="App\Controller\Admin\ManageBookController::editGenre" type="service" id=".service_locator.4hVL9Q5"/>
         <argument key="App\Controller\Admin\ManageBookController::insertBook" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\Admin\ManageBookController::insertEdition" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\Admin\ManageBookController::insertGenre" type="service" id=".service_locator.Txvqv4R"/>
@@ -4812,13 +4880,21 @@
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\SecurityController::registerAction" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController::updatePassword" type="service" id=".service_locator.czKK4py"/>
+        <argument key="App\Controller\ShoppingCartController::addToShoppingCart" type="service" id=".service_locator.dC40b3y"/>
         <argument key="App\Controller\StoreController::showBook" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\SuperAdmin\RoleController::makeAdmin" type="service" id=".service_locator..NmEFk5"/>
+        <argument key="App\Controller\SuperAdmin\RoleController::removeAdmin" type="service" id=".service_locator..NmEFk5"/>
         <argument key="App\Controller\Admin\HomepageController:removeEvaluation" type="service" id=".service_locator..RLxaGU"/>
+        <argument key="App\Controller\Admin\ManageAuthorController:addQuote" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\Admin\ManageAuthorController:editAuthorDetails" type="service" id=".service_locator.rWgnM0C"/>
         <argument key="App\Controller\Admin\ManageAuthorController:editAuthorImage" type="service" id=".service_locator.rWgnM0C"/>
+        <argument key="App\Controller\Admin\ManageAuthorController:editQuote" type="service" id=".service_locator.2QXEeBa"/>
         <argument key="App\Controller\Admin\ManageAuthorController:insertAuthor" type="service" id=".service_locator.Txvqv4R"/>
+        <argument key="App\Controller\Admin\ManageAuthorController:removeQuote" type="service" id=".service_locator.2QXEeBa"/>
         <argument key="App\Controller\Admin\ManageBookController:editBookDetails" type="service" id=".service_locator.jdwkqq_"/>
         <argument key="App\Controller\Admin\ManageBookController:editBookImage" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\Admin\ManageBookController:editEdition" type="service" id=".service_locator.lGhVljE"/>
+        <argument key="App\Controller\Admin\ManageBookController:editGenre" type="service" id=".service_locator.4hVL9Q5"/>
         <argument key="App\Controller\Admin\ManageBookController:insertBook" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\Admin\ManageBookController:insertEdition" type="service" id=".service_locator.Txvqv4R"/>
         <argument key="App\Controller\Admin\ManageBookController:insertGenre" type="service" id=".service_locator.Txvqv4R"/>
@@ -4827,7 +4903,10 @@
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\SecurityController:registerAction" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController:updatePassword" type="service" id=".service_locator.czKK4py"/>
+        <argument key="App\Controller\ShoppingCartController:addToShoppingCart" type="service" id=".service_locator.dC40b3y"/>
         <argument key="App\Controller\StoreController:showBook" type="service" id=".service_locator.jdwkqq_"/>
+        <argument key="App\Controller\SuperAdmin\RoleController:makeAdmin" type="service" id=".service_locator..NmEFk5"/>
+        <argument key="App\Controller\SuperAdmin\RoleController:removeAdmin" type="service" id=".service_locator..NmEFk5"/>
       </argument>
     </service>
     <service id=".service_locator.yQVjGlt" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4887,7 +4966,7 @@
       <argument type="service" id="debug.argument_resolver.variadic.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.Nlif1yF" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.SRVWrZL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ApplicationType" type="service" id="App\Form\ApplicationType"/>
@@ -4897,6 +4976,7 @@
         <argument key="App\Form\EvaluationType" type="service" id="App\Form\EvaluationType"/>
         <argument key="App\Form\GenreType" type="service" id="App\Form\GenreType"/>
         <argument key="App\Form\PasswordUpdateType" type="service" id="App\Form\PasswordUpdateType"/>
+        <argument key="App\Form\QuoteType" type="service" id="App\Form\QuoteType"/>
         <argument key="App\Form\UploadType" type="service" id="App\Form\UploadType"/>
         <argument key="App\Form\UserType" type="service" id="App\Form\UserType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
@@ -4910,7 +4990,7 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.RIWjSR_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.CbO.Ris" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AuthorRepository" type="service" id="App\Repository\AuthorRepository"/>
@@ -4923,6 +5003,7 @@
         <argument key="App\Repository\QuoteRepository" type="service" id="App\Repository\QuoteRepository"/>
         <argument key="App\Repository\ShoppingCartRepository" type="service" id="App\Repository\ShoppingCartRepository"/>
         <argument key="App\Repository\UploadRepository" type="service" id="App\Repository\UploadRepository"/>
+        <argument key="App\Repository\UserRepository" type="service" id="App\Repository\UserRepository"/>
       </argument>
     </service>
     <service id="debug.security.voter.security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
@@ -5103,6 +5184,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KTVqfp6" method="withContext"/>
     </service>
+    <service id=".service_locator.KTVqfp6.App\Controller\ShoppingCartController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\ShoppingCartController"/>
+      <argument>App\Controller\ShoppingCartController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KTVqfp6" method="withContext"/>
+    </service>
     <service id=".service_locator.KTVqfp6.App\Controller\StoreController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\StoreController"/>
       <argument>App\Controller\StoreController</argument>
@@ -5201,14 +5288,20 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.yQdX2ff"/>
+      <argument type="service" id=".service_locator.de6MT9Z"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id=".errored..service_locator..RLxaGU.App\Entity\Evaluation" class="App\Entity\Evaluation"/>
     <service id=".errored..service_locator.rWgnM0C.App\Entity\Author" class="App\Entity\Author"/>
+    <service id=".errored..service_locator.2QXEeBa.App\Entity\Quote" class="App\Entity\Quote"/>
     <service id=".errored..service_locator.jdwkqq_.App\Entity\Book" class="App\Entity\Book"/>
+    <service id=".errored..service_locator.4hVL9Q5.App\Entity\Genre" class="App\Entity\Genre"/>
+    <service id=".errored..service_locator.lGhVljE.App\Entity\Edition" class="App\Entity\Edition"/>
     <service id=".errored..service_locator.wypGnUQ.App\Entity\User" class="App\Entity\User"/>
+    <service id=".errored..service_locator.dC40b3y.App\Entity\Book" class="App\Entity\Book"/>
+    <service id=".errored..service_locator.dC40b3y.App\Entity\ShoppingCart" class="App\Entity\ShoppingCart"/>
+    <service id=".errored..service_locator..NmEFk5.App\Entity\User" class="App\Entity\User"/>
     <service id=".service_locator.HKoUR8q" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5550,7 +5643,7 @@
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.yQdX2ff"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.de6MT9Z"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Quote;
 use App\Entity\Author;
 use App\Entity\Upload;
+use App\Form\QuoteType;
 use App\Form\AuthorType;
 use App\Form\UploadType;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +40,7 @@ class ManageAuthorController extends AbstractController
                 'success',
                 "You have added new Author"
             );
-            return $this->redirectToRoute('add_author');
+            return $this->redirectToRoute('home_admin');
         }
         return $this->render('admin/manage_author/insertAuthor.html.twig', [
             'form' => $form->createView(),
@@ -114,5 +116,79 @@ class ManageAuthorController extends AbstractController
             'title' => 'Member',
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/addQuote", name="add_quote" )
+     */
+    public function addQuote(Request $request, ObjectManager $manager)
+    {
+        $quote = new Quote();
+
+        $form = $this->createForm(QuoteType::class, $quote);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($quote);
+            $manager->flush();
+            $this->addFlash(
+                'success',
+                "You have added a new quote"
+            );
+
+            return $this->redirectToRoute('home_admin');
+        }
+
+        return $this->render('admin/manage_author/insertQuote.html.twig', [
+            'form' => $form->createView(),
+            'mainNavAdmin' => true,
+            'title' => 'Espace Admin'
+        ]);
+    }
+
+    /**
+     * @Route("/editQuote/{id}", name="edit_quote")
+     */
+    public function editQuote(Quote $quote, Request $request, ObjectManager $manager)
+    {
+        $quote = $this->getDoctrine()->getRepository(Quote::class)->find($quote->getId());
+
+        $form = $this->createForm(QuoteType::class, $quote);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($quote);
+            $manager->flush();
+            $this->addFlash(
+                'success',
+                "You have modified " . $quote->getAuthor()->getName() . ' ' . $quote->getAuthor()->getSurname() . "'s quote"
+            );
+            return $this->redirectToRoute('edit_quote', ['id' => $quote->getId()]);
+        }
+        return $this->render('admin/manage_author/editQuote.html.twig', [
+            'quote' => $quote,
+            'form' => $form->createView(),
+            'mainNavAdmin' => true,
+            'title' => 'Espace Admin'
+        ]);
+    }
+
+    /**
+     * @Route("/removeQuote/{id}", name="remove_quote")
+     */
+    public function removeQuote(Quote $quote, ObjectManager $manager)
+    {
+        $quote = $this->getDoctrine()->getRepository(Quote::class)->find($quote->getId());
+
+        $manager->remove($quote);
+        $manager->flush();
+        $this->addFlash(
+            'warning',
+            "You have deleted " . $quote->getAuthor()->getName() . ' ' . $quote->getAuthor()->getSurname() . "'s quote"
+        );
+
+        return $this->redirectToRoute('homepage');
     }
 }

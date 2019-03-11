@@ -25,6 +25,9 @@
                         'Default',
                     ],
                 ],
+                'repositoryClass' => [
+                    3 => 'App\\Repository\\UserRepository',
+                ],
             ],
         ],
         [

@@ -143,6 +143,37 @@ class ManageBookController extends Controller
             'title' => 'Espace Admin'
         ]);
     }
+
+    /**
+     * @Route("/editGenre/{name}", name="edit_genre")
+     */
+    public function editGenre(Genre $genre, Request $request, ObjectManager $manager)
+    {
+        $genre = $this->getDoctrine()->getRepository(Genre::class)->find($genre->getId());
+
+        $form = $this->createForm(GenreType::class, $genre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($genre);
+            $manager->flush();
+            $this->addFlash(
+                'success',
+                "You have modified " . $genre->getName() . "'s details"
+            );
+            return $this->redirectToRoute('edit_genre', ['name' => $genre->getName()]);
+        }
+        return $this->render('admin/manage_book/editGenre.html.twig', [
+            'genre' => $genre,
+            'form' => $form->createView(),
+            'mainNavAdmin' => true,
+            'title' => 'Espace Admin'
+        ]);
+
+    }
+
+
     /**
      * @Route("/addEdition", name="add_edition" )
      */
@@ -165,5 +196,34 @@ class ManageBookController extends Controller
             'mainNavAdmin' => true,
             'title' => 'Espace Admin'
         ]);
+    }
+
+    /**
+     * @Route("/editEdition/{name}", name="edit_edition")
+     */
+    public function editEdition(Edition $edition, Request $request, ObjectManager $manager)
+    {
+        $edition = $this->getDoctrine()->getRepository(Edition::class)->find($edition->getId());
+
+        $form = $this->createForm(EditionType::class, $edition);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($edition);
+            $manager->flush();
+            $this->addFlash(
+                'success',
+                "You have modified " . $edition->getName() . "'s details"
+            );
+            return $this->redirectToRoute('edit_edition', ['name' => $edition->getName()]);
+        }
+        return $this->render('admin/manage_book/editEdition.html.twig', [
+            'edition' => $edition,
+            'form' => $form->createView(),
+            'mainNavAdmin' => true,
+            'title' => 'Espace Admin'
+        ]);
+
     }
 }

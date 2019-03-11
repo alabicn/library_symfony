@@ -27,6 +27,13 @@
     {% for quote in quotes %}
     <img width="50px" src="/assets/img/{{ quote.author.srcImage }}" alt="{{ quote.author.altImage }}" title="{{ quote.author.titleImage }}"/>
     <span>"{{ quote.text }}"</span><br>
-    <span> ~ {{ quote.author.name ~ " " ~ quote.author.surname|upper }}</span><hr>
+    <span> ~ {{ quote.author.name ~ " " ~ quote.author.surname|upper }}</span><br>
+    {% if is_granted('ROLE_ADMIN') %}
+    <span>
+        <a href={{ path("edit_quote", {'id': quote.id}) }}>Edit?</a>
+        <a href={{ path("remove_quote", {'id' : quote.id}) }} onclick="return confirm('Are you sure?')">Delete?</a>
+    </span>
+    {% endif %}
+    <hr>
     {% endfor %}
 {% endblock %}

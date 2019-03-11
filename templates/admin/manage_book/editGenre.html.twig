@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit Genre{% endblock %}
+{% block body %}
+<h1>{{ genre.name }}</h1>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+{% endblock %}

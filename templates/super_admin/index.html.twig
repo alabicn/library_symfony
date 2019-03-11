@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SuperAdminController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/wamp/www/library/src/Controller/HomepageController.php'|file_link(0) }}">src/Controller/HomepageController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/wamp/www/library/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a></code></li>
+    </ul>
+</div>
+
+{% for user in users %}
+
+    <h5><a href={{ path("show_user", {'id': user.id}) }}>{{ user.uname ~ ' email : ' ~ user.email }}</a></h5>
+    <span>
+        {% for role in user.roles %}
+        {% if role == 'ROLE_USER' %}
+        <a href={{ path("make_admin", {'id': user.id}) }}>Make Admin?</a>
+        {% elseif role == 'ROLE_SUPER_ADMIN' %}
+        <h1>You are SUPER ADMIN</h1>
+        {% else %}
+        <a href={{ path("remove_admin", {'id': user.id}) }}>Remove Admin?</a>
+        {% endif %}
+        {% endfor %}
+    </span><br>
+
+{% endfor %}
+
+
+{% endblock %}
