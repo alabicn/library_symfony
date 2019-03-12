@@ -48,6 +48,7 @@
                                         <a class="nav-link" href="{{path('home_admin')}}">Admin</a>
                                     </li>
                                 {% endif %}
+                                
                             </ul>
                             <ul class="navbar-nav ml-auto">
                                 {% if is_granted('ROLE_USER') %}
@@ -63,6 +64,9 @@
                                     </li>
                                 {% endif %}
                             </ul>
+                            <div>
+                                Panier : {{ app.session.get('cart')|length }} produits
+                            </div>
                         </nav>
                     {% endblock %}
                     {% block flash %}
@@ -88,7 +92,9 @@
                         {% endfor %}
                     {% endblock %}
                     <div class="container bck1 padded">
-                        {% block body %}{% endblock %}
+                        {{ dump(app.session.get("cart"))}}
+                        {% block body %}                      
+                        {% endblock %}
                     </div>
                     {% block footer %}
                         <footer class="bck1 border-top" id="footer">

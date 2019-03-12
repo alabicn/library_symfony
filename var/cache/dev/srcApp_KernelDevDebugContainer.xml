@@ -4843,12 +4843,10 @@
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.dC40b3y" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.PbXwDqA" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="book" type="service" id=".errored..service_locator.dC40b3y.App\Entity\Book"/>
-        <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
-        <argument key="shoppingCart" type="service" id=".errored..service_locator.dC40b3y.App\Entity\ShoppingCart"/>
+        <argument key="book" type="service" id=".errored..service_locator.PbXwDqA.App\Entity\Book"/>
       </argument>
     </service>
     <service id=".service_locator..NmEFk5" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4858,7 +4856,7 @@
         <argument key="user" type="service" id=".errored..service_locator..NmEFk5.App\Entity\User"/>
       </argument>
     </service>
-    <service id=".service_locator.de6MT9Z" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.aUiPb6A" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\HomepageController::removeEvaluation" type="service" id=".service_locator..RLxaGU"/>
@@ -4880,7 +4878,7 @@
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\SecurityController::registerAction" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController::updatePassword" type="service" id=".service_locator.czKK4py"/>
-        <argument key="App\Controller\ShoppingCartController::addToShoppingCart" type="service" id=".service_locator.dC40b3y"/>
+        <argument key="App\Controller\ShoppingCartController::addToShoppingCart" type="service" id=".service_locator.PbXwDqA"/>
         <argument key="App\Controller\StoreController::showBook" type="service" id=".service_locator.jdwkqq_"/>
         <argument key="App\Controller\SuperAdmin\RoleController::makeAdmin" type="service" id=".service_locator..NmEFk5"/>
         <argument key="App\Controller\SuperAdmin\RoleController::removeAdmin" type="service" id=".service_locator..NmEFk5"/>
@@ -4903,7 +4901,7 @@
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\SecurityController:registerAction" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController:updatePassword" type="service" id=".service_locator.czKK4py"/>
-        <argument key="App\Controller\ShoppingCartController:addToShoppingCart" type="service" id=".service_locator.dC40b3y"/>
+        <argument key="App\Controller\ShoppingCartController:addToShoppingCart" type="service" id=".service_locator.PbXwDqA"/>
         <argument key="App\Controller\StoreController:showBook" type="service" id=".service_locator.jdwkqq_"/>
         <argument key="App\Controller\SuperAdmin\RoleController:makeAdmin" type="service" id=".service_locator..NmEFk5"/>
         <argument key="App\Controller\SuperAdmin\RoleController:removeAdmin" type="service" id=".service_locator..NmEFk5"/>
@@ -5288,7 +5286,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.de6MT9Z"/>
+      <argument type="service" id=".service_locator.aUiPb6A"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5299,8 +5297,7 @@
     <service id=".errored..service_locator.4hVL9Q5.App\Entity\Genre" class="App\Entity\Genre"/>
     <service id=".errored..service_locator.lGhVljE.App\Entity\Edition" class="App\Entity\Edition"/>
     <service id=".errored..service_locator.wypGnUQ.App\Entity\User" class="App\Entity\User"/>
-    <service id=".errored..service_locator.dC40b3y.App\Entity\Book" class="App\Entity\Book"/>
-    <service id=".errored..service_locator.dC40b3y.App\Entity\ShoppingCart" class="App\Entity\ShoppingCart"/>
+    <service id=".errored..service_locator.PbXwDqA.App\Entity\Book" class="App\Entity\Book"/>
     <service id=".errored..service_locator..NmEFk5.App\Entity\User" class="App\Entity\User"/>
     <service id=".service_locator.HKoUR8q" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -5643,7 +5640,7 @@
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.de6MT9Z"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.aUiPb6A"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

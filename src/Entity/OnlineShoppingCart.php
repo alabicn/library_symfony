@@ -72,8 +72,5 @@ use Doctrine\ORM\Mapping as ORM;
         $this->shoppingCarts = $shoppingCarts;
 
         return $this;
-    }
-
-
-    
+    }  
 }

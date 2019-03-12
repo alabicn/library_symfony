@@ -64,5 +64,4 @@ class StoreController extends AbstractController
             'genre' => $genre,
         ]);
     }
-
 }

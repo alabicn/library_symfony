@@ -106,7 +106,7 @@ class Book
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\OnlineShoppingCart", mappedBy="books", fetch="EXTRA_LAZY")
      */
-    private $shoppingcartbooks;
+    private $shoppingcartbook;
 
     private $average;
 
@@ -365,15 +365,15 @@ class Book
     /**
      * @return Collection|ShoppingCart[]
      */
-    public function getShoppingCarts(): Collection
+    public function getShoppingCart(): Collection
     {
-        return $this->shoppingCarts;
+        return $this->shoppingCart;
     }
 
     public function addShoppingCart(ShoppingCart $shoppingCart): self
     {
-        if (!$this->shoppingCarts->contains($shoppingCart)) {
-            $this->shoppingCarts[] = $shoppingCart;
+        if (!$this->shoppingCart->contains($shoppingCart)) {
+            $this->shoppingCart[] = $shoppingCart;
             $shoppingCart->addBook($this);
         }
         return $this;
@@ -381,8 +381,8 @@ class Book
 
     public function removeShoppingCart(ShoppingCart $shoppingCart): self
     {
-        if ($this->shoppingCarts->contains($shoppingCart)) {
-            $this->shoppingCarts->removeElement($shoppingCart);
+        if ($this->shoppingCart->contains($shoppingCart)) {
+            $this->shoppingCart->removeElement($shoppingCart);
             $shoppingCart->removeBook($this);
         }
         return $this;
@@ -420,15 +420,15 @@ class Book
     /**
      * @return Collection|OnlineShoppingCart[]
      */
-    public function getShoppingcartbooks(): Collection
+    public function getShoppingcartbook(): Collection
     {
-        return $this->shoppingcartbooks;
+        return $this->shoppingcartbook;
     }
 
     public function addShoppingcartbook(OnlineShoppingCart $shoppingcartbook): self
     {
-        if (!$this->shoppingcartbooks->contains($shoppingcartbook)) {
-            $this->shoppingcartbooks[] = $shoppingcartbook;
+        if (!$this->shoppingcartbook->contains($shoppingcartbook)) {
+            $this->shoppingcartbook[] = $shoppingcartbook;
             $shoppingcartbook->setBooks($this);
         }
         return $this;
@@ -436,8 +436,8 @@ class Book
 
     public function removeShoppingcartbook(OnlineShoppingCart $shoppingcartbook): self
     {
-        if ($this->shoppingcartbooks->contains($shoppingcartbook)) {
-            $this->shoppingcartbooks->removeElement($shoppingcartbook);
+        if ($this->shoppingcartbook->contains($shoppingcartbook)) {
+            $this->shoppingcartbook->removeElement($shoppingcartbook);
             // set the owning side to null (unless already changed)
             if ($shoppingcartbook->getBooks() === $this) {
                 $shoppingcartbook->setBooks(null);
