@@ -7,7 +7,6 @@ use App\Entity\ShoppingCart;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;
-use App\Entity\OnlineShoppingCart;
 
 class ShoppingCartController extends AbstractController
 {
@@ -52,7 +51,33 @@ class ShoppingCartController extends AbstractController
         }
         
         $this->get("session")->set("cart", $cart);
+        $this->addFlash(
+            'success',
+            "You've added this book to the cart"
+        );
 
         return $this->redirectToRoute('show_book', ['id' => $book->getId()]);
+    }
+
+    /**
+     * @Route("/cart/show", name="show_cart")
+     */
+    public function showShoppingCart(ObjectManager $em) 
+    {
+        $cart = $this->get("session")->get("cart");
+   
+        $lines = array();
+        
+        if(!empty($cart)){
+            foreach($cart as $id){
+                $book = $em->getRepository(Book::class)->find($id);
+                $lines[] = $book;
+            }
+        }
+       
+        
+        return $this->render('shopping_cart/index.html.twig', [
+            "cartlines" => $lines
+        ]);
     }
 }

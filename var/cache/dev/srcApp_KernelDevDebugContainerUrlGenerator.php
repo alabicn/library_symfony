@@ -42,6 +42,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
         'password_update' => [[], ['_controller' => 'App\\Controller\\SecurityController::updatePassword'], [], [['text', '/password-update']], [], []],
         'shopping_cart' => [['id'], ['_controller' => 'App\\Controller\\ShoppingCartController::addToShoppingCart'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/shopping/cart']], [], []],
+        'show_cart' => [[], ['_controller' => 'App\\Controller\\ShoppingCartController::showShoppingCart'], [], [['text', '/cart/show']], [], []],
         'show_book' => [['id'], ['_controller' => 'App\\Controller\\StoreController::showBook'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/book/show']], [], []],
         'show_genre' => [['name'], ['_controller' => 'App\\Controller\\StoreController::listeGenre'], [], [['variable', '/', '[^/]++', 'name', true], ['text', '/genre']], [], []],
         'home_super_admin' => [[], ['_controller' => 'App\\Controller\\SuperAdmin\\RoleController::showAllUsers'], [], [['text', '/god/']], [], []],

@@ -19,5 +19,4 @@ class UserRepository extends ServiceEntityRepository
 
         return $qb->execute();
     }
-
 }

@@ -65,7 +65,9 @@
                                 {% endif %}
                             </ul>
                             <div>
-                                Panier : {{ app.session.get('cart')|length }} produits
+                                <a href="{{ path('show_cart') }}">
+                                    Panier : {{ app.session.get('cart')|length }} produits
+                                </a>
                             </div>
                         </nav>
                     {% endblock %}
