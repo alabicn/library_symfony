@@ -5,10 +5,17 @@
 {% block body %}
   
     {% if cartlines is not empty %}
+        {% set total = 0 %}
         {% for book in cartlines %}
            
-            <a href={{ path("show_book", {'id': book.id}) }}>{{ book.title }}</a>
+        <img src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" style="width: 30px;"/><a href={{ path("show_book", {'id': book.id}) }}>{{ book.author.name ~ ' ' ~ book.author.surname|upper ~ ' - ' ~ book.title }}</a>
+        <br>
+        <mark>{{ book.prices[3]|number_format(2, '.', ' ') }} €</mark><br>
+        <a href="{{ path("remove_from_cart", {'id': book.id})}}">Remove book?</a><hr>
+        
+        {% set total = total + book.prices[3] %}
         {% endfor %}
+        <h3>Total : {{ total|number_format(2, '.', ' ') }} €</h3>
     {% else %}
         <p>Your cart is empty !</p>
     {% endif %}

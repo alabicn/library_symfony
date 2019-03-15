@@ -6,18 +6,16 @@
         <title>
             {% block title %}
                 {% if title is defined %}
-                    {{title}}{% else %}Title{% endif %}
+                    {{title}}{% else %}Library{% endif %}
                 | Library
             {% endblock %}
         </title>
         {% block stylesheets %}
-            {# bootstrap #}
             <link
                 crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
-                {# custom #}
                 <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-                {% endblock %}
-                <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+        {% endblock %}
+                <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>
             </head>
             <body>
                 <body id="{% block body_id %}{% endblock %}">
@@ -39,7 +37,8 @@
                                 </li>
                                 {% if is_granted('ROLE_USER') %}
                                     <li class="nav-item {% if mainNavMember is defined %}active{% endif %}">
-                                        <a class="nav-link" href="{{path('profile_page')}}"><img src="/assets/img/{{ app.user.srcPhoto }}" alt="{{ app.user.altPhoto }}" title="{{ app.user.titlePhoto }}" style="width : 25px; border-radius: 50px;"/>
+                                        <a class="nav-link" href="{{path('profile_page')}}">
+                                            <img src="/assets/img/{{ app.user.srcPhoto }}" alt="{{ app.user.altPhoto }}" title="{{ app.user.titlePhoto }}" style="width : 25px; border-radius: 50px;"/>
                                         </a>
                                     </li>
                                 {% endif %}
@@ -101,7 +100,28 @@
                     {% block footer %}
                         <footer class="bck1 border-top" id="footer">
                             <div class="container">
-                                <h4>Footer</h4>
+                                <div class="row align-items-center" >
+                                    <div class="col">
+                                        Footer 1
+                                    </div>
+                                    <div class="col">
+                                        Footer 2
+                                    </div>
+                                    <div class="col">
+                                        Footer 3
+                                    </div>
+                                </div><hr>
+                                <div class="row justify-content-between">
+                                    <p>All Rights Reserved</p>
+                                    <div "row justify-content-end">
+                                        <p>
+                                                © 2019 Nemanja ALABIC
+                                            <a href="https://linkedin.com/" target="_blank">
+                                                <img src="{{ asset('assets/img/random/linkedin.png') }}" width=20px; style="margin-left: 5px;" alt="linkedinLogo.png"/>
+                                            </a>
+                                        </p>  
+                                    </div> 
+                                </div>    
                             </div>
                         </footer>
                     {% endblock %}

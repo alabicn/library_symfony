@@ -25,12 +25,16 @@
 
     <h1>{% for e in book.editions %}
         {{ e.name }} : {{ book.prices[e.id]|number_format(2, '.', ' ') }} €<br />
+        
+        {% if e.name == 'eBook' %}
+        <a href={{ path("shopping_cart", {'id': book.id})}}>Add to cart?</a>
+        {% endif %}
+
         {% endfor %}
     </h1>
 
  
-        <a href={{ path("shopping_cart", {'id': book.id})}}>Add to cart?</a>
-
+        
     <div class="example-wrapper">
 
 

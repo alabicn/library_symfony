@@ -22,7 +22,7 @@ class HomepageController extends Controller
 
         return $this->render('homepage/index.html.twig', [
             'mainNavHome' => true,
-            'title' => 'Accueil',
+            'title' => 'Homepage',
 
             'genres' => $genres,
             'quotes' => $quotes
