@@ -2,6 +2,10 @@
 body{background: #ebeff2;}
 .bck1{background: #fff;}
 
+* {
+    background-repeat: no-repeat;
+}
+
 /*generique*/
 .padded{padding: 15px;}
 
@@ -31,13 +35,6 @@ footer#footer
     align-items: center;
 }
 
-#logo img
-{
-    width: 59px;
-    height: 60px;
-    margin-top: 20px;
-}
-
 #banner_image
 {
     margin-top: 15px;
@@ -62,30 +59,6 @@ p
     text-align: end;
 }
 
-#navnav
-{
-    display: flex;
-    flex-direction: row;
-    
-}
-
-#navheader
-{
-    background-color: #333333;
-    color: white;
-}
-
-#headertitle 
-{
-    display: flex;
-    align-items: flex-end;
-}
-
-.logotext
-{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-}
-
 .navbar
 {
     background-color: #333333;
@@ -103,3 +76,144 @@ p
 }
 
 
+.header {
+    background-color: #333333;
+    color: white;
+}
+
+.header__content {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px 15px 50px;
+}
+
+.header__logo {
+
+}
+
+.header__nav {
+    flex: 1 auto;
+}
+
+.header__logo img {
+    width: 59px;
+    height: 60px;
+}
+
+.header__logo-txt {
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 0;
+    margin-top: 4px;
+}
+
+.nav {
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+.nav__wrap {
+    display: flex;
+    align-items: center;
+}
+
+.nav__item {
+    padding: 10px;    
+}
+
+.nav__item.active .nav__item-link {
+    color: orangered;
+}
+
+.nav__item-link {
+    color: #fff;
+}
+
+.nav__item.cart {
+    margin-left: 10px;
+    position: relative;
+    padding: 0;
+}
+
+.nav__item.cart .badge {
+    position: absolute;
+    right: 4px;
+    top: -3px;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.nav__item.username {
+    margin-left: 10px;
+    padding: 0;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.user:hover {
+    background-color: #5a5a5a;
+}
+
+.user:hover .user__dd {
+    display: flex;
+    background-color: #5a5a5a;
+}
+
+.user__name {
+    font-size: 12px;
+}
+
+.user__img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.user__dd {
+    display: none;
+    position: absolute;
+    border-radius: 5px;
+    top: 100%;
+    width: 150px;
+    justify-content: flex-end;
+    right: 0;
+    padding: 5px;
+    flex-direction: column;
+    align-items: flex-end;
+    border-top-right-radius: 0;
+}
+
+.user__dd-item {
+    border-radius: 5px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding-right: 5px;
+}
+
+.user__dd-item:hover {
+    background-color: #333333;
+}
+
+.nav__item-link:hover {
+    color: orangered;
+}
