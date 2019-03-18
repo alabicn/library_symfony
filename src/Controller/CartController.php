@@ -61,22 +61,20 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/book/{id}", name="remove_from_cart")
      */
-    public function removeFromCart(ObjectManager $em)
+    public function removeFromCart($id, ObjectManager $em)
     {
         $cart = $this->get("session")->get("cart");
         
-        
+        $key = array_search($id, $cart);
 
-        foreach($cart as $id)
-            {
-                $book = $em->getRepository(Book::class)->find($id);
-                $this->get("session")->remove("book", $book);
-            }
-
-        $this->addFlash(
-            'danger',
-            "You've removed this book from the cart"
-        );
+        if($key !== false){
+            unset($cart[$key]);
+            $cart = $this->get("session")->set("cart", $cart);
+            $this->addFlash(
+                'danger',
+                "You've removed this book from the cart"
+            );
+        }
         
         return $this->redirectToRoute('show_cart');
     }

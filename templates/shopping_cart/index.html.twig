@@ -15,7 +15,7 @@
         
         {% set total = total + book.prices[3] %}
         {% endfor %}
-        <h3>Total : {{ total|number_format(2, '.', ' ') }} €</h3>
+        <h3>Total : {{ total|number_format(2, '.', ' ') }}&nbsp;€</h3>
     {% else %}
         <p>Your cart is empty !</p>
     {% endif %}
