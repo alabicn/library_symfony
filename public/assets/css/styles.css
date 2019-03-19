@@ -1,6 +1,5 @@
 /*base*/
 body{background: #FAF7EE}
-.bck1{background: #fff;}
 
 * {
     background-repeat: no-repeat;
@@ -9,15 +8,6 @@ body{background: #FAF7EE}
 /*generique*/
 .padded{padding: 15px;}
 
-/*footer*/
-footer#footer
-{
-    background-color: #FAF7EE;
-    margin-top: 20px;
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-}
 /*header_logo*/
 
 #logo
@@ -46,11 +36,11 @@ footer#footer
 }
 
 
-/*header*/
+/*header
+---------------------------------*/
 
 .header {
     background-color: #333333;
-    color: white;
 }
 
 .header__content {
@@ -191,20 +181,118 @@ footer#footer
     text-decoration: none;
 }
 
-.footer__follow_us {
+/* footer */
+
+#footer
+{
+    background-color: #FAF7EE;
+    margin-top: 20px; 
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 10px 15px 50px;
+    border-top: 0.1px inset rgba(0,0,0,.075);
+    border-bottom: 0.1px inset rgba(0,0,0,.075);
+}
+
+.footer_title
+{
+    color: #333333;
+    font-size: 17px;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold; 
+    margin-top: 10px;  
+}
+
+.social_media-img 
+{
     width: 32px;
     height: 32px;
-    margin: 2px;
+    margin: 5px;
 }
 
-.col {
+.col 
+{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.social_media {
+.social_media 
+{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.social_media_list 
+{
+    display: flex;
+	flex-direction: row;
+    align-items: center;
+}
+
+.social_media_list:hover {
+    text-decoration: none;
+}
+
+.social_media-text 
+{
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    margin-left: 5px;
+    color: #333333;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.social_media_list ul 
+{
+    list-style: none;
+    padding-left: 5px;
+}
+
+.social_media_list li 
+{
+	margin: 10px;
+}
+
+.footer_linkedin {
+    float: right;
+    padding: 20px 50px 20px 50px;
+}
+
+#my_linkedin {
+    text-align: center;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+

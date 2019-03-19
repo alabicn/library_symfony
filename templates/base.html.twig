@@ -14,148 +14,190 @@
             <link
                 crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
                 <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+                <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
         {% endblock %}
-                <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>
-            </head>
-            <body>
-                <body id="{% block body_id %}{% endblock %}">
-                    {% block header %}
-                    <header class="header" id="navheader">
-                        <div class="header__content">
-                            <div class="header__logo" id="logo">
-                                <img src="{{ asset('assets/img/logo/wisdom.png') }}" alt="Library's logo" />
-                                <h1 class="header__logo-txt">Library</h1>
+                <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>  
+    </head>
+    <body>
+        <body id="{% block body_id %}{% endblock %}">
+            {% block header %}
+            <header id="header" class="header" >
+                <div class="header__content">
+                    <div class="header__logo" id="logo">
+                        <img src="{{ asset('assets/img/logo/wisdom.png') }}" alt="Library's logo" />
+                        <h1 class="header__logo-txt">Library</h1>
+                    </div>
+                    <div class="header__nav">
+                        <div class="nav">
+                            <div class="nav__wrap">
+                                <div class="nav__item {% if mainNavHome is defined %}active{% endif %}">
+                                    <a class="nav__item-link" href="{{path('homepage')}}">Home</a>
+                                </div>
                             </div>
-                            <div class="header__nav">
-                                <div class="nav">
-                                    <div class="nav__wrap">
-                                        <div class="nav__item {% if mainNavHome is defined %}active{% endif %}">
-                                            <a class="nav__item-link" href="{{path('homepage')}}">Home</a>
-                                        </div>
-                                    </div>
-                                    <div class="nav__wrap">
-                                        {% if not is_granted('ROLE_USER') %}
-                                        <div class="nav__item {% if mainNavLogin is defined %}active{% endif %}">
-                                            <a class="nav__item-link" href="{{path('login')}}">Sign In</a>
-                                        </div>
-                                        <div class="nav__item {% if mainNavRegistration is defined %}active{% endif %}">
-                                            <a class="nav__item-link" href="{{path('app_security_register')}}">Sign Up</a>
-                                        </div>
-                                        {% endif %}
-                                        <div class="nav__item cart">
-                                            <a class="navbar-brand" href="{{ path('show_cart') }}">
-                                                <img src="{{ asset('assets/img/random/shopping-bag.png') }}" alt="logo" style="width:30px;">
-                                            </a>
-                                            <span class="badge badge-pill badge-danger">{{ app.session.get('cart')|length }}</span>
-                                        </div>
-                                        {% if is_granted('ROLE_USER') %}
-                                        <div class="nav__item username {% if mainNavMember is defined %}active{% endif %}">
-                                            <div class="user">
-                                                <img class="user__img" src="/assets/img/{{ app.user.srcPhoto }}"
-                                                    alt="{{ app.user.altPhoto }}" />
-                                                <div class="user__name">{{ app.user.uname }}</div>
-                                                <div class="user__dd">
-                                                    <div class="user__dd-item">
-                                                        <a href={{path('profile_page')}} class="nav__item-link">Settings</a>
-                                                    </div>
-                                                    {% endif %}
-                                                    {% if is_granted('ROLE_ADMIN') %}
-                                                    <div class="user__dd-item {% if mainNavAdmin is defined %}active{% endif %}">
-                                                        <a class="nav__item-link" href="{{path('home_admin')}}">Admin</a>
-                                                    </div>
-                                                    {% endif %}
-                                                    {% if is_granted('ROLE_USER') %}
-                                                    <div class="user__dd-item">
-                                                        <a class="nav__item-link" href="{{path('logout')}}">Sign Out</a>
-                                                    </div>
-                                                    {% endif %}
-                                                </div>
+                            <div class="nav__wrap">
+                                {% if not is_granted('ROLE_USER') %}
+                                <div class="nav__item {% if mainNavLogin is defined %}active{% endif %}">
+                                    <a class="nav__item-link" href="{{path('login')}}">Sign In</a>
+                                </div>
+                                <div class="nav__item {% if mainNavRegistration is defined %}active{% endif %}">
+                                    <a class="nav__item-link" href="{{path('app_security_register')}}">Sign Up</a>
+                                </div>
+                                {% endif %}
+                                <div class="nav__item cart">
+                                    <a class="navbar-brand" href="{{ path('show_cart') }}">
+                                        <img src="{{ asset('assets/img/random/shopping-bag.png') }}" alt="logo" style="width:30px;">
+                                    </a>
+                                    <span class="badge badge-pill badge-danger">{{ app.session.get('cart')|length }}</span>
+                                </div>
+                                {% if is_granted('ROLE_USER') %}
+                                <div class="nav__item username {% if mainNavMember is defined %}active{% endif %}">
+                                    <div class="user">
+                                        <img class="user__img" src="/assets/img/{{ app.user.srcPhoto }}"
+                                            alt="{{ app.user.altPhoto }}" />
+                                        <div class="user__name">{{ app.user.uname }}</div>
+                                        <div class="user__dd">
+                                            <div class="user__dd-item">
+                                                <a href={{path('profile_page')}} class="nav__item-link">Settings</a>
                                             </div>
+                                            {% endif %}
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                            <div class="user__dd-item {% if mainNavAdmin is defined %}active{% endif %}">
+                                                <a class="nav__item-link" href="{{path('home_admin')}}">Admin</a>
+                                            </div>
+                                            {% endif %}
+                                            {% if is_granted('ROLE_USER') %}
+                                            <div class="user__dd-item">
+                                                <a class="nav__item-link" href="{{path('logout')}}">Sign Out</a>
+                                            </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </header>
-                    {% endblock %}
-                    {% block flash %}
-                        {% for flash_message in app.session.flashbag.get('success') %}
-                            <div class="container alert alert-success" role="alert">
-                                {{ flash_message }}
+                    </div>
+                </div>
+            </header>
+            {% endblock %}
+            {% block flash %}
+                {% for flash_message in app.session.flashbag.get('success') %}
+                    <div class="container alert alert-success" role="alert">
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+                {% for flash_message in app.session.flashbag.get('info') %}
+                    <div class="container alert alert-info" role="alert">
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+                {% for flash_message in app.session.flashbag.get('warning') %}
+                    <div class="container alert alert-warning" role="alert">
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+                {% for flash_message in app.session.flashbag.get('danger') %}
+                    <div class="container alert alert-danger" role="alert">
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+            {% endblock %}
+            {% block body %}                      
+            {% endblock %}
+            {% block footer %}
+                <footer id="footer" class="footer" >
+                    <section>
+                        <div class="footer__content">                            
+                            <div class="social_media">
+                                <h3 class="footer_title">AZERTTYTYY</h3>
                             </div>
-                        {% endfor %}
-                        {% for flash_message in app.session.flashbag.get('info') %}
-                            <div class="container alert alert-info" role="alert">
-                                {{ flash_message }}
+                            <div class="social_media">
+                                <h3 class="footer_title">Navigate</h3>
+                                <div class="social_media_list">
+                                    <ul>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        {% endfor %}
-                        {% for flash_message in app.session.flashbag.get('warning') %}
-                            <div class="container alert alert-warning" role="alert">
-                                {{ flash_message }}
+                            <div class="social_media">
+                                <h3 class="footer_title">Get Connected</h3>
+                                <div class="social_media_list">
+                                    <ul>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">
+                                                <img src="{{ asset('assets/img/random/twitter.png') }}" class="social_media-img" />
+                                                <span class="social_media-text">Follow me on <br>Twitter</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">
+                                                <img src="{{ asset('assets/img/random/google-plus.png') }}" class="social_media-img" />
+                                                <span class="social_media-text">Vote me on <br>Google+</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">
+                                                <img src="{{ asset('assets/img/random/rss.png') }}" class="social_media-img" />
+                                                <span class="social_media-text">Get RSS <br>Feed</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">
+                                                <img src="{{ asset('assets/img/random/facebook.png') }}" class="social_media-img" />
+                                                <span class="social_media-text">Join me on <br>Facebook</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">
+                                                <img src="{{ asset('assets/img/random/youtube.png') }}" class="social_media-img" />
+                                                <span class="social_media-text">Watch me on <br>Youtube</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" class="social_media_list">
+                                                <img src="{{ asset('assets/img/random/instagram.png') }}" class="social_media-img" />
+                                                <span class="social_media-text">Follow me on<br>Instagram</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        {% endfor %}
-                        {% for flash_message in app.session.flashbag.get('danger') %}
-                            <div class="container alert alert-danger" role="alert">
-                                {{ flash_message }}
-                            </div>
-                        {% endfor %}
-                    {% endblock %}
-                        {% block body %}                      
-                        {% endblock %}
-                    {% block footer %}
-                        <footer class="bck1" id="footer">
-                            <div class="container">
-                                <div class="row align-items-center" >
-                                    <div class="col">
-                                        Footer 1
-                                    </div>
-                                    <div class="col">
-                                        Footer 2
-                                    </div>
-                                    <div class="social_media">
-                                        <h3>Get Connected</h3>
-                                        <div class="social_media">
-                                            <a class="#" class="social_media">
-                                                <img src="assets/img/random/facebook.png" class="footer__follow_us"/>
-                                                <span>Join me on Facebook</span> 
-                                            </a>
-                                            <a>
-                                                <img src="assets/img/random/youtube.png" class="footer__follow_us"/>
-                                                <span>Youtube</span> 
-                                            </a>
-                                            <a>
-                                                <img src="assets/img/random/rss.png" class="footer__follow_us"/>
-                                                <span>Get RSS Feed</span> 
-                                            </a>
-                                            <a>
-                                                <img src="assets/img/random/twitter.png" class="footer__follow_us"/>
-                                                <span>Follow me on Twitter</span> 
-                                            </a>
-                                            <a>
-                                                <img src="assets/img/random/google-plus.png" class="footer__follow_us"/>
-                                                <span>Vote me on Google+</span>  
-                                            </a>
-                                            <a>
-                                                <img src="assets/img/random/vimeo.png" class="footer__follow_us"/> 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div><hr>
-                                <div class="row justify-content-between">
-                                    <p>All Rights Reserved</p>
-                                    <div "row justify-content-end">
-                                        <p>
-                                                © 2019 Nemanja ALABIC
-                                            <a href="https://linkedin.com/" target="_blank">
-                                                <img src="{{ asset('assets/img/random/linkedin.png') }}" width=20px; style="margin-left: 5px;" alt="linkedinLogo.png"/>
-                                            </a>
-                                        </p>  
-                                    </div> 
-                                </div>    
-                            </div>
-                        </footer>
-                    {% endblock %}
-                    {% block javascripts %}{% endblock %}
-                </body>
-            </html>
-        
+                        </div>
+                    </section>
+                    <section>
+                        <div class="footer_linkedin">
+                            <a href="https://www.linkedin.com/alabicn" target="_blank" class="social_media_list">
+                                <span class="social_media-text" id="my_linkedin">Powered by <br>Nemanja ALABIC</span>
+                                <img src="{{ asset('assets/img/random/linkedin.png') }}" class="social_media-img" />
+                            </a>
+                        </div>
+                    </section>
+                </footer>
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>               
+                
+                
+             
