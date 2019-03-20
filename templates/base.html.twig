@@ -107,56 +107,102 @@
             {% block footer %}
                 <footer id="footer" class="footer" >
                     <section>
-                        <div class="footer__content">                            
-                            <div class="social_media">
-                                <h3 class="footer_title">AZERTTYTYY</h3>
+                        <div class="footer__section">                            
+                            <div class="footer__section_contents">
+                                <div class="download_store_list">
+                                    <h3 class="footer_title">Payment</h3>
+                                    <div class="test">
+                                        <h3 class="footer_title">About Us</h3>
+                                    </div>
+                                    <div class="test">
+                                        <h3 class="footer_title">Terms of Use</h3>
+                                    </div>
+                                </div>
+                                <h3 class="footer_title">Download</h3>
+                                <div class="download_store_list">
+                                    <div>
+                                        <a href="#" target="_blank" class="social_media_list">
+                                            <img src="{{ asset('assets/img/random/app-store.png') }}" class="download_store-img" />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#" target="_blank" class="social_media_list">
+                                            <img src="{{ asset('assets/img/random/play-store.png') }}" class="download_store-img" />
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="social_media">
-                                <h3 class="footer_title">Navigate</h3>
+                            <div class="footer__section_contents">
+                                <h3 class="footer_title">Contact</h3>
                                 <div class="social_media_list">
                                     <ul>
-                                        <li>
-                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        <li class="social_media_list">
+                                            <img src="{{ asset('assets/img/random/email.png') }}" alt="email.png" class="social_media-img" />
+                                            <span class="social_media-text">info@example.com</span>
                                         </li>
-                                        <li>
-                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        <li class="social_media_list">
+                                            <img src="{{ asset('assets/img/random/call.png') }}" alt="instagram.png" class="social_media-img" />
+                                            <span class="social_media-text">+ 33 (0)3 88 47 25 08</span>
                                         </li>
-                                        <li>
-                                            <a href="#" target="_blank" class="social_media_list">Home</a>
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li>
-                                            <a href="#" target="_blank" class="social_media_list">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_blank" class="social_media_list">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_blank" class="social_media_list">Home</a>
+                                        <li class="social_media_list">
+                                            <img src="{{ asset('assets/img/random/email.png') }}" alt="email.png" class="social_media-img" />
+                                            <span class="social_media-text">+ 33 (0)9 79 94 47 51</span>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="social_media">
+                            <div class="footer__section_contents">
+                                <h3 class="footer_title">Shops</h3>
+                                <div class="social_media_list">
+                                    <ul>
+                                        <li class="social_media_list">
+                                            <a href="https://www.librairie-kleber.com/" target="_blank" class="shops_links">Librairie Internationale Kléber</a>
+                                        </li>
+                                        <li class="social_media_list">
+                                            <a href="https://www.fnac.com/livre.asp#bl=marktlink3" target="_blank" class="shops_links">Librarie Fnac Strasbourg</a>
+                                        </li>
+                                        <li class="social_media_list">
+                                            <a href="http://www.gallimard.fr/Catalogue/GALLIMARD/Du-monde-entier" target="_blank" class="shops_links">Librairie Gallimard du Monde Entier</a>
+                                        </li>
+                                        <li class="social_media_list">
+                                            <a href="http://dinali.fr/" target="_blank" class="shops_links">Librairie Dinali Mésange</a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li class="social_media_list">
+                                            <a href="https://www.librairie-broglie.com/" target="_blank" class="shops_links">Librairie Papeterie Broglie</a>
+                                        </li>
+                                        <li class="social_media_list">
+                                            <a href="http://librairie.gutenberg.over-blog.com/" target="_blank" class="shops_links">Librairie Gutenberg</a>
+                                        </li>
+                                        <li class="social_media_list">
+                                            <a href="https://www.livre-rare-book.com/c/b/coin?l=fr" target="_blank" class="shops_links">Au Coin Littéraire</a>
+                                        </li>
+                                        <li class="social_media_list">
+                                            <a href="https://www.oberlin.fr/" target="_blank" class="shops_links">Librairie Oberlin</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="footer__section_contents">
                                 <h3 class="footer_title">Get Connected</h3>
                                 <div class="social_media_list">
                                     <ul>
                                         <li>
                                             <a href="#" target="_blank" class="social_media_list">
-                                                <img src="{{ asset('assets/img/random/twitter.png') }}" class="social_media-img" />
+                                                <img src="{{ asset('assets/img/random/twitter.png') }}" alt="twitter.png" class="social_media-img" />
                                                 <span class="social_media-text">Follow me on <br>Twitter</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" target="_blank" class="social_media_list">
-                                                <img src="{{ asset('assets/img/random/google-plus.png') }}" class="social_media-img" />
-                                                <span class="social_media-text">Vote me on <br>Google+</span>
+                                                <img src="{{ asset('assets/img/random/google-plus.png') }}" alt="google-plus.png" class="social_media-img" />
+                                                <span class="social_media-text">Vote me on <br>Google Plus</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" target="_blank" class="social_media_list">
-                                                <img src="{{ asset('assets/img/random/rss.png') }}" class="social_media-img" />
+                                                <img src="{{ asset('assets/img/random/rss.png') }}" alt="rss.png" class="social_media-img" />
                                                 <span class="social_media-text">Get RSS <br>Feed</span>
                                             </a>
                                         </li>
@@ -164,19 +210,19 @@
                                     <ul>
                                         <li>
                                             <a href="#" target="_blank" class="social_media_list">
-                                                <img src="{{ asset('assets/img/random/facebook.png') }}" class="social_media-img" />
+                                                <img src="{{ asset('assets/img/random/facebook.png') }}" alt="facebook.png" class="social_media-img" />
                                                 <span class="social_media-text">Join me on <br>Facebook</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" target="_blank" class="social_media_list">
-                                                <img src="{{ asset('assets/img/random/youtube.png') }}" class="social_media-img" />
+                                                <img src="{{ asset('assets/img/random/youtube.png') }}" alt="youtube.png" class="social_media-img" />
                                                 <span class="social_media-text">Watch me on <br>Youtube</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" target="_blank" class="social_media_list">
-                                                <img src="{{ asset('assets/img/random/instagram.png') }}" class="social_media-img" />
+                                                <img src="{{ asset('assets/img/random/instagram.png') }}" alt="instagram.png" class="social_media-img" />
                                                 <span class="social_media-text">Follow me on<br>Instagram</span>
                                             </a>
                                         </li>

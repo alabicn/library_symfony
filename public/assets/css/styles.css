@@ -98,16 +98,18 @@ body{background: #FAF7EE}
 
 .nav__item.cart .badge {
     position: absolute;
-    right: 4px;
-    top: -3px;
-    height: 24px;
-    width: 24px;
+    right: 10px;
+    top: 0px;
+    height: 18px;
+    width: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 11px;
+    line-height: 14px;
+    color: #FAF7EE;
+    background-color: #ED5944
 }
 
 .nav__item.username {
@@ -181,7 +183,8 @@ body{background: #FAF7EE}
     text-decoration: none;
 }
 
-/* footer */
+/* footer
+-------------------------------*/
 
 #footer
 {
@@ -192,12 +195,12 @@ body{background: #FAF7EE}
     flex-direction: column;
 }
 
-.footer__content {
+.footer__section {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 15px 10px 15px 50px;
+    padding: 15px 10px 15px 10px;
     border-top: 0.1px inset rgba(0,0,0,.075);
     border-bottom: 0.1px inset rgba(0,0,0,.075);
 }
@@ -208,28 +211,44 @@ body{background: #FAF7EE}
     font-size: 17px;
     font-family: 'EB Garamond', serif;
     font-weight: bold; 
-    margin-top: 10px;  
+    margin: 10px 0px 20px 0px; 
 }
 
-.social_media-img 
+.download_store_list
 {
-    width: 32px;
-    height: 32px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.download_store-img
+{
+    width: 180px;
+    height: 64px;
     margin: 5px;
 }
 
-.col 
+.footer__section_contents 
 {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    min-height: 230px;
+}
+
+.navigate_links_list
+{
     align-items: center;
 }
 
-.social_media 
+.navigate_links_list ul 
+{
+    list-style: none;
+    padding-left: 5px;
+}
+
+.navigate_links 
 {
     display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .social_media_list 
@@ -255,6 +274,19 @@ body{background: #FAF7EE}
     font-size: 15px;
 }
 
+.social_media-text:hover
+{
+    color: #ED5944;
+    text-decoration: none;
+}
+
+.social_media-img 
+{
+    width: 32px;
+    height: 32px;
+    margin: 5px;
+}
+
 .social_media_list ul 
 {
     list-style: none;
@@ -275,6 +307,21 @@ body{background: #FAF7EE}
     text-align: center;
 }
 
+.shops_links
+{
+    color: #333333;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration: none; 
+}
+
+.shops_links:hover 
+{
+    color: #ED5944;
+    text-decoration: none;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -291,8 +338,22 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #f5f5f5;
 }
+
+
+    
+
+    /*position: absolute;
+    right: 4px;
+    top: -3px;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-size: 14px;
+    line-height: 16px;*/
 
 
 
