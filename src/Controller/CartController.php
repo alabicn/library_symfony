@@ -53,7 +53,7 @@ class CartController extends AbstractController
             }
         }
        
-        return $this->render('shopping_cart/index.html.twig', [
+        return $this->render('cart/cart.html.twig', [
             "cartlines" => $lines
         ]);
     }
