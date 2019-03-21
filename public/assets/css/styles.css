@@ -212,6 +212,17 @@ body
     text-decoration: none;
 }
 
+/* cart
+------------------------------ */
+
+#cart
+{
+    background-color: #333333;
+    min-width: 900px;
+    min-height: 450px;
+    margin: 20px;
+}
+
 /* footer
 ------------------------------ */
 
@@ -220,14 +231,13 @@ body
     background-color: #FAF7EE;
     margin-top: 20px; 
     padding: 10px;
-    display: flex;
-    flex-direction: column;
+    
 }
 
 .footer__section 
 {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     padding: 15px 10px 15px 10px;
@@ -242,6 +252,7 @@ body
     font-family: 'EB Garamond', serif;
     font-weight: bold; 
     margin: 10px 0px 20px 0px; 
+    text-align: center;
 }
 
 #footer__payment
@@ -252,9 +263,7 @@ body
 
 .footer__section-contents 
 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
     min-height: 230px;
 }
 
@@ -267,8 +276,7 @@ body
 
 .footer__section-contents-details-text 
 {
-    display: flex;
-    flex-direction: column;
+    
     line-height: normal;
     margin-left: 5px;
     color: #333333;
@@ -365,20 +373,18 @@ html
 
 body 
 {
-  margin-bottom: 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
 }
 
-.footer 
+
+
+#page
 {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
+    flex: 1;
 }
 
 /* ------------------------------------------------ */
-
-.test {
-    padding: 30px 20px 30px 20px;
-}
-

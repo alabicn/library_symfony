@@ -21,7 +21,6 @@ class HomepageController extends Controller
 
 
         return $this->render('homepage/index.html.twig', [
-            'mainNavHome' => true,
             'title' => 'Homepage',
 
             'genres' => $genres,

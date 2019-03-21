@@ -54,6 +54,7 @@ class CartController extends AbstractController
         }
        
         return $this->render('cart/cart.html.twig', [
+            'title' => 'Cart',
             "cartlines" => $lines
         ]);
     }
