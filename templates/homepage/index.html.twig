@@ -4,9 +4,9 @@
 
 {% block body %}
 
-
+<div class="test">
 {% if title is defined %}
-{{title}}
+<h1>{{title}}</h1>
 {% else %}
 Header
 {% endif %}
@@ -29,4 +29,5 @@ Header
     {% endif %}
     <br>
     {% endfor %}
+</div>
 {% endblock %}

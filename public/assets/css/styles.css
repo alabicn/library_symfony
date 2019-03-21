@@ -1,7 +1,12 @@
-/*base*/
-body{background: #FAF7EE}
+/* base */
 
-* {
+body
+{
+    background: #FAF7EE
+}
+
+* 
+{
     background-repeat: no-repeat;
 }
 
@@ -10,12 +15,6 @@ body{background: #FAF7EE}
 
 /*header_logo*/
 
-#logo
-{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 #banner_image
 {
@@ -37,28 +36,35 @@ body{background: #FAF7EE}
 
 
 /*header
----------------------------------*/
+------------------------------ */
 
-.header {
+#header 
+{
     background-color: #333333;
 }
 
-.header__content {
+.header__content 
+{
     display: flex;
     align-items: center;
     padding: 15px 10px 15px 50px;
 }
 
-.header__nav {
-    flex: 1 auto;
+#logo
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.header__logo img {
+#logo img 
+{
     width: 59px;
     height: 60px;
 }
 
-.header__logo-txt {
+.header__logo-txt 
+{
     color: #FAF7EE;
     font-family: 'Merienda', cursive;
     font-style: oblique;
@@ -67,36 +73,49 @@ body{background: #FAF7EE}
     margin-top: 4px;
 }
 
-.nav {
+.header__nav 
+{
+    flex: 1 auto;
+}
+
+.nav 
+{
+    display: flex;
     justify-content: space-between;
     padding-left: 10px;
 }
 
-.nav__wrap {
+.nav__wrap 
+{
     display: flex;
     align-items: center;
 }
 
-.nav__item {
+.nav__item 
+{
     padding: 10px;    
 }
 
-.nav__item.active .nav__item-link {
+.nav__item-link 
+{
+    color: #FAF7EE
+}
+
+.nav__item.active .nav__item-link 
+{
     color: #ED5944;
     text-decoration: none;
 }
 
-.nav__item-link {
-    color: #FAF7EE
-}
-
-.nav__item.cart {
+.nav__item.cart 
+{
     margin-left: 10px;
     position: relative;
     padding: 0;
 }
 
-.nav__item.cart .badge {
+.nav__item.cart .badge 
+{
     position: absolute;
     right: 10px;
     top: 0px;
@@ -112,12 +131,14 @@ body{background: #FAF7EE}
     background-color: #ED5944
 }
 
-.nav__item.username {
+.nav__item.username 
+{
     margin-left: 10px;
     padding: 0;
 }
 
-.user {
+.user 
+{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -129,21 +150,25 @@ body{background: #FAF7EE}
     border-bottom-right-radius: 0;
 }
 
-.user:hover {
+.user:hover 
+{
     background-color: #5a5a5a;
 }
 
-.user:hover .user__dd {
+.user:hover .user__dd 
+{
     display: flex;
     background-color: #5a5a5a;
 }
 
-.user__name {
+.user__name 
+{
     font-size: 12px;
     color: #FAF7EE;
 }
 
-.user__img {
+.user__img 
+{
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -151,7 +176,8 @@ body{background: #FAF7EE}
     background-position: center;
 }
 
-.user__dd {
+.user__dd 
+{
     display: none;
     position: absolute;
     border-radius: 5px;
@@ -165,7 +191,8 @@ body{background: #FAF7EE}
     border-top-right-radius: 0;
 }
 
-.user__dd-item {
+.user__dd-item 
+{
     border-radius: 5px;
     display: flex;
     width: 100%;
@@ -174,17 +201,19 @@ body{background: #FAF7EE}
     padding-right: 5px;
 }
 
-.user__dd-item:hover {
+.user__dd-item:hover 
+{
     background-color: #333333;
 }
 
-.nav__item-link:hover {
+.nav__item-link:hover 
+{
     color: #ED5944;
     text-decoration: none;
 }
 
 /* footer
--------------------------------*/
+------------------------------ */
 
 #footer
 {
@@ -195,7 +224,8 @@ body{background: #FAF7EE}
     flex-direction: column;
 }
 
-.footer__section {
+.footer__section 
+{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -205,7 +235,7 @@ body{background: #FAF7EE}
     border-bottom: 0.1px inset rgba(0,0,0,.075);
 }
 
-.footer_title
+.footer__title
 {
     color: #333333;
     font-size: 17px;
@@ -214,20 +244,13 @@ body{background: #FAF7EE}
     margin: 10px 0px 20px 0px; 
 }
 
-.download_store_list
+#footer__payment
 {
-    display: flex;
-    flex-direction: row-reverse;
+    width: 365px;
+    margin-bottom: 10px;
 }
 
-.download_store-img
-{
-    width: 180px;
-    height: 64px;
-    margin: 5px;
-}
-
-.footer__section_contents 
+.footer__section-contents 
 {
     display: flex;
     flex-direction: column;
@@ -235,34 +258,14 @@ body{background: #FAF7EE}
     min-height: 230px;
 }
 
-.navigate_links_list
+.footer__section-contents-details 
 {
+    display: flex;
+    flex-direction: row;
     align-items: center;
 }
 
-.navigate_links_list ul 
-{
-    list-style: none;
-    padding-left: 5px;
-}
-
-.navigate_links 
-{
-    display: flex;
-}
-
-.social_media_list 
-{
-    display: flex;
-	flex-direction: row;
-    align-items: center;
-}
-
-.social_media_list:hover {
-    text-decoration: none;
-}
-
-.social_media-text 
+.footer__section-contents-details-text 
 {
     display: flex;
     flex-direction: column;
@@ -274,40 +277,56 @@ body{background: #FAF7EE}
     font-size: 15px;
 }
 
-.social_media-text:hover
-{
-    color: #ED5944;
-    text-decoration: none;
-}
-
-.social_media-img 
+.footer__section-contents-details-img 
 {
     width: 32px;
     height: 32px;
     margin: 5px;
 }
 
-.social_media_list ul 
+.footer__section-contents-details ul 
 {
     list-style: none;
     padding-left: 5px;
 }
 
-.social_media_list li 
+.footer__section-contents-details li 
 {
-	margin: 10px;
+    margin: 10px;
 }
 
-.footer_linkedin {
-    float: right;
-    padding: 20px 50px 20px 50px;
+.footer__section-contents-details:hover 
+{
+    text-decoration: none;
 }
 
-#my_linkedin {
-    text-align: center;
+/* download */
+
+.download__store-list
+{
+    display: flex;
+    flex-direction: row-reverse;
 }
 
-.shops_links
+.download__store-img
+{
+    width: 180px;
+    height: 64px;
+    margin: 5px;
+}
+
+/* contact */
+
+.contact__list 
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 130px;
+}
+
+/* shops */
+
+.shops__links
 {
     color: #333333;
     font-family: 'EB Garamond', serif;
@@ -316,44 +335,50 @@ body{background: #FAF7EE}
     text-decoration: none; 
 }
 
-.shops_links:hover 
+.shops__links:hover 
 {
     color: #ED5944;
     text-decoration: none;
 }
 
+/* signature */
+
+.footer__section-signature 
+{
+    float: right;
+    padding: 20px 50px 20px 50px;
+}
+
+#signature 
+{
+    text-align: center;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+
+html 
+{
   position: relative;
   min-height: 100%;
 }
-body {
-  /* Margin bottom by footer height */
+
+body 
+{
   margin-bottom: 60px;
 }
-.footer {
+
+.footer 
+{
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 60px;
 }
 
+/* ------------------------------------------------ */
 
-    
-
-    /*position: absolute;
-    right: 4px;
-    top: -3px;
-    height: 24px;
-    width: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    font-size: 14px;
-    line-height: 16px;*/
-
-
+.test {
+    padding: 30px 20px 30px 20px;
+}
 
