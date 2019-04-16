@@ -98,7 +98,9 @@ body
 
 .nav__item-link 
 {
-    color: #FAF7EE
+    color: #FAF7EE;
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
 }
 
 .nav__item.active .nav__item-link 
@@ -212,15 +214,126 @@ body
     text-decoration: none;
 }
 
+/* Sign in
+------------------------------ */
+
+form div 
+{
+    min-width: 900px;
+    margin: 10px 200px 10px 200px;
+}
+
+legend
+{
+    min-width: 900px;
+    margin: 10px 200px 10px 400px; 
+}
+
+fieldset 
+{
+    min-width: 900px;
+    margin: 10px 200px 10px -200px; 
+    color: #333333;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.form-control
+{
+    border: 1px solid #333333;
+    color: #333333;
+    font-family: 'EB Garamond', serif;
+}
+
+.form-group label 
+{
+    color: #333333;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.btn-primary {
+    color: #FAF7EE;
+    font-family: 'EB Garamond', serif; 
+    background-color: #333333;
+    border-color: #333333;
+}
+
+.btn-primary:hover {
+    color: #333333;
+    font-weight: bold;
+    font-family: 'EB Garamond', serif; 
+    background-color: #ED5944;
+    border-color: #ED5944;
+}
+
 /* cart
 ------------------------------ */
 
 #cart
 {
-    background-color: #333333;
     min-width: 900px;
-    min-height: 450px;
     margin: 20px;
+    position: relative;
+}
+
+.cart_items-img
+{
+    width: 50px;
+    height: 75px;
+    border: solid #333333 2px;
+    margin-right: 10px;
+}
+
+.cart_items 
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cart_items a 
+{
+    text-decoration: none;
+}
+
+.cart_items a:hover
+{
+    color: #ED5944;
+    text-decoration: none;
+}
+
+.cart_items-text
+{
+    line-height: normal;
+    color: #333333;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.cart_items-remove
+{
+    width: 35px; 
+    border-left: 2px solid #333333;
+    margin-left: 5px;
+    padding-left: 5px; 
+}
+
+.cart__wrap 
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 200px 10px 200px;
+}
+
+#total 
+{
+    position: absolute;
+    right: 240px;
+    border-top: 2px solid #333333;
 }
 
 /* footer
@@ -336,7 +449,7 @@ body
 
 .shops__links
 {
-    color: #333333;
+    color: #ED5944;
     font-family: 'EB Garamond', serif;
     font-weight: bold;
     font-size: 15px;
@@ -345,7 +458,7 @@ body
 
 .shops__links:hover 
 {
-    color: #ED5944;
+    color: #333333;
     text-decoration: none;
 }
 

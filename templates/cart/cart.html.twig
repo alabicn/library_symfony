@@ -15,23 +15,32 @@
         <div id="cart">
         {% if cartlines is not empty %}
         {% set total = 0 %}
+            <ul>
         {% for book in cartlines %}
-            <a href={{ path("show_book", {'id': book.id}) }} >
-                <span id="signature" class="footer__section-contents-details-text">{{ book.author.name ~ ' ' ~ book.author.surname|upper ~ ' - ' ~ book.title }}</span>
-                <img src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" class="footer__section-contents-details-img " />
-            </a>
-            <br>
-            <mark>{{ book.prices[3]|number_format(2, '.', ' ') }} €</mark><br>
-            <a href="{{ path("remove_from_cart", {'id': book.id})}}">Remove book?</a>
-            <hr>
-
-        
-        
+                <li class="cart__wrap">
+                    <div class="cart_items">
+                        <img src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" class="cart_items-img" />
+                        <a href={{ path("show_book", {'id': book.id}) }}>
+                            <span class="cart_items-text">{{book.author.name ~ ' ' ~ book.author.surname|upper}} : </span><br>
+                            <span class="cart_items-text">{{book.title}}</span>
+                        </a>
+                    </div>
+                    <div class="cart_items">
+                        <span class="cart_items-text">{{ book.prices[3]|number_format(2, '.', ' ') }}&nbsp;€</span>
+                        <a href="{{ path("remove_from_cart", {'id': book.id})}}">
+                            <img src="{{ asset('assets/img/random/delete-from-shopping-bag.png') }}" alt="remove_from_cart.png" title="Remove from cart?" class="cart_items-remove"/>
+                        </a>
+                    </div>
+                </li>
         {% set total = total + book.prices[3] %}
         {% endfor %}
-        <h3>Total : {{ total|number_format(2, '.', ' ') }}&nbsp;€</h3>
+            </ul>
+            <p id="total" class="cart_items-text">{{ total|number_format(2, '.', ' ') }}&nbsp;€</p>
+            <a href="#" style="display: inline;">
+                <img src="{{ asset('assets/img/random/approuve.png') }}" alt="approuve.png" title="Proceed to payment?" style="width: 35px; border-left: 2px solid #333333; margin-left: 5px; padding-left: 5px; position: absolute; right: 200px;"/>
+            </a>
         {% else %}
-        <p>Your cart is empty !</p>
+            <p>Your cart is empty !</p>
         {% endif %}
 
         </div>

@@ -27,7 +27,9 @@
         {{ e.name }} : {{ book.prices[e.id]|number_format(2, '.', ' ') }} €<br />
         
         {% if e.name == 'eBook' %}
-        <a href={{ path("shopping_cart", {'id': book.id})}}>Add to cart?</a>
+        <a href={{ path("shopping_cart", {'id': book.id})}}>
+            Add to cart?
+        </a>
         {% endif %}
 
         {% endfor %}
