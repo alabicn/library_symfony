@@ -6,11 +6,11 @@
 
     {% block body %}
   
-        {% if title is defined %}
-            <h1>{{title}}</h1>
-        {% else %}
-            <h1>Header</h1>
-        {% endif %}
+    {% if title is defined %}
+        <h1 class="page__title">{{title}}</h1>
+    {% else %}
+        <h1>Header</h1>
+    {% endif %}
 
         <div id="cart">
         {% if cartlines is not empty %}
@@ -28,7 +28,7 @@
                     <div class="cart_items">
                         <span class="cart_items-text">{{ book.prices[3]|number_format(2, '.', ' ') }}&nbsp;€</span>
                         <a href="{{ path("remove_from_cart", {'id': book.id})}}">
-                            <img src="{{ asset('assets/img/random/delete-from-shopping-bag.png') }}" alt="remove_from_cart.png" title="Remove from cart?" class="cart_items-remove"/>
+                            <img src="{{ asset('assets/img/random/remove.png') }}" alt="remove_from_cart.png" title="Remove from cart?" class="cart_items-remove"/>
                         </a>
                     </div>
                 </li>
@@ -40,7 +40,7 @@
                 <img src="{{ asset('assets/img/random/approuve.png') }}" alt="approuve.png" title="Proceed to payment?" style="width: 35px; border-left: 2px solid #333333; margin-left: 5px; padding-left: 5px; position: absolute; right: 200px;"/>
             </a>
         {% else %}
-            <p>Your cart is empty !</p>
+            <p style="color: #333333; font-family: 'EB Garamond', serif; font-weight: bold; text-align: center; font-size: 2em;">Your cart is empty !</p>
         {% endif %}
 
         </div>

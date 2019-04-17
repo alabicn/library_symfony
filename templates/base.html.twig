@@ -21,8 +21,7 @@
     </head>
    
     <body>
-        <div id="page">
-            {% block header %}
+        <main id="page">     
             <header id="header">
                 <div class="header__content">
                     <div id="logo">
@@ -39,10 +38,10 @@
                             <div class="nav__wrap">
                                 {% if not is_granted('ROLE_USER') %}
                                 <div class="nav__item {% if mainNavLogin is defined %}active{% endif %}">
-                                    <a class="nav__item-link" href="{{path('login')}}">Sign In</a>
+                                    <a class="nav__item-link" href="{{path('login')}}">Log In</a>
                                 </div>
                                 <div class="nav__item {% if mainNavRegistration is defined %}active{% endif %}">
-                                    <a class="nav__item-link" href="{{path('app_security_register')}}">Sign Up</a>
+                                    <a class="nav__item-link" href="{{path('app_security_register')}}">Register</a>
                                 </div>
                                 {% endif %}
                                 <div class="nav__item cart">
@@ -80,8 +79,7 @@
                     </div>
                 </div>
             </header>
-            {% endblock %}
-
+            
             {% block flash %}
                 {% for flash_message in app.session.flashbag.get('success') %}
                     <div class="container alert alert-success" role="alert">
@@ -104,140 +102,140 @@
                     </div>
                 {% endfor %}
             {% endblock %}
-            <main>
-                {% block body %}{% endblock %}
-            </main>
-        </div>
-
-        {% block footer %}
-            <footer id="footer">
-                <section>
-                    <div class="footer__section">                            
-                        <div class="footer__section-contents">
-                            <h3 class="footer__title">Payment</h3>                                                                   
-                            <img src="{{ asset('assets/img/random/payment.png') }}" id="footer__payment"/> 
-                            <h3 class="footer__title">Download</h3>
-                            <div class="download__store-list">
-                                <div>
-                                    <a href="#" target="_blank" >
-                                        <img src="{{ asset('assets/img/random/app-store.png') }}" class="download__store-img" />
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="#" target="_blank">
-                                        <img src="{{ asset('assets/img/random/play-store.png') }}" class="download__store-img" />
-                                    </a>
-                                </div>
+            <div id="content">
+                {% block body %}
+                
+                {% endblock body %}
+            </div>
+        </main>
+       
+        <footer id="footer">
+            <section>
+                <div class="footer__section">                            
+                    <div class="footer__section-contents">
+                        <h3 class="footer__title">Payment</h3>                                                                   
+                        <img src="{{ asset('assets/img/random/payment.png') }}" id="footer__payment"/> 
+                        <h3 class="footer__title">Download</h3>
+                        <div class="download__store-list">
+                            <div>
+                                <a href="#" target="_blank" >
+                                    <img src="{{ asset('assets/img/random/app-store.png') }}" class="download__store-img" />
+                                </a>
                             </div>
-                        </div>
-                        <div class="footer__section-contents">
-                            <h3 class="footer__title">Contact</h3>
-                            <div class="contact__list">
-                                <div class="footer__section-contents-details">
-                                    <img src="{{ asset('assets/img/random/email.png') }}" alt="email.png" class="footer__section-contents-details-img " />
-                                    <span class="footer__section-contents-details-text">info@example.com</span>
-                                </div>
-                                <div class="footer__section-contents-details">
-                                    <img src="{{ asset('assets/img/random/call.png') }}" alt="call.png" class="footer__section-contents-details-img " />
-                                    <span class="footer__section-contents-details-text">+ 33 (0)3 88 47 25 08</span>
-                                </div>
-                                <div class="footer__section-contents-details">
-                                    <img src="{{ asset('assets/img/random/telephone.png') }}" alt="telephone.png" class="footer__section-contents-details-img " />
-                                    <span class="footer__section-contents-details-text">+ 33 (0)9 79 94 47 51</span>
-                                </div>
-                            </div>
-                            <h3 class="footer__title">About us - Terms of use</h3>
-                        </div>
-                        <div class="footer__section-contents">
-                            <h3 class="footer__title">Shops</h3>
-                            <div class="footer__section-contents-details">
-                                <ul>
-                                    <li class="footer__section-contents-details">
-                                        <a href="https://www.librairie-kleber.com/" target="_blank" class="shops__links">Librairie Internationale Kléber</a>
-                                    </li>
-                                    <li class="footer__section-contents-details">
-                                        <a href="https://www.fnac.com/livre.asp#bl=marktlink3" target="_blank" class="shops__links">Librarie Fnac Strasbourg</a>
-                                    </li>
-                                    <li class="footer__section-contents-details">
-                                        <a href="http://www.gallimard.fr/Catalogue/GALLIMARD/Du-monde-entier" target="_blank" class="shops__links">Librairie Gallimard du Monde Entier</a>
-                                    </li>
-                                    <li class="footer__section-contents-details">
-                                        <a href="http://dinali.fr/" target="_blank" class="shops__links">Librairie Dinali Mésange</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="footer__section-contents-details">
-                                        <a href="https://www.librairie-broglie.com/" target="_blank" class="shops__links">Librairie Papeterie Broglie</a>
-                                    </li>
-                                    <li class="footer__section-contents-details">
-                                        <a href="http://librairie.gutenberg.over-blog.com/" target="_blank" class="shops__links">Librairie Gutenberg</a>
-                                    </li>
-                                    <li class="footer__section-contents-details">
-                                        <a href="https://www.livre-rare-book.com/c/b/coin?l=fr" target="_blank" class="shops__links">Au Coin Littéraire</a>
-                                    </li>
-                                    <li class="footer__section-contents-details">
-                                        <a href="https://www.oberlin.fr/" target="_blank" class="shops__links">Librairie Oberlin</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="footer__section-contents">
-                            <h3 class="footer__title">Get Connected</h3>
-                            <div class="footer__section-contents-details">
-                                <ul>
-                                    <li>
-                                        <a href="#" target="_blank" class="footer__section-contents-details">
-                                            <img src="{{ asset('assets/img/random/twitter.png') }}" alt="twitter.png" class="footer__section-contents-details-img " />
-                                            <span class="footer__section-contents-details-text">Follow me on <br>Twitter</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" class="footer__section-contents-details">
-                                            <img src="{{ asset('assets/img/random/google-plus.png') }}" alt="google-plus.png" class="footer__section-contents-details-img " />
-                                            <span class="footer__section-contents-details-text">Vote me on <br>Google Plus</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" class="footer__section-contents-details">
-                                            <img src="{{ asset('assets/img/random/rss.png') }}" alt="rss.png" class="footer__section-contents-details-img " />
-                                            <span class="footer__section-contents-details-text">Get RSS <br>Feed</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#" target="_blank" class="footer__section-contents-details">
-                                            <img src="{{ asset('assets/img/random/facebook.png') }}" alt="facebook.png" class="footer__section-contents-details-img " />
-                                            <span class="footer__section-contents-details-text">Join me on <br>Facebook</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" class="footer__section-contents-details">
-                                            <img src="{{ asset('assets/img/random/youtube.png') }}" alt="youtube.png" class="footer__section-contents-details-img " />
-                                            <span class="footer__section-contents-details-text">Watch me on <br>Youtube</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank" class="footer__section-contents-details">
-                                            <img src="{{ asset('assets/img/random/instagram.png') }}" alt="instagram.png" class="footer__section-contents-details-img " />
-                                            <span class="footer__section-contents-details-text">Follow me on<br>Instagram</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div>
+                                <a href="#" target="_blank">
+                                    <img src="{{ asset('assets/img/random/play-store.png') }}" class="download__store-img" />
+                                </a>
                             </div>
                         </div>
                     </div>
-                </section>
-                <section>
-                    <div class="footer__section-signature">
-                        <a href="https://www.linkedin.com/alabicn" target="_blank" class="footer__section-contents-details">
-                            <span id="signature" class="footer__section-contents-details-text">&copy; 2019<br>Powered by Nemanja ALABIC</span>
-                            <img src="{{ asset('assets/img/random/linkedin.png') }}" class="footer__section-contents-details-img " />
-                        </a>
+                    <div class="footer__section-contents">
+                        <h3 class="footer__title">Contact</h3>
+                        <div class="contact__list">
+                            <div class="footer__section-contents-details">
+                                <img src="{{ asset('assets/img/random/email.png') }}" alt="email.png" class="footer__section-contents-details-img " />
+                                <span class="footer__section-contents-details-text">info@example.com</span>
+                            </div>
+                            <div class="footer__section-contents-details">
+                                <img src="{{ asset('assets/img/random/call.png') }}" alt="call.png" class="footer__section-contents-details-img " />
+                                <span class="footer__section-contents-details-text">+ 33 (0)3 88 47 25 08</span>
+                            </div>
+                            <div class="footer__section-contents-details">
+                                <img src="{{ asset('assets/img/random/telephone.png') }}" alt="telephone.png" class="footer__section-contents-details-img " />
+                                <span class="footer__section-contents-details-text">+ 33 (0)9 79 94 47 51</span>
+                            </div>
+                        </div>
+                        <h3 class="footer__title">About us - Terms of use</h3>
                     </div>
-                </section>
-            </footer>
-        {% endblock %}
+                    <div class="footer__section-contents">
+                        <h3 class="footer__title">Shops</h3>
+                        <div class="footer__section-contents-details">
+                            <ul>
+                                <li class="footer__section-contents-details">
+                                    <a href="https://www.librairie-kleber.com/" target="_blank" class="shops__links">Librairie Internationale Kléber</a>
+                                </li>
+                                <li class="footer__section-contents-details">
+                                    <a href="https://www.fnac.com/livre.asp#bl=marktlink3" target="_blank" class="shops__links">Librarie Fnac Strasbourg</a>
+                                </li>
+                                <li class="footer__section-contents-details">
+                                    <a href="http://www.gallimard.fr/Catalogue/GALLIMARD/Du-monde-entier" target="_blank" class="shops__links">Librairie Gallimard du Monde Entier</a>
+                                </li>
+                                <li class="footer__section-contents-details">
+                                    <a href="http://dinali.fr/" target="_blank" class="shops__links">Librairie Dinali Mésange</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="footer__section-contents-details">
+                                    <a href="https://www.librairie-broglie.com/" target="_blank" class="shops__links">Librairie Papeterie Broglie</a>
+                                </li>
+                                <li class="footer__section-contents-details">
+                                    <a href="http://librairie.gutenberg.over-blog.com/" target="_blank" class="shops__links">Librairie Gutenberg</a>
+                                </li>
+                                <li class="footer__section-contents-details">
+                                    <a href="https://www.livre-rare-book.com/c/b/coin?l=fr" target="_blank" class="shops__links">Au Coin Littéraire</a>
+                                </li>
+                                <li class="footer__section-contents-details">
+                                    <a href="https://www.oberlin.fr/" target="_blank" class="shops__links">Librairie Oberlin</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer__section-contents">
+                        <h3 class="footer__title">Get Connected</h3>
+                        <div class="footer__section-contents-details">
+                            <ul>
+                                <li>
+                                    <a href="#" target="_blank" class="footer__section-contents-details">
+                                        <img src="{{ asset('assets/img/random/twitter.png') }}" alt="twitter.png" class="footer__section-contents-details-img " />
+                                        <span class="footer__section-contents-details-text">Follow me on <br>Twitter</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="footer__section-contents-details">
+                                        <img src="{{ asset('assets/img/random/google-plus.png') }}" alt="google-plus.png" class="footer__section-contents-details-img " />
+                                        <span class="footer__section-contents-details-text">Vote me on <br>Google Plus</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="footer__section-contents-details">
+                                        <img src="{{ asset('assets/img/random/rss.png') }}" alt="rss.png" class="footer__section-contents-details-img " />
+                                        <span class="footer__section-contents-details-text">Get RSS <br>Feed</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#" target="_blank" class="footer__section-contents-details">
+                                        <img src="{{ asset('assets/img/random/facebook.png') }}" alt="facebook.png" class="footer__section-contents-details-img " />
+                                        <span class="footer__section-contents-details-text">Join me on <br>Facebook</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="footer__section-contents-details">
+                                        <img src="{{ asset('assets/img/random/youtube.png') }}" alt="youtube.png" class="footer__section-contents-details-img " />
+                                        <span class="footer__section-contents-details-text">Watch me on <br>Youtube</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="footer__section-contents-details">
+                                        <img src="{{ asset('assets/img/random/instagram.png') }}" alt="instagram.png" class="footer__section-contents-details-img " />
+                                        <span class="footer__section-contents-details-text">Follow me on<br>Instagram</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="footer__section-signature">
+                    <a href="https://www.linkedin.com/alabicn" target="_blank" class="footer__section-contents-details">
+                        <span id="signature" class="footer__section-contents-details-text">&copy; 2019<br>Powered by Nemanja ALABIC</span>
+                        <img src="{{ asset('assets/img/random/linkedin.png') }}" class="footer__section-contents-details-img " />
+                    </a>
+                </div>
+            </section>
+        </footer> 
         {% block javascripts %}{% endblock %}
     </body>
 </html>               

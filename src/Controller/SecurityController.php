@@ -51,7 +51,10 @@ class SecurityController extends Controller
             $this->addFlash('success', 'Your account has been saved.');
             return $this->redirectToRoute('login');
         }
-        return $this->render('security/register.html.twig', ['form' => $form->createView(), 'mainNavRegistration' => true, 'title' => 'Registration']);
+        return $this->render('security/register.html.twig', [
+        'form' => $form->createView(), 
+        'mainNavRegistration' => true, 
+        'title' => 'Register']);
     }
 
     /**
@@ -68,11 +71,12 @@ class SecurityController extends Controller
             ->createNamedBuilder(null)
             ->add('_username', null, ['label' => 'Email'])
             ->add('_password', \Symfony\Component\Form\Extension\Core\Type\PasswordType::class, ['label' => 'Password'])
-            ->add('ok', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class, ['label' => 'Sign In', 'attr' => ['class' => 'btn-primary btn-block']])
+            ->add('ok', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class, ['label' => 'Log In', 'attr' => ['class' => 'btn-primary btn-block']])
             ->getForm();
 
         return $this->render('security/login.html.twig', [
-            'mainNavLogin' => true, 'title' => 'Connection',
+            'mainNavLogin' => true, 
+            'title' => 'Login',
             'form' => $form->createView(),
             'last_username' => $lastUsername,
             'error' => $error,
