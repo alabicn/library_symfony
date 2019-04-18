@@ -47,6 +47,7 @@ class StoreController extends AbstractController
         
 
         return $this->render('store/book.html.twig', [
+            'title' => 'Book n° ' . $book->getId(),
             'book' => $book,
             'evaluations' => $book->getEvaluations(),
             'evaluationForm' => $form->createView()
@@ -62,6 +63,7 @@ class StoreController extends AbstractController
 
         return $this->render('store/genre.html.twig', [
             'genre' => $genre,
+            'title' => $genre->getName()
         ]);
     }
 }

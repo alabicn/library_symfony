@@ -41,7 +41,7 @@
                                     <a class="nav__item-link" href="{{path('login')}}">Log In</a>
                                 </div>
                                 <div class="nav__item {% if mainNavRegistration is defined %}active{% endif %}">
-                                    <a class="nav__item-link" href="{{path('app_security_register')}}">Register</a>
+                                    <a class="nav__item-link" href="{{path('app_security_register')}}">Sign Up</a>
                                 </div>
                                 {% endif %}
                                 <div class="nav__item cart">
@@ -68,7 +68,7 @@
                                             {% endif %}
                                             {% if is_granted('ROLE_USER') %}
                                             <div class="user__dd-item">
-                                                <a class="nav__item-link" href="{{path('logout')}}">Sign Out</a>
+                                                <a class="nav__item-link" href="{{path('logout')}}">Log Out</a>
                                             </div>
                                             {% endif %}
                                         </div>

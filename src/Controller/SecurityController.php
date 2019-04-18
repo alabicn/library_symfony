@@ -130,6 +130,7 @@ class SecurityController extends Controller
         }
 
         return $this->render('security/updatepassword.html.twig', [
+            'title' => 'Update password',
             'form' => $form->createView()
         ]);
     }

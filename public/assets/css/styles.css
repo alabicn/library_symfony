@@ -28,8 +28,8 @@
 
 .padded{padding: 15px;}
 
-/*header_logo*/
-
+/*header_logo
+----------------------------- */
 
 #banner_image
 {
@@ -48,7 +48,6 @@
     background-color: #333333;
     color: white;
 }
-
 
 /*header
 ------------------------------ */
@@ -182,6 +181,7 @@
 {
     font-size: 12px;
     color: #FAF7EE;
+    font-family: 'EB Garamond', serif;
 }
 
 .user__img 
@@ -227,6 +227,77 @@
 {
     color: #ED5944;
     text-decoration: none;
+}
+
+/* Homepage
+------------------------------ */
+
+.genre__links
+{
+    color: #ED5944;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration: none
+}
+
+.genre__links:hover 
+{
+    color: #333333;
+    text-decoration: none;
+}
+
+.quotes
+{
+    width: 530px;
+    margin: 1em;
+}
+
+.quotes div
+{
+    display: flex;
+    align-items: center;
+}
+
+.quotes__author-img
+{
+    width: 60px;
+    height: 70px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.quotes__content-txt
+{
+    line-height: normal;
+    color: #333333;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.quotes__content-author
+{
+    color: #333333;
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    text-align: end;
+}
+
+/* Genres
+------------------------------ */
+
+.genre_items
+{
+    margin: 1em auto;
+}
+
+.genre_items-img
+{
+    width: 130px;
+    height: 200px;
+    border: solid #333333 2px;
+    margin: 10px;
 }
 
 /* Forms
@@ -348,6 +419,97 @@ fieldset
     position: absolute;
     right: 240px;
     border-top: 2px solid #333333;
+}
+
+#total_box
+{
+    margin-bottom: 3em;
+}
+
+/* member
+------------------------------ */
+
+#settings 
+{
+    display: flex;
+    align-items: flex-start;
+}
+
+#member__photo-details 
+{
+    background-color: #333333;
+    border-radius: 25px 0px 25px 25px;
+}
+
+#member
+{
+    flex: 1;
+}
+
+#member_name h2
+{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'EB Garamond', serif;
+    font-size: 30px;
+    background-color: #333333;
+    color: #FAF7EE;
+    padding: 10px;
+    border-radius: 0px 15px 15px 0px;
+}
+
+#member-img 
+{
+    width: 250px;
+    height: 250px;
+    border-radius: 10%;
+    margin: 1em;
+    background-color: #333333;
+}
+
+#photo_upload-form  div
+{
+    max-width: 260px;
+    margin: 1px auto;
+}
+
+#photo_upload-form  .form-group .required
+{
+    margin: 0px;
+    color: #333333;
+}
+
+#photo_upload-form  .form-group .btn-primary
+{
+    color: #333333;
+    font-weight: bold;
+    font-family: 'EB Garamond', serif; 
+    background-color: #ED5944;
+    border-color: #ED5944;
+    margin: 1px auto;
+    width: 100%;
+}
+
+#photo_upload-form  .form-group .btn-primary:hover
+{
+    color: #FAF7EE;
+    font-family: 'EB Garamond', serif; 
+    background-color: #333333;
+    border-color: #333333;
+    margin: 1px auto;
+    width: 100%;
+}
+
+.reset_password
+{
+    text-align: center;
+    margin: 1em auto;
+}
+
+.reset_password a
+{
+    color: #FAF7EE;
+    text-decoration: none;
 }
 
 /* footer

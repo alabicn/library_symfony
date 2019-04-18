@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %}Edit Edition{% endblock %}
+{% block title %}
+{{title}}
+{% endblock %}
 {% block body %}
+{% if title is defined %}
+        <h1 class="page__title">{{title}}</h1>
+    {% else %}
+        <h1>Header</h1>
+    {% endif %}
 <h1>{{ edition.name }}</h1>
 {{ form_start(form) }}
 {{ form_widget(form) }}

@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}Edit Author{% endblock %}
+{% block title %}
+{{title}}
+{% endblock %}
 {% block body %}
+
+{% if title is defined %}
+        <h1 class="page__title">{{title}}</h1>
+    {% else %}
+        <h1>Header</h1>
+    {% endif %}
     <div class="example-wrapper">
         <h1>Hello ✅</h1>
         This friendly message is coming from:

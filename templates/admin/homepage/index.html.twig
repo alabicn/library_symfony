@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello HomepageController!{% endblock %}
+{% block title %}
+{{title}}
+{% endblock %}
 {% block body %}
+{% if title is defined %}
+        <h1 class="page__title">{{title}}</h1>
+    {% else %}
+        <h1>Header</h1>
+    {% endif %}
     <style>
         .example-wrapper {
             margin: 1em auto;
@@ -48,4 +55,18 @@
         {% for genre in genres %}
             <a href={{ path("show_genre", {'name': genre.name}) }}><h4>{{genre.name}}</h4></a>
         {% endfor %}
+<h2>Quotes</h2>
+        {% for quote in quotes %}
+    <div>
+        <img src="/assets/img/{{ quote.author.srcImage }}" alt="{{ quote.author.altImage }}" title="{{ quote.author.titleImage }}" width="50px"/>
+        <span>"{{ quote.text }}"</span><br>
+        <span> ~ {{ quote.author.name ~ " " ~ quote.author.surname|upper }}</span><br>
+        {% if is_granted('ROLE_ADMIN') %}
+        <span>
+            <a href={{ path("edit_quote", {'id': quote.id}) }}>Edit?</a>
+            <a href={{ path("remove_quote", {'id' : quote.id}) }} onclick="return confirm('Are you sure?')">Delete?</a>
+        </span>
+    </div>
+    {% endif %}
+    {% endfor %}
     {% endblock %}

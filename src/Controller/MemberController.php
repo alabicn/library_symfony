@@ -50,7 +50,7 @@ class MemberController extends Controller
 
         return $this->render('member/member.html.twig', [
             'mainNavMember' => true,
-            'title' => 'Member',
+            'title' => 'Profile page',
             'form' => $form->createView(),
         ]);
     }

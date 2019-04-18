@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello AuthorController!{% endblock %}
+{% block title %}
+{{title}}
+{% endblock %}
 {% block body %}
+
+{% if title is defined %}
+        <h1 class="page__title">{{title}}</h1>
+    {% else %}
+        <h1>Header</h1>
+    {% endif %}
     <style>
         .example-wrapper {
             margin: 1em auto;
