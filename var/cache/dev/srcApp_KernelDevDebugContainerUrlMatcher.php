@@ -27,6 +27,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/register' => [[['_route' => 'app_security_register', '_controller' => 'App\\Controller\\SecurityController::registerAction'], null, null, null, false, false, null]],
             '/login' => [[['_route' => 'login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
             '/password-update' => [[['_route' => 'password_update', '_controller' => 'App\\Controller\\SecurityController::updatePassword'], null, null, null, false, false, null]],
+            '/forgotten_password' => [[['_route' => 'forgotten_password', '_controller' => 'App\\Controller\\SecurityController::forgottenPassword'], null, null, null, false, false, null]],
             '/god' => [[['_route' => 'home_super_admin', '_controller' => 'App\\Controller\\SuperAdmin\\RoleController::showAllUsers'], null, null, null, true, false, null]],
             '/_profiler' => [[['_route' => '_profiler_home', '_controller' => 'web_profiler.controller.profiler::homeAction'], null, null, null, true, false, null]],
             '/_profiler/search' => [[['_route' => '_profiler_search', '_controller' => 'web_profiler.controller.profiler::searchAction'], null, null, null, false, false, null]],
@@ -59,27 +60,28 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                     .'|/shopping/cart/([^/]++)(*:280)'
                     .'|/cart/book/([^/]++)(*:307)'
                     .'|/member/user/([^/]++)(*:336)'
-                    .'|/book/show/([^/]++)(*:363)'
+                    .'|/reset_password/([^/]++)(*:368)'
+                    .'|/book/show/([^/]++)(*:395)'
                     .'|/g(?'
-                        .'|enre/([^/]++)(*:389)'
+                        .'|enre/([^/]++)(*:421)'
                         .'|od/(?'
-                            .'|makeAdmin/([^/]++)(*:421)'
-                            .'|removeAdmin/([^/]++)(*:449)'
+                            .'|makeAdmin/([^/]++)(*:453)'
+                            .'|removeAdmin/([^/]++)(*:481)'
                         .')'
                     .')'
                     .'|/_(?'
-                        .'|error/(\\d+)(?:\\.([^/]++))?(*:490)'
-                        .'|wdt/([^/]++)(*:510)'
+                        .'|error/(\\d+)(?:\\.([^/]++))?(*:522)'
+                        .'|wdt/([^/]++)(*:542)'
                         .'|profiler/([^/]++)(?'
                             .'|/(?'
-                                .'|search/results(*:556)'
-                                .'|router(*:570)'
+                                .'|search/results(*:588)'
+                                .'|router(*:602)'
                                 .'|exception(?'
-                                    .'|(*:590)'
-                                    .'|\\.css(*:603)'
+                                    .'|(*:622)'
+                                    .'|\\.css(*:635)'
                                 .')'
                             .')'
-                            .'|(*:613)'
+                            .'|(*:645)'
                         .')'
                     .')'
                 .')/?$}sDu',
@@ -97,17 +99,18 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             280 => [[['_route' => 'shopping_cart', '_controller' => 'App\\Controller\\CartController::addToCart'], ['id'], null, null, false, true, null]],
             307 => [[['_route' => 'remove_from_cart', '_controller' => 'App\\Controller\\CartController::removeFromCart'], ['id'], null, null, false, true, null]],
             336 => [[['_route' => 'show_user', '_controller' => 'App\\Controller\\MemberController::showUser'], ['id'], null, null, false, true, null]],
-            363 => [[['_route' => 'show_book', '_controller' => 'App\\Controller\\StoreController::showBook'], ['id'], null, null, false, true, null]],
-            389 => [[['_route' => 'show_genre', '_controller' => 'App\\Controller\\StoreController::listeGenre'], ['name'], null, null, false, true, null]],
-            421 => [[['_route' => 'make_admin', '_controller' => 'App\\Controller\\SuperAdmin\\RoleController::makeAdmin'], ['id'], null, null, false, true, null]],
-            449 => [[['_route' => 'remove_admin', '_controller' => 'App\\Controller\\SuperAdmin\\RoleController::removeAdmin'], ['id'], null, null, false, true, null]],
-            490 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-            510 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-            556 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-            570 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-            590 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
-            603 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
-            613 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+            368 => [[['_route' => 'reset_password', '_controller' => 'App\\Controller\\SecurityController::resetPassword'], ['token'], null, null, false, true, null]],
+            395 => [[['_route' => 'show_book', '_controller' => 'App\\Controller\\StoreController::showBook'], ['id'], null, null, false, true, null]],
+            421 => [[['_route' => 'show_genre', '_controller' => 'App\\Controller\\StoreController::listeGenre'], ['name'], null, null, false, true, null]],
+            453 => [[['_route' => 'make_admin', '_controller' => 'App\\Controller\\SuperAdmin\\RoleController::makeAdmin'], ['id'], null, null, false, true, null]],
+            481 => [[['_route' => 'remove_admin', '_controller' => 'App\\Controller\\SuperAdmin\\RoleController::removeAdmin'], ['id'], null, null, false, true, null]],
+            522 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+            542 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+            588 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+            602 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+            622 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
+            635 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
+            645 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         ];
     }
 }

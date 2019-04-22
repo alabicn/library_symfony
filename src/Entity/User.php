@@ -105,6 +105,12 @@ class User implements UserInterface, \Serializable
      */
     private $evaluations;
 
+    /**
+     * @var string token for new password
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+     protected $resetToken;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -350,5 +356,21 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+     public function getResetToken(): string
+     {
+         return $this->resetToken;
+     }
+  
+     /**
+      * @param string $resetToken
+      */
+     public function setResetToken(?string $resetToken): void
+     {
+         $this->resetToken = $resetToken;
+     }
 }
 

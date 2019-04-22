@@ -44,6 +44,8 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'app_security_register' => [[], ['_controller' => 'App\\Controller\\SecurityController::registerAction'], [], [['text', '/register']], [], []],
         'login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
         'password_update' => [[], ['_controller' => 'App\\Controller\\SecurityController::updatePassword'], [], [['text', '/password-update']], [], []],
+        'forgotten_password' => [[], ['_controller' => 'App\\Controller\\SecurityController::forgottenPassword'], [], [['text', '/forgotten_password']], [], []],
+        'reset_password' => [['token'], ['_controller' => 'App\\Controller\\SecurityController::resetPassword'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/reset_password']], [], []],
         'show_book' => [['id'], ['_controller' => 'App\\Controller\\StoreController::showBook'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/book/show']], [], []],
         'show_genre' => [['name'], ['_controller' => 'App\\Controller\\StoreController::listeGenre'], [], [['variable', '/', '[^/]++', 'name', true], ['text', '/genre']], [], []],
         'home_super_admin' => [[], ['_controller' => 'App\\Controller\\SuperAdmin\\RoleController::showAllUsers'], [], [['text', '/god/']], [], []],

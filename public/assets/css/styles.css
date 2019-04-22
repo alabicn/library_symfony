@@ -340,19 +340,64 @@ fieldset
     font-size: 17px;
 }
 
-.btn-primary {
+.btn-primary 
+{
     color: #FAF7EE;
     font-family: 'EB Garamond', serif; 
     background-color: #333333;
     border-color: #333333;
 }
 
-.btn-primary:hover {
+.btn-primary:hover 
+{
     color: #333333;
     font-weight: bold;
     font-family: 'EB Garamond', serif; 
     background-color: #ED5944;
     border-color: #ED5944;
+}
+
+.custom-file-label 
+{
+    border: 1px solid #333333;
+}
+
+.custom-file-label::after
+{
+    background-color: #333333;
+    color: #FAF7EE;
+    font-weight: lighter;
+}
+
+#login_additional
+{
+    width: 900px;
+    margin: 1em auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#login_additional div
+{
+    color: #333333;
+    text-decoration: none;
+    font-family: 'EB Garamond', serif; 
+    font-size: 19px;
+    font-weight: bold;
+}
+
+#login_additional a
+{
+    color: #ED5944;
+    text-decoration: none;
+    font-family: 'EB Garamond', serif; 
+    font-size: 19px;
+    font-weight: bold;
+}
+
+#login_additional a:hover
+{
+    color: #333333;
 }
 
 /* cart
@@ -437,7 +482,6 @@ fieldset
 
 #member__photo-details 
 {
-    background-color: #333333;
     border-radius: 25px 0px 25px 25px;
 }
 
@@ -452,8 +496,8 @@ fieldset
     justify-content: space-between;
     font-family: 'EB Garamond', serif;
     font-size: 30px;
-    background-color: #333333;
-    color: #FAF7EE;
+    font-weight: bold;
+    color: #333333;
     padding: 10px;
     border-radius: 0px 15px 15px 0px;
 }
@@ -464,7 +508,15 @@ fieldset
     height: 250px;
     border-radius: 10%;
     margin: 1em;
-    background-color: #333333;
+}
+
+#member_info p
+{
+    margin: 1em;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    color: #333333;
+    font-size: 16px;
 }
 
 #photo_upload-form  div
@@ -476,21 +528,10 @@ fieldset
 #photo_upload-form  .form-group .required
 {
     margin: 0px;
-    color: #333333;
+    display: none;
 }
 
 #photo_upload-form  .form-group .btn-primary
-{
-    color: #333333;
-    font-weight: bold;
-    font-family: 'EB Garamond', serif; 
-    background-color: #ED5944;
-    border-color: #ED5944;
-    margin: 1px auto;
-    width: 100%;
-}
-
-#photo_upload-form  .form-group .btn-primary:hover
 {
     color: #FAF7EE;
     font-family: 'EB Garamond', serif; 
@@ -498,6 +539,14 @@ fieldset
     border-color: #333333;
     margin: 1px auto;
     width: 100%;
+}
+
+#photo_upload-form  .form-group .btn-primary:hover
+{
+    color: #333333;
+    font-family: 'EB Garamond', serif; 
+    background-color: #ED5944;
+    border-color: #ED5944;
 }
 
 .reset_password
@@ -508,8 +557,16 @@ fieldset
 
 .reset_password a
 {
-    color: #FAF7EE;
+    color: #ED5944;
     text-decoration: none;
+    font-family: 'EB Garamond', serif; 
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.reset_password a:hover
+{
+    color: #333333;
 }
 
 /* footer

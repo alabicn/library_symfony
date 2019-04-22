@@ -53,6 +53,7 @@ use Symfony\Component\DependencyInjection\ServiceLocator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Form\ChoiceList\Factory\CachingFactoryDecorator;
 use Symfony\Component\Form\FormTypeExtensionInterface;
 use Symfony\Component\Form\FormTypeGuesserInterface;
 use Symfony\Component\Form\FormTypeInterface;
@@ -96,6 +97,7 @@ use Symfony\Component\Translation\Command\XliffLintCommand as BaseXliffLintComma
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\ObjectInitializerInterface;
+use Symfony\Component\Validator\Util\LegacyTranslatorProxy;
 use Symfony\Component\WebLink\HttpHeaderSerializer;
 use Symfony\Component\Workflow;
 use Symfony\Component\Workflow\WorkflowInterface;
@@ -409,6 +411,11 @@ class FrameworkExtension extends Extension
 
         if (!class_exists(Translator::class)) {
             $container->removeDefinition('form.type_extension.upload.validator');
+        }
+        if (!method_exists(CachingFactoryDecorator::class, 'reset')) {
+            $container->getDefinition('form.choice_list_factory.cached')
+                ->clearTag('kernel.reset')
+            ;
         }
     }
 
@@ -919,7 +926,7 @@ class FrameworkExtension extends Extension
         foreach ($config['packages'] as $name => $package) {
             if (null !== $package['version_strategy']) {
                 $version = new Reference($package['version_strategy']);
-            } elseif (!array_key_exists('version', $package) && null === $package['json_manifest_path']) {
+            } elseif (!\array_key_exists('version', $package) && null === $package['json_manifest_path']) {
                 // if neither version nor json_manifest_path are specified, use the default
                 $version = $defaultVersion;
             } else {
@@ -1101,6 +1108,12 @@ class FrameworkExtension extends Extension
 
         $validatorBuilder = $container->getDefinition('validator.builder');
 
+        if (class_exists(LegacyTranslatorProxy::class)) {
+            $calls = $validatorBuilder->getMethodCalls();
+            $calls[1] = ['setTranslator', [new Definition(LegacyTranslatorProxy::class, [new Reference('translator')])]];
+            $validatorBuilder->setMethodCalls($calls);
+        }
+
         $container->setParameter('validator.translation_domain', $config['translation_domain']);
 
         $files = ['xml' => [], 'yml' => []];
@@ -1117,7 +1130,7 @@ class FrameworkExtension extends Extension
         $definition = $container->findDefinition('validator.email');
         $definition->replaceArgument(0, $config['email_validation_mode']);
 
-        if (array_key_exists('enable_annotations', $config) && $config['enable_annotations']) {
+        if (\array_key_exists('enable_annotations', $config) && $config['enable_annotations']) {
             if (!$this->annotationsConfigEnabled) {
                 throw new \LogicException('"enable_annotations" on the validator cannot be set as Annotations support is disabled.');
             }
@@ -1125,7 +1138,7 @@ class FrameworkExtension extends Extension
             $validatorBuilder->addMethodCall('enableAnnotationMapping', [new Reference('annotation_reader')]);
         }
 
-        if (array_key_exists('static_method', $config) && $config['static_method']) {
+        if (\array_key_exists('static_method', $config) && $config['static_method']) {
             foreach ($config['static_method'] as $methodName) {
                 $validatorBuilder->addMethodCall('addMethodMapping', [$methodName]);
             }

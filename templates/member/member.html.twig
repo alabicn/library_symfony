@@ -18,17 +18,17 @@
                 {{ form(form, {'attr': {'id': 'photo_upload-form'}}) }}
             </div>
             <p class="reset_password">
-                <a href={{ path('password_update') }}>Reset Password?</a>
+                <a href={{ path('password_update') }}>Change Password?</a>
             </p>
         </div>
         <div id="member">
             <div id="member_name">
-                <h2><span>{{app.user.uname}}</span> <span>Member since : {{ app.user.registrationDate | date("F Y") }}</span></h2>
+                <h2><span>{{app.user.uname}}</span> <span>{{ app.user.email }}</span></h2>
             </div>
             <div id="member_info">
-                {{app.user.uname}}
-                {{app.user.gender}}
-                {{app.user.birthdate | age}}
+                <p>Gender : {{app.user.gender}}</p>
+                <p>Age : {{app.user.birthdate | age}}</p>
+                <p>Member since : {{ app.user.registrationDate | date("F Y") }}</p>
             </div>
         </div>
     </div>
