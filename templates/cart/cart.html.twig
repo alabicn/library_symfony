@@ -27,7 +27,7 @@
                     </div>
                     <div class="cart_items">
                         <span class="cart_items-text">{{ book.prices[3]|number_format(2, '.', ' ') }}&nbsp;€</span>
-                        <a href="{{ path("remove_from_cart", {'id': book.id})}}">
+                        <a href={{ path("remove_from_cart", {'id': book.id})}}>
                             <img src="{{ asset('assets/img/random/remove.png') }}" alt="remove_from_cart.png" title="Remove from cart?" class="cart_items-remove"/>
                         </a>
                     </div>
@@ -38,7 +38,7 @@
             <div id="total_box">
                 <p id="total" class="cart_items-text">{{ total|number_format(2, '.', ' ') }}&nbsp;€</p>
                 <a href="#" style="display: inline;">
-                    <img src="{{ asset('assets/img/random/approuve.png') }}" alt="approuve.png" title="Proceed to payment?" style="width: 35px; border-left: 2px solid #333333; margin-left: 5px; padding-left: 5px; position: absolute; right: 200px;"/>
+                    <img src="{{ asset('assets/img/random/approuve.png') }}" alt="approuve.png" title="Proceed to payment?"/>
                 </a>
             </div>
         {% else %}

@@ -61,6 +61,11 @@
                                                 <a href={{path('profile_page')}} class="nav__item-link">Settings</a>
                                             </div>
                                             {% endif %}
+                                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                            <div class="user__dd-item {% if mainNavAdmin is defined %}active{% endif %}">
+                                                <a class="nav__item-link" href="{{path('home_super_admin')}}">Super Admin</a>
+                                            </div>
+                                            {% endif %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                             <div class="user__dd-item {% if mainNavAdmin is defined %}active{% endif %}">
                                                 <a class="nav__item-link" href="{{path('home_admin')}}">Admin</a>
@@ -113,9 +118,9 @@
             <section>
                 <div class="footer__section">                            
                     <div class="footer__section-contents">
-                        <h3 class="footer__title">Payment</h3>                                                                   
+                        <h6 class="footer__title">Payment</h6>                                                                   
                         <img src="{{ asset('assets/img/random/payment.png') }}" id="footer__payment"/> 
-                        <h3 class="footer__title">Download</h3>
+                        <h6 class="footer__title">Download</h6>
                         <div class="download__store-list">
                             <div>
                                 <a href="#" target="_blank" >
@@ -130,7 +135,7 @@
                         </div>
                     </div>
                     <div class="footer__section-contents">
-                        <h3 class="footer__title">Contact</h3>
+                        <h6 class="footer__title">Contact</h6>
                         <div class="contact__list">
                             <div class="footer__section-contents-details">
                                 <img src="{{ asset('assets/img/random/email.png') }}" alt="email.png" class="footer__section-contents-details-img " />
@@ -145,43 +150,43 @@
                                 <span class="footer__section-contents-details-text">+ 33 (0)9 79 94 47 51</span>
                             </div>
                         </div>
-                        <h3 class="footer__title">About us - Terms of use</h3>
+                        <h6 class="footer__title">About us - Terms of use</h6>
                     </div>
                     <div class="footer__section-contents">
-                        <h3 class="footer__title">Shops</h3>
+                        <h6 class="footer__title">Shops</h6>
                         <div class="footer__section-contents-details">
                             <ul>
                                 <li class="footer__section-contents-details">
-                                    <a href="https://www.librairie-kleber.com/" target="_blank" class="shops__links">Librairie Internationale Kléber</a>
+                                    <a href="https://www.librairie-kleber.com/" target="_blank" class="links">Librairie Internationale Kléber</a>
                                 </li>
                                 <li class="footer__section-contents-details">
-                                    <a href="https://www.fnac.com/livre.asp#bl=marktlink3" target="_blank" class="shops__links">Librarie Fnac Strasbourg</a>
+                                    <a href="https://www.fnac.com/livre.asp#bl=marktlink3" target="_blank" class="links">Librarie Fnac Strasbourg</a>
                                 </li>
                                 <li class="footer__section-contents-details">
-                                    <a href="http://www.gallimard.fr/Catalogue/GALLIMARD/Du-monde-entier" target="_blank" class="shops__links">Librairie Gallimard du Monde Entier</a>
+                                    <a href="http://www.gallimard.fr/Catalogue/GALLIMARD/Du-monde-entier" target="_blank" class="links">Librairie Gallimard du Monde Entier</a>
                                 </li>
                                 <li class="footer__section-contents-details">
-                                    <a href="http://dinali.fr/" target="_blank" class="shops__links">Librairie Dinali Mésange</a>
+                                    <a href="http://dinali.fr/" target="_blank" class="links">Librairie Dinali Mésange</a>
                                 </li>
                             </ul>
                             <ul>
                                 <li class="footer__section-contents-details">
-                                    <a href="https://www.librairie-broglie.com/" target="_blank" class="shops__links">Librairie Papeterie Broglie</a>
+                                    <a href="https://www.librairie-broglie.com/" target="_blank" class="links">Librairie Papeterie Broglie</a>
                                 </li>
                                 <li class="footer__section-contents-details">
-                                    <a href="http://librairie.gutenberg.over-blog.com/" target="_blank" class="shops__links">Librairie Gutenberg</a>
+                                    <a href="http://librairie.gutenberg.over-blog.com/" target="_blank" class="links">Librairie Gutenberg</a>
                                 </li>
                                 <li class="footer__section-contents-details">
-                                    <a href="https://www.livre-rare-book.com/c/b/coin?l=fr" target="_blank" class="shops__links">Au Coin Littéraire</a>
+                                    <a href="https://www.livre-rare-book.com/c/b/coin?l=fr" target="_blank" class="links">Au Coin Littéraire</a>
                                 </li>
                                 <li class="footer__section-contents-details">
-                                    <a href="https://www.oberlin.fr/" target="_blank" class="shops__links">Librairie Oberlin</a>
+                                    <a href="https://www.oberlin.fr/" target="_blank" class="links">Librairie Oberlin</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="footer__section-contents">
-                        <h3 class="footer__title">Get Connected</h3>
+                        <h6 class="footer__title">Get Connected</h6>
                         <div class="footer__section-contents-details">
                             <ul>
                                 <li>

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PackageVersions;
 
 /**
@@ -10,8 +12,8 @@ namespace PackageVersions;
  */
 final class Versions
 {
-    const ROOT_PACKAGE_NAME = '__root__';
-    const VERSIONS = array (
+    public const ROOT_PACKAGE_NAME = '__root__';
+    public const VERSIONS          = array (
   'doctrine/annotations' => 'v1.6.1@53120e0eb10355388d6ccbe462f1fea34ddadb24',
   'doctrine/cache' => 'v1.8.0@d768d58baee9a4862ca783840eca1b9add7a7f57',
   'doctrine/collections' => 'v1.6.1@d2ae4ef05e25197343b6a39bae1d3c427a2f6956',
@@ -116,13 +118,13 @@ final class Versions
   'symfony/var-dumper' => 'v4.2.7@e760a38e12b15032325e64be63f7ffc1817af617',
   'symfony/web-profiler-bundle' => 'v4.2.7@b54819597b9638e192007a23e159fd5e5e09f45b',
   'symfony/web-server-bundle' => 'v4.2.7@91945ba7f59f2a4b4194f018da9d7aaedaf88418',
-  'paragonie/random_compat' => '2.*@535f0bb1b23ac86e49570b800427bff748970666',
-  'symfony/polyfill-ctype' => '*@535f0bb1b23ac86e49570b800427bff748970666',
-  'symfony/polyfill-iconv' => '*@535f0bb1b23ac86e49570b800427bff748970666',
-  'symfony/polyfill-php71' => '*@535f0bb1b23ac86e49570b800427bff748970666',
-  'symfony/polyfill-php70' => '*@535f0bb1b23ac86e49570b800427bff748970666',
-  'symfony/polyfill-php56' => '*@535f0bb1b23ac86e49570b800427bff748970666',
-  '__root__' => 'dev-master@535f0bb1b23ac86e49570b800427bff748970666',
+  'paragonie/random_compat' => '2.*@f39aa57252894f258209758b923f591d08ff6b9e',
+  'symfony/polyfill-ctype' => '*@f39aa57252894f258209758b923f591d08ff6b9e',
+  'symfony/polyfill-iconv' => '*@f39aa57252894f258209758b923f591d08ff6b9e',
+  'symfony/polyfill-php71' => '*@f39aa57252894f258209758b923f591d08ff6b9e',
+  'symfony/polyfill-php70' => '*@f39aa57252894f258209758b923f591d08ff6b9e',
+  'symfony/polyfill-php56' => '*@f39aa57252894f258209758b923f591d08ff6b9e',
+  '__root__' => 'dev-master@f39aa57252894f258209758b923f591d08ff6b9e',
 );
 
     private function __construct()
@@ -130,7 +132,7 @@ final class Versions
     }
 
     /**
-     * @throws \OutOfBoundsException if a version cannot be located
+     * @throws \OutOfBoundsException If a version cannot be located.
      */
     public static function getVersion(string $packageName) : string
     {

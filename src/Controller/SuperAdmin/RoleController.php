@@ -16,11 +16,12 @@ class RoleController extends Controller
      */
     public function showAllUsers()
     {
-        $users = $this->getDoctrine()->getRepository(User::class)->findAllOrderedByName();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAllOrderedByRole();
 
         return $this->render('super_admin/index.html.twig', [
             'users' => $users,
-            'mainNavAdmin' => true, 'title' => 'Espace SuperAdmin'
+            'mainNavAdmin' => true, 
+            'title' => 'Super Admin page'
         ]);
     }
 

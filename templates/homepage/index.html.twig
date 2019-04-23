@@ -13,10 +13,10 @@
     {% endif %}
 
     {% for genre in genres %}
-    <a href={{ path("show_genre", {'name': genre.name}) }} class="genre__links"><h4>{{genre.name}}</h4></a>
+    <a href={{ path("show_genre", {'name': genre.name}) }} class="links"><h4>{{genre.name}}</h4></a>
     {% endfor %}
 
-    <h2 class="page__title">Quotes</h2>
+    <h1 class="page__title">Quotes</h1>
 
     {% for quote in quotes %}
     <div class="quotes">
@@ -24,7 +24,7 @@
             <img src="/assets/img/{{ quote.author.srcImage }}" alt="{{ quote.author.altImage }}" title="{{ quote.author.titleImage }}" class="quotes__author-img"/>
             <span class="quotes__content-txt"><em>"{{ quote.text }}"</em></span>
         </div>
-        <p class="quotes__content-author"><strong>{{ quote.author.name ~ " " ~ quote.author.surname }}</strong></p>
+        <h6 class="quotes__content-author"><strong>{{ quote.author.name ~ " " ~ quote.author.surname }}</strong></h6>
     </div>
     {% endfor %}
         

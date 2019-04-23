@@ -7,41 +7,47 @@
 {% block body %}
 
 {% if title is defined %}
-        <h1 class="page__title">{{title}}</h1>
+    <h1 class="page__title">{{title}}</h1>
     {% else %}
-        <h1>Header</h1>
+    <h1>Header</h1>
     {% endif %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp/www/library/src/Controller/HomepageController.php'|file_link(0) }}">src/Controller/HomepageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp/www/library/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a></code></li>
-    </ul>
-</div>
-
-{% for user in users %}
-
-    <h5><a href={{ path("show_user", {'id': user.id}) }}>{{ user.uname ~ ' email : ' ~ user.email }}</a></h5>
-    <span>
-        {% for role in user.roles %}
-        {% if role == 'ROLE_USER' %}
-        <a href={{ path("make_admin", {'id': user.id}) }}>Make Admin?</a>
-        {% elseif role == 'ROLE_SUPER_ADMIN' %}
-        <h1>You are SUPER ADMIN</h1>
-        {% else %}
-        <a href={{ path("remove_admin", {'id': user.id}) }}>Remove Admin?</a>
-        {% endif %}
-        {% endfor %}
-    </span><br>
-
-{% endfor %}
-
-
+    <div id="super_admin_page">
+        <ul>
+    {% for user in users %}
+            <li class="users__list">
+                <div>
+                    <img class="users_photos" src="/assets/img/{{ user.srcPhoto }}" alt="{{ user.altPhoto }}" title="{{ user.titlePhoto }}"/>
+                    <a href={{ path("show_user", {'id': user.id}) }}>
+                        <span class="users__list-text">{{user.uname}}</span><br>
+                    </a>
+                </div>
+                <div>
+                {% for role in user.roles %}
+                    {% if role == 'ROLE_USER' %}
+                    <span class="cart_items">
+                        <span class="users__list-text">USER</span>
+                        <a href={{ path("make_admin", {'id': user.id}) }}>
+                            <img src="{{ asset('assets/img/random/approuve.png') }}" alt="approuve.png" title="Make Admin?" class="user__control-img" />
+                        </a>
+                    </span>
+                    {% elseif role == 'ROLE_SUPER_ADMIN' %}
+                    <div class="cart_items">
+                        <span class="users__list-text">SUPER ADMIN</span>
+                        <img src="{{ asset('assets/img/random/crown.png') }}" alt="approuve.png" class="user__control-img"/>
+                    </div>
+                    {% else %}
+                    <div class="cart_items">
+                        <span class="users__list-text">ADMIN</span>
+                        <a href={{ path("remove_admin", {'id': user.id}) }}>
+                            <img src="{{ asset('assets/img/random/remove.png') }}" alt="approuve.png" title="Remove Admin?" class="user__control-img"/>
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </li>
+    {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

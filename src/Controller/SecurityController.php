@@ -177,8 +177,8 @@ class SecurityController extends Controller
 
             $message = (new \Swift_Message('Forgotten password'))
 
-                ->setFrom('///')
-                ->setTo($user->getEmail())
+                ->setFrom('software.developer800@gmail.com')
+                ->setTo($user->getUsername())
                 ->setBody(
                     "Token for change you password : " . $url,
                     'text/html'
@@ -190,7 +190,9 @@ class SecurityController extends Controller
 
             return $this->redirectToRoute('forgotten_password');
         }
-        return $this->render('security/forgotten_password.html.twig');
+        return $this->render('security/forgotten_password.html.twig', [
+            'title' => 'Forgotten password',
+        ]);
     }
 
     /**

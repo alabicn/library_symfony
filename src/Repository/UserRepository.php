@@ -19,4 +19,12 @@ class UserRepository extends ServiceEntityRepository
 
         return $qb->execute();
     }
+
+    public function findAllOrderedByRole() {
+        $qb = $this->createQueryBuilder('user')
+                    ->orderBy('user.roles', 'DESC')
+                    ->getQuery();
+
+        return $qb->execute();
+    }
 }
