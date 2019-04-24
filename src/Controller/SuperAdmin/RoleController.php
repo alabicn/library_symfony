@@ -21,7 +21,7 @@ class RoleController extends Controller
         return $this->render('super_admin/index.html.twig', [
             'users' => $users,
             'mainNavAdmin' => true, 
-            'title' => 'Super Admin page'
+            'title' => 'Super Admin\'s page'
         ]);
     }
 

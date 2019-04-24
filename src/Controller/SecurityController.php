@@ -187,7 +187,7 @@ class SecurityController extends Controller
             $mailer->send($message);
 
             $this->addFlash('notice', 'Mail sent');
-
+            
             return $this->redirectToRoute('forgotten_password');
         }
         return $this->render('security/forgotten_password.html.twig', [
@@ -222,7 +222,9 @@ class SecurityController extends Controller
             return $this->redirectToRoute('login');
         }
         else {
-            return $this->render('security/reset_password.html.twig', ['token' => $token]);
+            return $this->render('security/reset_password.html.twig', [
+                'title' => 'Reset password',
+                'token' => $token]);
         }
     }
 }

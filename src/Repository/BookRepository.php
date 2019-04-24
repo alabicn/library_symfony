@@ -20,7 +20,15 @@ class BookRepository extends ServiceEntityRepository
     }
     
     public function findAllOrderedByName() {
-        $qb = $this->createQueryBuilder('Book')
+        $qb = $this->createQueryBuilder('book')
+                    ->getQuery();
+
+        return $qb->execute();
+    }
+
+    public function findAllOrderedByAuthorSurname() {
+        $qb = $this->createQueryBuilder('book')
+                    ->orderBy('book.author', 'DESC')
                     ->getQuery();
 
         return $qb->execute();

@@ -48,7 +48,7 @@ class ManageBookController extends Controller
         return $this->render('admin/manage_book/insertBook.html.twig', [
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => 'Add Book'
         ]);
     }
     /**
@@ -75,7 +75,7 @@ class ManageBookController extends Controller
             'book' => $book,
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => $book->getAuthor()->getName() . ' ' . strtoupper($book->getAuthor()->getSurname()) . ' - ' . $book->getTitle() . '\'s details'
         ]);
     }
 
@@ -115,7 +115,7 @@ class ManageBookController extends Controller
         return $this->render('admin/manage_book/editBookImage.html.twig', [
             'book' => $book,
             'mainNavMember' => true,
-            'title' => 'Member',
+            'title' => $book->getAuthor()->getName() . ' ' . strtoupper($book->getAuthor()->getSurname()) . ' - ' . $book->getTitle() . '\'s photo',
             'form' => $form->createView(),
         ]);
     }
@@ -140,7 +140,7 @@ class ManageBookController extends Controller
         return $this->render('admin/manage_book/insertGenre.html.twig', [
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => 'Add Genre'
         ]);
     }
 
@@ -168,7 +168,7 @@ class ManageBookController extends Controller
             'genre' => $genre,
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => $genre->getName() . "'s details"
         ]);
 
     }
@@ -194,7 +194,7 @@ class ManageBookController extends Controller
         return $this->render('admin/manage_book/insertEdition.html.twig', [
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => 'Add Edition'
         ]);
     }
 
@@ -222,7 +222,7 @@ class ManageBookController extends Controller
             'edition' => $edition,
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => $edition->getName() . "'s details"
         ]);
 
     }

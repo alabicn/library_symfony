@@ -70,7 +70,7 @@ class BookType extends AbstractType
                 'expanded' => true,
             ])
             ->add('price', MoneyType::class)
-            ->add('save', SubmitType::class, array('label' => 'POST'));;
+            ->add('save', SubmitType::class, array('label' => 'Submit'));;
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -27,7 +27,7 @@
                     {% if role == 'ROLE_USER' %}
                     <span class="cart_items">
                         <span class="users__list-text">USER</span>
-                        <a href={{ path("make_admin", {'id': user.id}) }}>
+                        <a href={{ path("make_admin", {'id': user.id}) }} onclick="return confirm('Are you sure?')">
                             <img src="{{ asset('assets/img/random/approuve.png') }}" alt="approuve.png" title="Make Admin?" class="user__control-img" />
                         </a>
                     </span>
@@ -39,7 +39,7 @@
                     {% else %}
                     <div class="cart_items">
                         <span class="users__list-text">ADMIN</span>
-                        <a href={{ path("remove_admin", {'id': user.id}) }}>
+                        <a href={{ path("remove_admin", {'id': user.id}) }} onclick="return confirm('Are you sure?')">
                             <img src="{{ asset('assets/img/random/remove.png') }}" alt="approuve.png" title="Remove Admin?" class="user__control-img"/>
                         </a>
                     </div>

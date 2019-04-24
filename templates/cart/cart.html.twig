@@ -27,7 +27,7 @@
                     </div>
                     <div class="cart_items">
                         <span class="cart_items-text">{{ book.prices[3]|number_format(2, '.', ' ') }}&nbsp;€</span>
-                        <a href={{ path("remove_from_cart", {'id': book.id})}}>
+                        <a href={{ path("remove_from_cart", {'id': book.id})}} onclick="return confirm('Are you sure?')">
                             <img src="{{ asset('assets/img/random/remove.png') }}" alt="remove_from_cart.png" title="Remove from cart?" class="cart_items-remove"/>
                         </a>
                     </div>

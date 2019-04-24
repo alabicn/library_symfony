@@ -30,7 +30,7 @@ class EvaluationType extends AbstractType {
                 ])
                 ->add('comment', TextType::class)
 
-                ->add('save', SubmitType::class, array('label' => 'POST'))
+                ->add('save', SubmitType::class, array('label' => 'Submit'))
                 ;
     }
 }

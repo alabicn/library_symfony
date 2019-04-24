@@ -3,14 +3,12 @@
 {{title}}
 {% endblock %}
 {% block body %}
-{% if title is defined %}
-        <h1 class="page__title">{{title}}</h1>
-    {% else %}
-        <h1>Header</h1>
-    {% endif %}
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
-
-
+    {% if title is defined %}
+            <h1 class="page__title">{{title}}</h1>
+        {% else %}
+            <h1>Header</h1>
+        {% endif %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}

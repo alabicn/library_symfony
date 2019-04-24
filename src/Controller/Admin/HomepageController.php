@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Book;
 use App\Entity\Genre;
 use App\Entity\Quote;
 use App\Entity\Author;
+use App\Entity\Edition;
 use App\Entity\Evaluation;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,15 +22,20 @@ class HomepageController extends Controller
     public function index()
     {
 
-        $author = $this->getDoctrine()->getRepository(Author::class)->findAllOrderedByName();
+        $authors = $this->getDoctrine()->getRepository(Author::class)->findAllOrderedByName();
+        $books = $this->getDoctrine()->getRepository(Book::class)->findAllOrderedByAuthorSurname();
         $genres = $this->getDoctrine()->getRepository(Genre::class)->findAllOrderedByName();
+        $editions = $this->getDoctrine()->getRepository(Edition::class)->findAllOrderedByName();
         $quotes = $this->getDoctrine()->getRepository(Quote::class)->findAllOrderedByName();
 
         return $this->render('admin/homepage/index.html.twig', [
-            'author' => $author,
+            'authors' => $authors,
+            'books' => $books,
             'genres' => $genres,
+            'editions' => $editions,
             'quotes' => $quotes,
-            'mainNavAdmin' => true, 'title' => 'Espace Admin'
+            'mainNavAdmin' => true, 
+            'title' => 'Admin\'s page' 
         ]);
     }
 

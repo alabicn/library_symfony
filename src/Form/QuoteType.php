@@ -29,7 +29,7 @@ class QuoteType extends AbstractType
 
             ])
             ->add('text', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'POST'));;
+            ->add('save', SubmitType::class, array('label' => 'Submit'));;
         ;
     }
 

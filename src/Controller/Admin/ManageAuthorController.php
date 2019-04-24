@@ -45,7 +45,7 @@ class ManageAuthorController extends AbstractController
         return $this->render('admin/manage_author/insertAuthor.html.twig', [
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => 'Add Author'
         ]);
     }
 
@@ -73,7 +73,7 @@ class ManageAuthorController extends AbstractController
             'author' => $author,
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => $author->getName() . ' ' . $author->getSurname() . '\'s details'
         ]);
     }
 
@@ -113,7 +113,7 @@ class ManageAuthorController extends AbstractController
         return $this->render('admin/manage_author/editAuthorImage.html.twig', [
             'author' => $author,
             'mainNavMember' => true,
-            'title' => 'Member',
+            'title' => $author->getName() . ' ' . $author->getSurname() . '\'s photo',
             'form' => $form->createView(),
         ]);
     }
@@ -143,7 +143,7 @@ class ManageAuthorController extends AbstractController
         return $this->render('admin/manage_author/insertQuote.html.twig', [
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => 'Add Quote'
         ]);
     }
 
@@ -171,7 +171,7 @@ class ManageAuthorController extends AbstractController
             'quote' => $quote,
             'form' => $form->createView(),
             'mainNavAdmin' => true,
-            'title' => 'Espace Admin'
+            'title' => $quote->getAuthor()->getName() . ' ' . $quote->getAuthor()->getSurname() . '\'s quote'
         ]);
     }
 

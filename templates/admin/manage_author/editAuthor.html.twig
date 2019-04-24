@@ -9,20 +9,24 @@
         <h1>Header</h1>
     {% endif %}
 
+    <div id="settings">
+        <div>
+            <img id="member-img" src="/assets/img/{{ author.srcImage }}" alt="{{ author.altImage }}" title="{{ author.titleImage }}"/>
+            <div>
+                <a href={{ path("edit_author_image", {'surname': author.surname}) }}>Change photo?</a>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member_name">
+                <h2><span>{{author.name ~ " " ~ author.surname|upper}}</span></h2>
+            </div>
+            <div id="member_info">
+                <textarea>{{ author.about }}</textarea>
+            </div>
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at
-            <code><a href="{{ 'C:/wamp/www/library/src/Controller/BookController.php'|file_link(0) }}">src/Controller/BookController.php</a></code>
-        </li>
-        <li>Your template at
-            <code><a href="{{ 'C:/wamp/www/library/templates/book/index.html.twig'|file_link(0) }}">templates/book/index.html.twig</a></code>
-        </li>
-    </ul>
-</div>
 <div>
     <h1>{{ author.name ~ " " ~ author.surname|upper}}</h1>
 
@@ -30,12 +34,11 @@
         style="width :150px;" />
     <a href={{ path("edit_author_image", {'surname': author.surname}) }}>Change photo?</a>
 
-    <p>{{ author.about }}</p>
+    <textarea rows="10" cols="100">{{ author.about }}</textarea>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
 
-    {{ author.srcImage }}
 
     {% endblock %}

@@ -19,7 +19,7 @@ class AuthorType extends AbstractType
             ->add('name', TextType::class)
             ->add('surname', TextType::class)
             ->add('about', TextareaType::class)
-            ->add('save', SubmitType::class, array('label' => 'POST'));
+            ->add('save', SubmitType::class, array('label' => 'Submit'));
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -97,7 +97,7 @@
     color: #FAF7EE;
     font-family: 'Merienda', cursive;
     font-style: oblique;
-    font-size: 13px;
+    font-size: 0.85em;
     margin: 0;
     margin-top: 4px;
 }
@@ -129,7 +129,7 @@
 {
     color: #FAF7EE;
     font-family: 'EB Garamond', serif;
-    font-size: 17px;
+    font-size: 1em;
 }
 
 .nav__item.active .nav__item-link 
@@ -196,7 +196,6 @@
 {
     font-size: 12px;
     color: #FAF7EE;
-    font-family: 'EB Garamond', serif;
 }
 
 .user__img 
@@ -283,12 +282,39 @@
     color: #333333;
     font-weight: bold;
 }
+
+/* Admin
+------------------------------ */
+
+ #admin__options
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+}
+
+.admin__edit-title
+{
+    font-weight: bold;
+    text-align: center;
+}
+
+#admin__options div p
+{
+    text-align: center;
+}
+
+#modify__quotes
+{
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Homepage
 ------------------------------ */
 
 .quotes
 {
-    width: 530px;
     margin: 1em;
 }
 
@@ -311,6 +337,12 @@
     line-height: normal;
     color: #333333;
     font-weight: bold;
+}
+
+.quotes__content-txt strong
+{
+    float: right;
+    margin: 1em;
 }
 
 .quotes__content-author
@@ -375,6 +407,7 @@ fieldset
     color: #FAF7EE;
     background-color: #333333;
     border-color: #333333;
+    width: 100%;
 }
 
 .btn-primary:hover 
@@ -409,12 +442,6 @@ fieldset
 {
     color: #333333;
     font-weight: bold;
-}
-
-#password_update ~ button
-{
-    width: 50%;
-    margin: 1em auto;
 }
 
 /* cart
@@ -695,6 +722,16 @@ body
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+textarea
+{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    height: 250px;
+    text-align: justify;
+    padding: 1em;
 }
 
 /* ------------------------------------------------ */

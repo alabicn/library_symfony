@@ -18,7 +18,7 @@ class PasswordUpdateType extends ApplicationType
             ->add('oldPassword', PasswordType::class, $this->getConfiguration("Old password", "Type your old password"))
             ->add('newPassword', PasswordType::class, $this->getConfiguration("New password", "Type your new password"))
             ->add('confirmPassword', PasswordType::class, $this->getConfiguration("Confirmation password", "Confirm your new password"))
-            ->add('submit', SubmitType::class, ['label' => 'Modify password', 'attr' => ['class' => 'btn-primary btn-block']]);
+            ->add('submit', SubmitType::class, ['label' => 'Submit', 'attr' => ['class' => 'btn-primary btn-block']]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

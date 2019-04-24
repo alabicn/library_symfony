@@ -1,72 +1,68 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}
 {{title}}
 {% endblock %}
+
 {% block body %}
-{% if title is defined %}
+    {% if title is defined %}
         <h1 class="page__title">{{title}}</h1>
     {% else %}
         <h1>Header</h1>
     {% endif %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-    <div class="example-wrapper">
-        <h1>Hello ✅</h1>
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at
-                <code>
-                    <a href="{{ 'C:/wamp/www/library/src/Controller/HomepageController.php'|file_link(0) }}">src/Controller/HomepageController.php</a>
-                </code>
-            </li>
-            <li>Your template at
-                <code>
-                    <a href="{{ 'C:/wamp/www/library/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a>
-                </code>
-            </li>
-        </ul>
-        <a href={{ path("add_author") }}>Add Author</a><br>
-        <a href={{ path("add_book") }}>Add Book</a><br>
-        <a href={{ path("add_genre") }}>Add Genre</a><br>
-        <a href={{ path("add_edition") }}>Add Edition</a><br>
-        <a href={{ path("add_quote") }}>Add Quote</a><br>
-
-        <hr>
-
-        {% for author in author %}
-
-        <a href={{ path("edit_author", {'surname': author.surname} ) }}>
-            <p>
-                {{author.name ~ " " ~ author.surname|upper}}</p>
-        </a>
+    
+        <div id="admin__options">
+            <div>
+                <p><a href={{ path("add_author") }} class="links" >Add Author</a></p>
+                <h6 class="admin__edit-title">Edit :</h6>
+        {% for author in authors %}
+                <p><a href={{ path("edit_author", {'surname': author.surname} ) }} class="links">{{author.name ~ " " ~ author.surname|upper}}</a></p>
         {% endfor %}
-<hr>
-<h2>GENRES : </h2>
+            </div>
+            <div>
+                <p><a href={{ path("add_book") }} class="links" >Add Book</a></p>
+                <h6 class="admin__edit-title">Edit :</h6>
+        {% for book in books %}
+                <p><a href={{ path("edit_book", {'id': book.id}) }} class="links">{{ book.author.name ~ " " ~ book.author.surname|upper ~ " - " ~ book.title }}</a></p>
+        {% endfor %}
+            </div>
+            <div>
+                <p><a href={{ path("add_genre") }} class="links" >Add Genre</a></p>
+                <h6 class="admin__edit-title">Edit :</h6>
         {% for genre in genres %}
-            <a href={{ path("show_genre", {'name': genre.name}) }}><h4>{{genre.name}}</h4></a>
+                <p><a href={{ path("edit_genre", {'name': genre.name}) }} class="links">{{ genre.name }}</a></p>
         {% endfor %}
-<h2>Quotes</h2>
+            </div>
+            <div>
+                <p><a href={{ path("add_edition") }} class="links" >Add Edition</a></p>
+                <h6 class="admin__edit-title">Edit :</h6>
+        {% for edition in editions %}
+                <p><a href={{ path("edit_edition", {'name': edition.name}) }} class="links">{{ edition.name }}</a></p>
+        {% endfor %}
+            </div>
+            <div>
+            <p><a href={{ path("add_quote") }} class="links" >Add Quote</a></p>
+            <p><a href="#admin__quotes" }} class="links" >Edit Quote</a></p>
+            </div>
+        </div>
+        <h1 id="admin__quotes" class="page__title">Quotes : </h1>  
         {% for quote in quotes %}
-    <div>
-        <img src="/assets/img/{{ quote.author.srcImage }}" alt="{{ quote.author.altImage }}" title="{{ quote.author.titleImage }}" width="50px"/>
-        <span>"{{ quote.text }}"</span><br>
-        <span> ~ {{ quote.author.name ~ " " ~ quote.author.surname|upper }}</span><br>
-        {% if is_granted('ROLE_ADMIN') %}
-        <span>
-            <a href={{ path("edit_quote", {'id': quote.id}) }}>Edit?</a>
-            <a href={{ path("remove_quote", {'id' : quote.id}) }} onclick="return confirm('Are you sure?')">Delete?</a>
-        </span>
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endblock %}
+        <div id="modify__quotes">
+            <div class="quotes">
+                <div>
+                    <img src="/assets/img/{{ quote.author.srcImage }}" alt="{{ quote.author.altImage }}" title="{{ quote.author.titleImage }}" class="quotes__author-img"/>
+                    <q class="quotes__content-txt"><em>{{ quote.text }}</em></q>
+                </div>
+                <h6 class="quotes__content-author"><strong>{{ quote.author.name ~ " " ~ quote.author.surname }}</strong></h6>
+            </div>
+            <div class="cart_items">
+                <a href={{ path("edit_quote", {'id': quote.id}) }}>
+                    <img src="{{ asset('assets/img/random/edit.png') }}" alt="approuve.png" title="Edit Quote?" class="user__control-img"/>
+                </a>
+                <a href={{ path("remove_quote", {'id' : quote.id}) }} onclick="return confirm('Are you sure?')">
+                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="approuve.png" title="Remove Quote?" class="user__control-img"/>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+{% endblock %}
