@@ -3,42 +3,27 @@
 {{title}}
 {% endblock %}
 {% block body %}
-{% if title is defined %}
+    {% if title is defined %}
         <h1 class="page__title">{{title}}</h1>
     {% else %}
         <h1>Header</h1>
     {% endif %}
-
-    <div id="settings">
+    <div class="settings">
         <div>
-            <img id="member-img" src="/assets/img/{{ author.srcImage }}" alt="{{ author.altImage }}" title="{{ author.titleImage }}"/>
-            <div>
-                <a href={{ path("edit_author_image", {'surname': author.surname}) }}>Change photo?</a>
-            </div>
+            <img id="admin__edit__author-img" src="/assets/img/{{ author.srcImage }}" alt="{{ author.altImage }}" title="{{ author.titleImage }}"/>   
+            <a href={{ path("edit_author_image", {'surname': author.surname}) }} class="links">Change photo?</a>
         </div>
-        <div id="member">
-            <div id="member_name">
-                <h2><span>{{author.name ~ " " ~ author.surname|upper}}</span></h2>
-            </div>
-            <div id="member_info">
-                <textarea>{{ author.about }}</textarea>
-            </div>
+        <div class="settings__info">
+            <textarea>{{ author.about }}</textarea>
         </div>
     </div>
-
-
-<div>
-    <h1>{{ author.name ~ " " ~ author.surname|upper}}</h1>
-
-    <img src="/assets/img/{{ author.srcImage }}" alt="{{ author.altImage }}" title="{{ author.titleImage }}"
-        style="width :150px;" />
-    <a href={{ path("edit_author_image", {'surname': author.surname}) }}>Change photo?</a>
-
-    <textarea rows="10" cols="100">{{ author.about }}</textarea>
-
+    <div class="admin__edit-buttons">
+        <button class="show btn btn-primary">Edit details?</button>
+        <button class="hide btn btn-primary">Hide edit form?</button>
+    </div>  
+    <div class="admin__edit-form">
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
-
-
-    {% endblock %}
+    </div>
+{% endblock %}

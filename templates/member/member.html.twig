@@ -11,7 +11,7 @@
         <h1>Header</h1>
     {% endif %}
 
-    <div id="settings">
+    <div class="settings">
         <div>
             <img id="member-img" src="/assets/img/{{ app.user.srcPhoto }}" alt="{{ app.user.altPhoto }}" title="{{ app.user.titlePhoto }}"/>
             <div>
@@ -19,7 +19,7 @@
             </div>
             <a href={{ path('password_update') }} class="links">Change Password?</a>
         </div>
-        <div id="member">
+        <div class="settings__info">
             <div id="member_name">
                 <h2><span>{{app.user.uname}}</span> <span>{{ app.user.username }}</span></h2>
             </div>

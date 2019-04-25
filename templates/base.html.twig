@@ -16,6 +16,13 @@
                 <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
                 <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
                 <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+
+                <link rel="stylesheet" href="{{ asset('assets/dist/themes/fontawesome-stars.css') }}">
+                <link rel="stylesheet" href="{{ asset('assets/dist/themes/css-stars.css') }}">
+                <link rel="stylesheet" href="{{ asset('assets/dist/themes/bootstrap-stars.css') }}">
+                <link rel="stylesheet" href="{{ asset('assets/dist/themes/fontawesome-stars-o.css') }}">
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
         {% endblock %}
                 <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>  
     </head>
@@ -241,7 +248,26 @@
                 </div>
             </section>
         </footer> 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="{{ asset('assets/js/jquery.barrating-spec.js') }}"></script>
+        <script src="{{ asset('assets/js/examples.js') }}"></script>
+        <script type="text/javascript">
+            $(function() {
+                function ratingEnable() {
+                $('#example-bootstrap').barrating({
+                theme: 'bootstrap-stars',
+                showSelectedRating: false
+            })
+        }});
+
+
+        </script>-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="{{ asset('assets/js/show_hide.js') }}" ></script>
+
+        {% endblock %}
     </body>
 </html>               
                 

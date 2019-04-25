@@ -189,6 +189,6 @@ class ManageAuthorController extends AbstractController
             "You have deleted " . $quote->getAuthor()->getName() . ' ' . $quote->getAuthor()->getSurname() . "'s quote"
         );
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('home_admin');
     }
 }
