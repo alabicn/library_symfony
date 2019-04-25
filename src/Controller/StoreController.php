@@ -33,16 +33,22 @@ class StoreController extends AbstractController
         $form = $this->createForm(EvaluationType::class, $evaluation);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($request->isMethod('POST')) {
 
-            $evaluation->setDateEvaluation(new \DateTime())
-                       ->setBook($book)
-                       ->setUser($this->getUser());           
+            $evaluation->setRating($request->request->get('rating'))
+                        ->setComment($request->request->get('comment'))
+                        ->setDateEvaluation(new \DateTime())
+                        ->setBook($book)
+                        ->setUser($this->getUser());           
 
             $manager->persist($evaluation);
             $manager->flush();
 
             return $this->redirectToRoute('show_book', ['id' => $book->getId()]);
+
+            $this->addFlash('notice', 'Your new password has been saved');
+
+            return $this->redirectToRoute('login');
         }
         
 
@@ -50,7 +56,6 @@ class StoreController extends AbstractController
             'title' => 'Book n° ' . $book->getId(),
             'book' => $book,
             'evaluations' => $book->getEvaluations(),
-            'evaluationForm' => $form->createView()
         ]);
     }
 

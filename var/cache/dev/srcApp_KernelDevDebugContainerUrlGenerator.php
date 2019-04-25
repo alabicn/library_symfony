@@ -39,6 +39,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'show_cart' => [[], ['_controller' => 'App\\Controller\\CartController::showCart'], [], [['text', '/cart/show']], [], []],
         'remove_from_cart' => [['id'], ['_controller' => 'App\\Controller\\CartController::removeFromCart'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/cart/book']], [], []],
         'homepage' => [[], ['_controller' => 'App\\Controller\\HomepageController::index'], [], [['text', '/']], [], []],
+        'randquote' => [[], ['_controller' => 'App\\Controller\\HomepageController::ajaxRandomQuote'], [], [['text', '/random']], [], []],
         'profile_page' => [[], ['_controller' => 'App\\Controller\\MemberController::index'], [], [['text', '/member/']], [], []],
         'show_user' => [['id'], ['_controller' => 'App\\Controller\\MemberController::showUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/member/user']], [], []],
         'app_security_register' => [[], ['_controller' => 'App\\Controller\\SecurityController::registerAction'], [], [['text', '/register']], [], []],

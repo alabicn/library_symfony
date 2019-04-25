@@ -44,16 +44,29 @@
     </h1>
 
  
-        
-    <div class="example-wrapper">
+ 
 
 
         {% if app.user and book.ratedByUser(app.user.id) == false %}
-
-        {{ form_start(evaluationForm) }}
-        {{ form_row(evaluationForm.rating, {'attr': {'placeholder': 'Your rating?'}}) }}
-        {{ form_row(evaluationForm.comment, {'attr': {'placeholder': 'Your comment...'}}) }}
-        {{ form_end(evaluationForm) }}
+        <form method="post">
+            <div class="stars stars-example-bootstrap">
+                <select id="example" name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="required">Comment</label>
+                <input type="text" name="comment" id="inputComment" required="required" class="form-control" required autofocus>
+                <div class="form-group">
+                    <button type="submit" id="ok" name="ok" class="btn-primary btn-block btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    
 
 
         {% endif %}

@@ -18,23 +18,39 @@
 
     <h1 class="page__title">Quotes</h1>
 
-    {% for quote in quotes %}
+    
     <div class="quotes">
         <div>
-            <img src="/assets/img/{{ quote.author.srcImage }}" alt="{{ quote.author.altImage }}" title="{{ quote.author.titleImage }}" class="quotes__author-img"/>
-            <q class="quotes__content-txt"><em>{{ quote.text }}</em></q>
+            <img src="/assets/img/{{ quote['img']['src'] }}" alt="{{ quote['img']['alt'] }}" title="{{ quote['img']['title'] }}" class="quotes__author-img"/>
+            <q class="quotes__content-txt"><em>{{ quote['text'] }}</em></q>
         </div>
-        <h6 class="quotes__content-author"><strong>{{ quote.author.name ~ " " ~ quote.author.surname }}</strong></h6>
+        <h6 class="quotes__content-author"><strong>{{ quote['author'] }}</strong></h6>
     </div>
-    {% endfor %}
+            
+{% endblock %}
 
-    <div class="stars stars-example-bootstrap">
-        <select id="example-bootstrap" name="rating" autocomplete="off">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ouo09defrlak006xogcmlytgdrzl1yubfduz4p4v24xr50pi"></script>
+    <script>
+    
+        $(document).ready(function(){
+            
+            setInterval(function(){
+                $.post(
+                    "{{ path('randquote') }}",
+                    function(data){
+                        $(".quotes").fadeOut(500, function(){
+                            //img
+                            $(".quotes__content-txt em").html(data.text)
+                            $(".quotes__content-author strong").html(data.author)
+                            $(this).fadeIn();
+                        })
+                        
+                    }
+                )
+                }, 5000);
+        })
         
+    </script>
 {% endblock %}

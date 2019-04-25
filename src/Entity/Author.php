@@ -44,7 +44,8 @@ class Author
      * @Assert\File(    
      *        maxSize = "1M",
      *        mimeTypes = {"image/jpeg", "image/png"},
-     *        mimeTypesMessage = "Please upload a valid image"
+     *        mimeTypesMessage = "Please upload a valid image",
+     *        groups = {"create"}
      * )
      */
     private $src_image;

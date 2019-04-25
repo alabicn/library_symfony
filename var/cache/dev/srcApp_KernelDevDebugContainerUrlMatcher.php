@@ -23,6 +23,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/admin/addEdition' => [[['_route' => 'add_edition', '_controller' => 'App\\Controller\\Admin\\ManageBookController::insertEdition'], null, null, null, false, false, null]],
             '/cart/show' => [[['_route' => 'show_cart', '_controller' => 'App\\Controller\\CartController::showCart'], null, null, null, false, false, null]],
             '/' => [[['_route' => 'homepage', '_controller' => 'App\\Controller\\HomepageController::index'], null, null, null, false, false, null]],
+            '/random' => [[['_route' => 'randquote', '_controller' => 'App\\Controller\\HomepageController::ajaxRandomQuote'], null, null, null, false, false, null]],
             '/member' => [[['_route' => 'profile_page', '_controller' => 'App\\Controller\\MemberController::index'], null, null, null, true, false, null]],
             '/register' => [[['_route' => 'app_security_register', '_controller' => 'App\\Controller\\SecurityController::registerAction'], null, null, null, false, false, null]],
             '/login' => [[['_route' => 'login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],

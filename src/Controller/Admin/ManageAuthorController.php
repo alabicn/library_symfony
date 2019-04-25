@@ -24,7 +24,7 @@ class ManageAuthorController extends AbstractController
     {
         $author = new Author();
 
-        $form = $this->createForm(AuthorType::class, $author);
+        $form = $this->createForm(AuthorType::class, $author, ["validation_groups" => "create"]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,12 +56,12 @@ class ManageAuthorController extends AbstractController
     {
         $author = $this->getDoctrine()->getRepository(Author::class)->find($author->getId());
 
-        $form = $this->createForm(AuthorType::class, $author);
+        $form = $this->createForm(AuthorType::class, $author, ["validation_groups" => "edit"]);
+        $form->remove("src_image");
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $manager->persist($author);
             $manager->flush();
             $this->addFlash(
                 'success',
