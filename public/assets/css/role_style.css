@@ -128,7 +128,7 @@
 
 #admin__edit__book-img
 {
-    width: 250px;
+    width: 350px;
     margin: 0.5em;
     border: solid #333333 2px;
 }
@@ -200,4 +200,16 @@
 {
     color: #333333;
     font-weight: bold;
+}
+
+/*--------*/
+
+.published_by
+{
+    text-align-last: end;
+}
+
+.published_by span
+{
+    color: #ED5944;
 }
