@@ -38,7 +38,7 @@ class HomepageController extends Controller
         $quote = $quotes[0];
 
         $randomQuote = [
-            "img" => array("src" => $quote->getAuthor()->getSrcImage(), "alt" => "", "title" => ""),
+            "img" => array("src" => $quote->getAuthor()->getSrcImage(), "alt" => $quote->getAuthor()->getAltImage(), "title" => $quote->getAuthor()->getTitleImage()),
             "text" => $quote->getText(),
             "author" => $quote->getAuthor()->getName()." ".$quote->getAuthor()->getSurname()
         ];

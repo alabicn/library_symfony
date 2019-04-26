@@ -1,0 +1,203 @@
+/* member
+------------------------------ */
+
+.settings 
+{
+    display: flex;
+}
+
+.settings__info
+{
+    flex: 1;
+}
+
+.settings__info p
+{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: justify;
+    padding: 1em;
+    font-weight: bold;
+}
+
+#member_name h2
+{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #333333;
+    padding: 10px;
+}
+
+#member-img 
+{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 1em;
+}
+
+#member_info p
+{
+    margin: 1em;
+    font-weight: bold;
+    color: #333333;
+}
+
+#photo_upload-form  div
+{
+    max-width: 260px;
+    margin: 1px auto;
+}
+
+#photo_upload-form  .form-group .required
+{
+    margin: 0px;
+    display: none;
+}
+
+#photo_upload-form  .form-group .btn-primary
+{
+    color: #FAF7EE;
+    background-color: #333333;
+    border-color: #333333;
+    margin: 1px auto;
+    width: 100%;
+}
+
+#photo_upload-form  .form-group .btn-primary:hover
+{
+    color: #333333;
+    background-color: #ED5944;
+    border-color: #ED5944;
+}
+
+#member-img ~ a
+{
+    display: block;
+    text-align: center;
+    margin: 1em auto;
+}
+
+/* Admin
+------------------------------ */
+
+#admin__options
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+}
+
+.admin__edit-title
+{
+    font-weight: bold;
+    text-align: center;
+}
+
+#admin__options div p
+{
+    text-align: center;
+}
+
+#modify__quotes
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+#modify__quotes .quotes
+{
+    max-width: 100%;
+}
+
+#admin__edit__author-img
+{
+    width: 250px;
+    margin: 0.5em;
+    border: solid #333333 2px;
+}
+
+#admin__edit__author-img ~ a
+{
+    display: block;
+    text-align: center;
+    margin: 0.5em auto;
+}
+
+#admin__edit__book-img
+{
+    width: 250px;
+    margin: 0.5em;
+    border: solid #333333 2px;
+}
+
+#admin__edit__book-img ~ a
+{
+    display: block;
+    text-align: center;
+    margin: 0.5em auto;
+}
+
+.admin__edit-form
+{
+    display: none;
+}
+
+.show
+{
+    width: 20%;
+}
+
+.hide 
+{
+    display: none;
+    width: 20%;
+}
+
+.admin__edit-buttons
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Super Admin
+------------------------------ */
+
+#super_admin_page
+{
+    width: 100%;
+    margin: 1em auto;
+}
+
+.users__list
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.users_photos
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.users_photos ~ a
+{
+    text-decoration: none;
+}
+
+.user__control-img
+{
+    width: 30px;
+    margin-left: 2em;
+}
+
+.users__list-text
+{
+    color: #333333;
+    font-weight: bold;
+}

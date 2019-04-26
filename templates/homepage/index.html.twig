@@ -31,25 +31,26 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ouo09defrlak006xogcmlytgdrzl1yubfduz4p4v24xr50pi"></script>
+    <!--script for Quotes-->
     <script>
     
         $(document).ready(function(){
-            
+    
             setInterval(function(){
                 $.post(
                     "{{ path('randquote') }}",
                     function(data){
                         $(".quotes").fadeOut(500, function(){
-                            //img
+                            $(".quotes__author-img").attr('src', '/assets/img/' + data.img.src)
+                            $(".quotes__author-img").attr('alt', data.img.alt)
+                            $(".quotes__author-img").attr('title', data.img.title)
                             $(".quotes__content-txt em").html(data.text)
                             $(".quotes__content-author strong").html(data.author)
                             $(this).fadeIn();
-                        })
-                        
+                        })       
                     }
                 )
-                }, 5000);
+                }, $(".quotes__content-txt em").text().length * 75); 
         })
         
     </script>
