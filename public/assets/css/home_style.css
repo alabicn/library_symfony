@@ -280,6 +280,47 @@
     text-align: end;
 }
 
+/* Store
+------------------------------ */
+
+.store__book-img
+{
+    width: 350px;
+    margin: 0.5em;
+    border: solid #333333 2px;
+}
+
+.store__book-img ~ a
+{
+    display: block;
+    text-align: center;
+    margin: 0.5em auto;
+}
+
+.store__book-img ~ div
+{
+    display: block;
+    text-align: center;
+    margin: 0.5em auto;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.fa-star, .fa-star-half-alt
+{
+    color: #ED5944;
+}
+
+.published_by
+{
+    text-align-last: end;
+}
+
+.published_by span
+{
+    color: #ED5944;
+}
+
 /* Genres
 ------------------------------ */
 

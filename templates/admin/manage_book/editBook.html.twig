@@ -10,7 +10,7 @@
     {% endif %}
     <div class="settings">
         <div>
-            <img id="admin__edit__book-img" src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}"/>   
+            <img class="store__book-img" src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}"/>   
             <a href={{ path("edit_book_image", {'id': book.id}) }} class="links">Change photo?</a>
         </div>
         <div class="settings__info">

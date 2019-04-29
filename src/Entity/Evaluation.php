@@ -45,8 +45,6 @@ class Evaluation
               */
     private $dateEvaluation;
 
-    private $average;
-
     public function getId(): ? int
     {
         return $this->id;

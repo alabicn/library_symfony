@@ -119,27 +119,6 @@
     border: solid #333333 2px;
 }
 
-#admin__edit__author-img ~ a
-{
-    display: block;
-    text-align: center;
-    margin: 0.5em auto;
-}
-
-#admin__edit__book-img
-{
-    width: 350px;
-    margin: 0.5em;
-    border: solid #333333 2px;
-}
-
-#admin__edit__book-img ~ a
-{
-    display: block;
-    text-align: center;
-    margin: 0.5em auto;
-}
-
 .admin__edit-form
 {
     display: none;
@@ -200,16 +179,4 @@
 {
     color: #333333;
     font-weight: bold;
-}
-
-/*--------*/
-
-.published_by
-{
-    text-align-last: end;
-}
-
-.published_by span
-{
-    color: #ED5944;
 }

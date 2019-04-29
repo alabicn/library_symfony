@@ -1,29 +1,43 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}
 {{title}}
 {% endblock %}
-
 {% block body %}
-
-{% if title is defined %}
+    {% if title is defined %}
         <h1 class="page__title">{{title}}</h1>
     {% else %}
         <h1>Header</h1>
     {% endif %}
-<style>
-    .example-wrapper {
-        margin: 1em auto;
-        max-width: 800px;
-        width: 95%;
-        font: 18px/1.5 sans-serif;
-    }
-
-    .example-wrapper code {
-        background: #F5F5F5;
-        padding: 2px 6px;
-    }
-</style>
+    <div class="settings">
+        <div>
+            <img class="store__book-img" src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}"/>   
+            <div id="ratings">
+                {% if book.average %}
+                <span id="rating1"></span>
+                <span id="rating2"></span>
+                <span id="rating3"></span>
+                <span id="rating4"></span>
+                <span id="rating5"></span>
+                <p>{{ book.average }} average based on {{ book.evaluations|length }} reviews</p>
+                {% else %}
+                <p>No ratings yet</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="settings__info">
+            {{ book.details|raw }}
+            
+            <p class="published_by">Published by {{ book.publisher ~ ' on ' ~ book.publicationDate|date("F jS Y ") }} <span>(first published {{ book.firstPublished|date("Y") }})</span></p>
+            <p>
+                {% for e in book.editions %}             
+                    This {{ e.name }} you can buy in 
+                <span>{{ e.name }} : {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€<br></span>  
+                {% endfor %} 
+            </p>
+            <p>Original title : {{ book.originalTitle }}</p>
+            <p>Edition language : {{ book.editionLanguage }}</p>
+        </div>
+    </div>
 
 
 <div>
@@ -73,9 +87,9 @@
 
     
 
+        
 
-
-
+        
 
 
 
@@ -112,11 +126,29 @@
         {% endfor %}
 
     </div>
-
-
-
-
-
 </div>
 
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+    <!--script for Users' ratings-->
+    <script>
+        
+        $(document).ready(function(){
+            
+            var rate = parseInt('{{ book.average }}');
+            
+            $('#ratings span').each(function(){
+                if(rate >= 1) {
+                    $(this).addClass("fas fa-star")
+                }
+                else if (rate >= 0) {
+                    $(this).addClass("fas fa-star-half-alt")
+                }
+                else $(this).addClass("far fa-star")
+                rate = rate-1;
+            })
+        })
+        
+    </script>
 {% endblock %}
