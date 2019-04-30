@@ -4,11 +4,13 @@
 .settings 
 {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .settings__info
 {
     flex: 1;
+    margin: 0.5em;
 }
 
 .settings__info p
@@ -17,11 +19,10 @@
     background-color: transparent;
     width: 100%;
     text-align: justify;
-    padding: 1em;
     font-weight: bold;
 }
 
-#member_name h2
+.member_name h2, h6
 {
     display: flex;
     justify-content: space-between;
@@ -30,7 +31,7 @@
     padding: 10px;
 }
 
-#member-img 
+.member-img 
 {
     width: 250px;
     height: 250px;
@@ -38,7 +39,7 @@
     margin: 1em;
 }
 
-#member_info p
+.member_info p
 {
     margin: 1em;
     font-weight: bold;
@@ -110,6 +111,13 @@
 #modify__quotes .quotes
 {
     max-width: 100%;
+}
+
+#admin__edit__author-img ~ a
+{
+    display: block;
+    text-align: center;
+    margin: 0.5em auto;
 }
 
 #admin__edit__author-img

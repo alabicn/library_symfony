@@ -56,8 +56,7 @@ class ManageAuthorController extends AbstractController
     {
         $author = $this->getDoctrine()->getRepository(Author::class)->find($author->getId());
 
-        $form = $this->createForm(AuthorType::class, $author, ["validation_groups" => "edit"]);
-        $form->remove("src_image");
+        $form = $this->createForm(AuthorType::class, $author/*, ["validation_groups" => "edit"]*/);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

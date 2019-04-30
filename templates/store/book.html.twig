@@ -8,126 +8,102 @@
     {% else %}
         <h1>Header</h1>
     {% endif %}
-    <div class="settings">
-        <div>
-            <img class="store__book-img" src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}"/>   
-            <div id="ratings">
-                {% if book.average %}
-                <span id="rating1"></span>
-                <span id="rating2"></span>
-                <span id="rating3"></span>
-                <span id="rating4"></span>
-                <span id="rating5"></span>
-                <p>{{ book.average }} average based on {{ book.evaluations|length }} reviews</p>
-                {% else %}
-                <p>No ratings yet</p>
-                {% endif %}
-            </div>
-        </div>
-        <div class="settings__info">
-            {{ book.details|raw }}
-            
-            <p class="published_by">Published by {{ book.publisher ~ ' on ' ~ book.publicationDate|date("F jS Y ") }} <span>(first published {{ book.firstPublished|date("Y") }})</span></p>
-            <p>
-                {% for e in book.editions %}             
-                    This {{ e.name }} you can buy in 
-                <span>{{ e.name }} : {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€<br></span>  
-                {% endfor %} 
-            </p>
-            <p>Original title : {{ book.originalTitle }}</p>
-            <p>Edition language : {{ book.editionLanguage }}</p>
-        </div>
-    </div>
-
-
-<div>
-    <h1>{{ book.author.name ~ " " ~ book.author.surname|upper}}</h1>
-    <h3>{{ book.title }}</h3>
-    <img src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" />
-
-    <h1>{% for e in book.editions %}
-        {{ e.name }} : {{ book.prices[e.id]|number_format(2, '.', ' ') }} €<br />
-        
-        {% if e.name == 'eBook' %}
-        <a href={{ path("shopping_cart", {'id': book.id})}}>
-            Add to cart?
-        </a>
-        {% endif %}
-
-        {% endfor %}
-    </h1>
-
- 
- 
-
-
-        {% if app.user and book.ratedByUser(app.user.id) == false %}
-        <form method="post">
-            <div class="stars stars-example-bootstrap">
-                <select id="example" name="rating">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail" class="required">Comment</label>
-                <input type="text" name="comment" id="inputComment" required="required" class="form-control" required autofocus>
-                <div class="form-group">
-                    <button type="submit" id="ok" name="ok" class="btn-primary btn-block btn">Submit</button>
+    <div id="store__content" style="display: flex;">
+        <section style="flex: 3;">
+            <div class="settings">
+                <div>
+                    <img class="store__book-img" src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}"/>   
+                    <div id="ratings">
+                        {% if book.average %}
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <p>{{ book.average }} average based on {{ book.evaluations|length }} reviews</p>
+                        {% else %}
+                        <p>No ratings yet</p>
+                        {% endif %}
+                    </div>
                 </div>
+                <div class="settings__info">
+                    <p>{{ book.details }}</p>
+                    
+                    <p class="published_by">Published by {{ book.publisher ~ ' on ' ~ book.publicationDate|date("F jS Y ") }} <span>(first published {{ book.firstPublished|date("Y") }})</span></p>
+                    <p>Original title : {{ book.originalTitle }}</p>
+                    <p>Edition language : {{ book.editionLanguage }}</p>
+                    <p>
+                        {% for e in book.editions %}             
+                            This {{ e.name }} you can buy in 
+                        <span>{{ e.name }} : {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€<br></span>
+                        {% if e.name == 'eBook' %}
+                        <a href={{ path("shopping_cart", {'id': book.id})}}>
+                        Add to cart?
+                        </a>
+                    {% endif %}  
+                        {% endfor %} 
+                    </p>
+                </div>  
             </div>
-        </form>
-    
-
-
-        {% endif %}
-
-    
-
-        
-
-        
-
-
-
-        <h2>{{ book.evaluations | length }} messages</h2>
-
-
-        <p>
-
-            Average rating :
-            {% if book.average %}
-            {{ book.average }}/5
-            {% else %}
-            No ratings yet.
-            {% endif %}
-        </p>
-
-
-        {% for evaluation in book.evaluations %}
-
-        <ul>
-            <li><strong>{{ evaluation.comment}}<br></strong>
-                <span><a href={{ path("show_user", {'id': evaluation.user.id}) }}>{{ evaluation.user.uname }}</a>
-                    answered : {{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h", "Europe/Paris") }}</span>
-                <span>{{ evaluation.user.uname }} rated : {{ evaluation.rating }}/5</span>
-                </li>
+            {% if app.user and book.ratedByUser(app.user.id) == false %}
+            <form method="post">
+                <div class="stars stars-example-bootstrap">
+                    <select id="example" name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="required">Comment</label>
+                    <input type="text" name="comment" id="inputComment" required="required" class="form-control" required autofocus>
+                    <div class="form-group">
+                        <button type="submit" id="ok" name="ok" class="btn-primary btn-block btn">Submit</button>
+                    </div>
+                </div>
+            </form>
+            {% endif %}   
+            {% for evaluation in book.evaluations %}
+            <div id="store__user_comments">
+                <div>
+                    <a href={{ path("show_user", {'id': evaluation.user.id}) }}>
+                        <img id="store__user-img" src="/assets/img/{{ evaluation.user.srcPhoto }}" alt="{{ evaluation.user.altPhoto }}" title="{{ evaluation.user.titlePhoto }}"/>
+                    </a>
+                    <div>
+                    {% if evaluation.rating >= 1 %}
+                    <i class="fas fa-star"></i>
+                    {% elseif evaluation.rating >= 0  %}
+                    <i class="fas fa-star-half-alt"></i>
+                    {% else %}
+                    <i class="far fa-star"></i>
+                    {{ evaluation.rating == evaluation.rating - 1 }}
+                    {% endif %}
+                    </div>   
+                </div>
+                <div class="settings__info">
+                    <div class="member_name">
+                        <h6><span>{{evaluation.user.uname}}</span> <span>{{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h", "Europe/Paris") }}</span></h6>
+                    </div>
+                    <div class="member_info">
+                        <span>{{ evaluation.comment }}</span>
+                    </div>
+                </div>
                 {% if is_granted('ROLE_ADMIN') %}
-                <li><a href={{path("remove_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">DELETE?</a></li>
+                <a href={{path("remove_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">
+                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="approuve.png" title="Remove Quote?" class="user__control-img" />
+                </a>
                 {% endif %}
-
-
-
-
-        </ul>
-        {% endfor %}
-
-    </div>
-</div>
-
+            </div>
+            {% endfor %}
+        </section>
+        <aside>
+            <img src="/assets/img/{{ book.author.srcImage }}" alt="{{ book.author.altImage }}" title="{{ book.author.titleImage }}" id="author__part"/>
+            <div>{{ book.author.about|raw }}</div>
+        </aside>
+    </div>    
+<div>
 {% endblock %}
 {% block javascripts %}
 {{ parent() }}
@@ -138,7 +114,7 @@
             
             var rate = parseInt('{{ book.average }}');
             
-            $('#ratings span').each(function(){
+            $('#ratings i').each(function(){
                 if(rate >= 1) {
                     $(this).addClass("fas fa-star")
                 }

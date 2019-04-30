@@ -306,9 +306,37 @@
     font-weight: bold;
 }
 
-.fa-star, .fa-star-half-alt
+#store__user_comments
 {
-    color: #ED5944;
+    display: flex;
+    width: 900px;
+    margin: 2em auto;
+}
+
+#store__user_comments div
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#store__user_comments div span
+{
+    margin: 0.3em;
+}
+
+#store__user-img
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.member_info > span
+{
+    font-style: oblique;
+    margin-left: 1em;
 }
 
 .published_by
@@ -316,10 +344,41 @@
     text-align-last: end;
 }
 
-.published_by span
+aside 
+{
+    width: 20%; 
+    border-left: 1px solid #333333; 
+    margin: 0.5em; 
+    flex: 0.7;
+}
+
+#author__part
+{
+    width: 125px;
+    height: 150px;
+    margin: 0 auto;
+    display: block;
+    border: solid #333333 2px;
+}
+
+aside div
+{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: justify;
+    padding: 1em;
+    font-weight: bold;
+}
+
+/* Classes for star ratings
+------------------------------- */
+
+.fa-star, .fa-star-half-alt, .published_by span
 {
     color: #ED5944;
 }
+
 
 /* Genres
 ------------------------------ */

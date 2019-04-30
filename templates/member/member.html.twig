@@ -13,17 +13,17 @@
 
     <div class="settings">
         <div>
-            <img id="member-img" src="/assets/img/{{ app.user.srcPhoto }}" alt="{{ app.user.altPhoto }}" title="{{ app.user.titlePhoto }}"/>
+            <img class="member-img" src="/assets/img/{{ app.user.srcPhoto }}" alt="{{ app.user.altPhoto }}" title="{{ app.user.titlePhoto }}"/>
             <div>
                 {{ form(form, {'attr': {'id': 'photo_upload-form'}}) }}
             </div>
             <a href={{ path('password_update') }} class="links">Change Password?</a>
         </div>
         <div class="settings__info">
-            <div id="member_name">
+            <div class="member_name">
                 <h2><span>{{app.user.uname}}</span> <span>{{ app.user.username }}</span></h2>
             </div>
-            <div id="member_info">
+            <div class="member_info">
                 <p>Gender : {{app.user.gender}}</p>
                 <p>Age : {{app.user.birthdate | age}}</p>
                 <p>Member since : {{ app.user.registrationDate | date("F Y") }}</p>
