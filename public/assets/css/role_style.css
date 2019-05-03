@@ -22,13 +22,22 @@
     font-weight: bold;
 }
 
-.member_name h2, h6
+.member_name h2
 {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
     color: #333333;
     padding: 10px;
+}
+
+.member_name h5
+{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #333333;
+    padding-left: 1em;
 }
 
 .member-img 
@@ -44,6 +53,12 @@
     margin: 1em;
     font-weight: bold;
     color: #333333;
+}
+
+.settings__info-comment
+{
+    font-style: oblique;
+    padding: 1em;
 }
 
 #photo_upload-form  div

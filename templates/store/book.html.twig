@@ -34,13 +34,19 @@
                     <p>Edition language : {{ book.editionLanguage }}</p>
                     <p>
                         {% for e in book.editions %}             
-                            This {{ e.name }} you can buy in 
-                        <span>{{ e.name }} : {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€<br></span>
+                        {% if (e.name == 'Hardback') or (e.name == 'Paperback') %}
+                        This book in {{ e.name }} and in you can buy in our shops for the price of {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€<br>
+                        {% elseif e.name == 'eBook' %}
+                        The price of {{e.name}} is {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€<br>
+                        {% else %}
+                        this product is not available
+                        {% endif %}
                         {% if e.name == 'eBook' %}
+
                         <a href={{ path("shopping_cart", {'id': book.id})}}>
                         Add to cart?
                         </a>
-                    {% endif %}  
+                        {% endif %}  
                         {% endfor %} 
                     </p>
                 </div>  
@@ -67,39 +73,36 @@
             {% endif %} 
              
             {% for evaluation in book.evaluations %}
-            <div id="store__user_comments">
+            <div class="store__user_comments">
                 <div>
                     <a href={{ path("show_user", {'id': evaluation.user.id}) }}>
-                        <img id="store__user-img" src="/assets/img/{{ evaluation.user.srcPhoto }}" alt="{{ evaluation.user.altPhoto }}" title="{{ evaluation.user.titlePhoto }}"/>
+                        <img class="store__user-img" src="/assets/img/{{ evaluation.user.srcPhoto }}" alt="{{ evaluation.user.altPhoto }}" title="{{ evaluation.user.titlePhoto }}"/>
                     </a>
                     <div> 
-                    {% set note = evaluation.rating %} 
-                    
-                    {% for i in 1..5 %}
-                   
-                        {% if note >= 1 %}
+                        <div>
+                        {% set note = evaluation.rating %}         
+                        {% for i in 1..5 %}       
+                            {% if note >= 1 %}
                             <i class="fas fa-star"></i>
-                        {% elseif note >= 0 %}
-                            <i class="fas fa-star-half-alt"></i>
-                        {% else %}
+                            {% else %}
                             <i class="far fa-star"></i>
-                        {% endif %}
-                        {% set note = note - 1 %}
-                    {% endfor %}
+                            {% endif %}
+                            {% set note = note - 1 %}
+                        {% endfor %}
+                        </div>
                     </div>  
-
                 </div>
                 <div class="settings__info">
                     <div class="member_name">
-                        <h6><span>{{evaluation.user.uname}}</span> <span>{{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h", "Europe/Paris") }}</span></h6>
+                        <h5><span>{{evaluation.user.uname}}</span> <span>{{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h", "Europe/Paris") }}</span></h5>
                     </div>
                     <div class="member_info">
-                        <span>{{ evaluation.comment }}</span>
+                        <p class="settings__info-comment">{{ evaluation.comment }}<p>
                     </div>
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <a href={{path("remove_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">
-                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="approuve.png" title="Remove Quote?" class="user__control-img" />
+                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="remove.png" title="Remove Quote?" class="user__control-img" />
                 </a>
                 {% endif %}
             </div>

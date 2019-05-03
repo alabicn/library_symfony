@@ -306,37 +306,18 @@
     font-weight: bold;
 }
 
-#store__user_comments
+.store__user_comments
 {
     display: flex;
     width: 900px;
     margin: 2em auto;
 }
 
-#store__user_comments div
+.store__user-img
 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#store__user_comments div span
-{
-    margin: 0.3em;
-}
-
-#store__user-img
-{
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-}
-
-.member_info > span
-{
-    font-style: oblique;
-    margin-left: 1em;
 }
 
 .published_by
