@@ -23,6 +23,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/admin/addEdition' => [[['_route' => 'add_edition', '_controller' => 'App\\Controller\\Admin\\ManageBookController::insertEdition'], null, null, null, false, false, null]],
             '/cart/show' => [[['_route' => 'show_cart', '_controller' => 'App\\Controller\\CartController::showCart'], null, null, null, false, false, null]],
             '/' => [[['_route' => 'homepage', '_controller' => 'App\\Controller\\HomepageController::index'], null, null, null, false, false, null]],
+            '/libraries' => [[['_route' => 'libraries', '_controller' => 'App\\Controller\\HomepageController::ajaxGetLibraries'], null, null, null, false, false, null]],
             '/random' => [[['_route' => 'randquote', '_controller' => 'App\\Controller\\HomepageController::ajaxRandomQuote'], null, null, null, false, false, null]],
             '/member' => [[['_route' => 'profile_page', '_controller' => 'App\\Controller\\MemberController::index'], null, null, null, true, false, null]],
             '/register' => [[['_route' => 'app_security_register', '_controller' => 'App\\Controller\\SecurityController::registerAction'], null, null, null, false, false, null]],
@@ -70,19 +71,20 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                             .'|removeAdmin/([^/]++)(*:481)'
                         .')'
                     .')'
+                    .'|/editEvaluation/([^/]++)(*:515)'
                     .'|/_(?'
-                        .'|error/(\\d+)(?:\\.([^/]++))?(*:522)'
-                        .'|wdt/([^/]++)(*:542)'
+                        .'|error/(\\d+)(?:\\.([^/]++))?(*:554)'
+                        .'|wdt/([^/]++)(*:574)'
                         .'|profiler/([^/]++)(?'
                             .'|/(?'
-                                .'|search/results(*:588)'
-                                .'|router(*:602)'
+                                .'|search/results(*:620)'
+                                .'|router(*:634)'
                                 .'|exception(?'
-                                    .'|(*:622)'
-                                    .'|\\.css(*:635)'
+                                    .'|(*:654)'
+                                    .'|\\.css(*:667)'
                                 .')'
                             .')'
-                            .'|(*:645)'
+                            .'|(*:677)'
                         .')'
                     .')'
                 .')/?$}sDu',
@@ -105,13 +107,14 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             421 => [[['_route' => 'show_genre', '_controller' => 'App\\Controller\\StoreController::listeGenre'], ['name'], null, null, false, true, null]],
             453 => [[['_route' => 'make_admin', '_controller' => 'App\\Controller\\SuperAdmin\\RoleController::makeAdmin'], ['id'], null, null, false, true, null]],
             481 => [[['_route' => 'remove_admin', '_controller' => 'App\\Controller\\SuperAdmin\\RoleController::removeAdmin'], ['id'], null, null, false, true, null]],
-            522 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-            542 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-            588 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-            602 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-            622 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
-            635 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
-            645 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+            515 => [[['_route' => 'edit_evaluation', '_controller' => 'App\\Controller\\StoreController::editUsersEvaluation'], ['id'], null, null, false, true, null]],
+            554 => [[['_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+            574 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+            620 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+            634 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+            654 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
+            667 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
+            677 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         ];
     }
 }

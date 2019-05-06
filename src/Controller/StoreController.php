@@ -71,4 +71,31 @@ class StoreController extends AbstractController
             'title' => $genre->getName()
         ]);
     }
+
+    /**
+     * @Route("/editEvaluation/{id}", name="edit_evaluation")
+     */
+    public function editUsersEvaluation(Evaluation $evaluation, ObjectManager $manager, Request $request)
+    {
+        $evaluation = $this->getDoctrine()->getRepository(Evaluation::class)->find($evaluation->getId());
+        
+        $form = $this->createForm(EvaluationType::class, $evaluation);
+        $form->handleRequest($request);
+
+        if ($request->isMethod('POST')) {
+
+            $manager->flush();
+            $this->addFlash(
+                'success',
+                "You have modified your evaluation"
+            );
+            return $this->redirectToRoute('show_book', ['id' => $evaluation->getBook()->getId()]);
+        }
+        return $this->render('admin/manage_author/editQuote.html.twig', [
+
+            'form' => $form->createView(),
+            'mainNavAdmin' => true,
+            'title' => 'Edit evaluation'
+        ]);
+    }
 }

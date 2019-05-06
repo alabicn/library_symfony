@@ -36,6 +36,14 @@ class LibraryRepository extends ServiceEntityRepository
     }
     */
 
+    public function findAllOrderedByName() {
+        $qb = $this->createQueryBuilder('library')
+                ->orderBy('library.name', 'ASC')
+                ->getQuery();
+
+        return $qb->execute();
+    }
+
     /*
     public function findOneBySomeField($value): ?Library
     {

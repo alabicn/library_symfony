@@ -96,6 +96,14 @@
     margin: 1em auto;
 }
 
+.favorite_books-img
+{
+    width: 100px;
+    height: 150px;
+    border: solid #333333 2px;
+    margin: 1em;
+}
+
 /* Admin
 ------------------------------ */
 

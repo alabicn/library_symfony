@@ -68,7 +68,8 @@ class MemberController extends Controller
 
 
         return $this->render('member/user.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'title' => $user->getUname() . '\'s profile page'
         ]);
     }
 }

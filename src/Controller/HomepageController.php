@@ -8,6 +8,7 @@ use App\Entity\Quote;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Entity\Library;
 
 class HomepageController extends Controller
 {
@@ -24,9 +25,44 @@ class HomepageController extends Controller
             'title' => 'Homepage',
 
             'genres' => $genres,
+            'libraries' => $this->library(),
             'quote' => $this->randomQuote()
         ]);
     }
+
+    private function library()
+    {
+        $all_libraries = $this->getDoctrine()->getRepository(Library::class)->findAll();
+
+        //$library = $all_libraries[0];
+
+        $libraries = array();
+
+        foreach ($all_libraries as $library) {
+
+            $library = [
+                "name" => $library->getName(),
+                "adresse" => $library->getAdresse(),
+                "latitude" => $library->getLatitude(),
+                "longitude" => $library->getLongitude()
+            ];
+
+            array_push($libraries, $library);
+
+        }
+
+        return $libraries;
+    }
+
+    /**
+     * @Route("/libraries", name="libraries")
+     */
+    public function ajaxGetLibraries()
+    {
+        return new JsonResponse($this->library());
+    }
+
+
 
     private function randomQuote()
     {

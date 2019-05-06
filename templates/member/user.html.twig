@@ -5,44 +5,32 @@
 
 {% block body %}
 
-{% if title is defined %}
-        <h1 class="page__title">{{title}}</h1>
-    {% else %}
-        <h1>Header</h1>
-    {% endif %}
-
-<h1>{{user.uname}}</h1>
-<p>Gender : {{user.gender}}</p>
-<p>Age : {{ user.birthdate | age }}</p>
-<p>Member since : {{ user.registrationDate | date("F Y") }}</p>
-
-<img src="/assets/img/{{ user.srcPhoto }}" alt="{{ user.altPhoto }}" title="{{ user.titlePhoto }}"
-    style="width : 50px;" />
-
-<h4>{{ user.uname }} recently commented : </h4>
-{% for evaluation in user.evaluations %}
-
-<h3>{{ evaluation.comment }} on {{ evaluation.book.title }} by
-    {{ evaluation.book.author.name ~ ' ' ~ evaluation.book.author.surname|upper }} <h3> <small> at
-            {{ evaluation.dateEvaluation|date("F jS\\, Y \\a\\t G:i\\h", "Europe/Paris") }} </small>
-
-        {% endfor %}
-
-
-        <p style="color: green;">{{ user.uname }}'s favorite books : </p>
-        {% for evaluation in user.evaluations %}
-        {% if evaluation.rating == 5 %}
-        <div>
-            <a href={{ path("show_book", {'id': evaluation.book.id}) }}><img
-                    src="/assets/img/{{ evaluation.book.srcImage }}" alt="{{ evaluation.book.altImage }}"
-                    title="{{ evaluation.book.titleImage }}" style="width: 70px; margin: 5px;" /></a>
-        </div>
+    {% if title is defined %}
+            <h1 class="page__title">{{title}}</h1>
+        {% else %}
+            <h1>Header</h1>
         {% endif %}
-        {% endfor %}
 
-
-
-
-        {{dump(user)}}
-
-        {% endblock %}
+        <div class="settings">
+            <div>
+                <img class="member-img" src="/assets/img/{{ user.srcPhoto }}" alt="{{ user.altPhoto }}" title="{{ user.titlePhoto }}"/>
+            </div>
+            <div class="settings__info">
+                <div class="member_name">
+                    <h2><span>{{user.uname}}</span> <span>Member since : {{ user.registrationDate | date("F Y") }}</span></h2>
+                </div>
+                <div class="member_info">
+                    <p>Gender : {{user.gender}}</p>
+                    <p>Age : {{user.birthdate | age}}</p>
+                    <p>{{ user.uname }}'s favorite books: </p>
+                    {% for evaluation in user.evaluations %}
+                    {% if evaluation.rating == 5 %}
+                    <a href={{ path("show_book", {'id': evaluation.book.id}) }}>
+                        <img src="/assets/img/{{ evaluation.book.srcImage }}" alt="{{ evaluation.book.altImage }}" title="{{ evaluation.book.titleImage }}" class="favorite_books-img" />
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>                   
+            </div>
+        </div>
+{% endblock %}

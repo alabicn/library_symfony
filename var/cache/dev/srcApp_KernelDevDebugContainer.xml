@@ -4971,7 +4971,7 @@
         <argument key="user" type="service" id=".errored..service_locator..NmEFk5.App\Entity\User"/>
       </argument>
     </service>
-    <service id=".service_locator.wlgpo1H" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.SyZxZ2e" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\HomepageController::removeEvaluation" type="service" id=".service_locator..RLxaGU"/>
@@ -4998,6 +4998,7 @@
         <argument key="App\Controller\SecurityController::registerAction" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController::resetPassword" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController::updatePassword" type="service" id=".service_locator.czKK4py"/>
+        <argument key="App\Controller\StoreController::editUsersEvaluation" type="service" id=".service_locator..RLxaGU"/>
         <argument key="App\Controller\StoreController::showBook" type="service" id=".service_locator.jdwkqq_"/>
         <argument key="App\Controller\SuperAdmin\RoleController::makeAdmin" type="service" id=".service_locator..NmEFk5"/>
         <argument key="App\Controller\SuperAdmin\RoleController::removeAdmin" type="service" id=".service_locator..NmEFk5"/>
@@ -5025,6 +5026,7 @@
         <argument key="App\Controller\SecurityController:registerAction" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController:resetPassword" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController:updatePassword" type="service" id=".service_locator.czKK4py"/>
+        <argument key="App\Controller\StoreController:editUsersEvaluation" type="service" id=".service_locator..RLxaGU"/>
         <argument key="App\Controller\StoreController:showBook" type="service" id=".service_locator.jdwkqq_"/>
         <argument key="App\Controller\SuperAdmin\RoleController:makeAdmin" type="service" id=".service_locator..NmEFk5"/>
         <argument key="App\Controller\SuperAdmin\RoleController:removeAdmin" type="service" id=".service_locator..NmEFk5"/>
@@ -5421,7 +5423,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.wlgpo1H"/>
+      <argument type="service" id=".service_locator.SyZxZ2e"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5763,7 +5765,7 @@
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.wlgpo1H"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.SyZxZ2e"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

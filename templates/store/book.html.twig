@@ -27,28 +27,20 @@
                     </div>
                 </div>
                 <div class="settings__info">
-                    <p>{{ book.details }}</p>
+                    {{ book.details|raw }}
                     
-                    <p class="published_by">Published by {{ book.publisher ~ ' on ' ~ book.publicationDate|date("F jS Y ") }} <span>(first published {{ book.firstPublished|date("Y") }})</span></p>
+                    <p class="published_by">Published by {{ book.publisher}} <span>({{book.pages}} pages)</span>  on {{book.publicationDate|date("F jS Y ") }} <span>(first published {{ book.firstPublished|date("Y") }})</span></p>
                     <p>Original title : {{ book.originalTitle }}</p>
                     <p>Edition language : {{ book.editionLanguage }}</p>
-                    <p>
-                        {% for e in book.editions %}             
-                        {% if (e.name == 'Hardback') or (e.name == 'Paperback') %}
-                        This book in {{ e.name }} and in you can buy in our shops for the price of {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€<br>
-                        {% elseif e.name == 'eBook' %}
-                        The price of {{e.name}} is {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€<br>
-                        {% else %}
-                        this product is not available
-                        {% endif %}
-                        {% if e.name == 'eBook' %}
-
-                        <a href={{ path("shopping_cart", {'id': book.id})}}>
-                        Add to cart?
-                        </a>
-                        {% endif %}  
-                        {% endfor %} 
-                    </p>
+                    {% for e in book.editions %}             
+                    {% if (e.name == 'Hardback') or (e.name == 'Paperback') %}
+                    <p>This book exists in {{ e.name }} and you can buy it in our shops for the price of {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€</p>
+                    {% elseif e.name == 'eBook' %}
+                    <a id="add_to_cart" class="links" href={{ path("shopping_cart", {'id': book.id})}}>The price of {{e.name}} edition is {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€. Add to Cart?</a>
+                    {% else %}
+                    The eBook edition is not yet available
+                    {% endif %}  
+                    {% endfor %} 
                 </div>  
             </div>
             {% if app.user and book.ratedByUser(app.user.id) == false %}
@@ -102,8 +94,15 @@
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <a href={{path("remove_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">
-                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="remove.png" title="Remove Quote?" class="user__control-img" />
+                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="remove.png" title="Remove Evaluation?" class="user__control-img" />
                 </a>
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    {% if app.user.id == evaluation.user.id %}
+                <a href={{path("edit_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">
+                    <img src="{{ asset('assets/img/random/edit.png') }}" alt="edit.png" title="Edit ?" class="user__control-img" />
+                </a>
+                    {% endif %}
                 {% endif %}
             </div>
             {% endfor %}
