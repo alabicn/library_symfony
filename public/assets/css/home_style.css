@@ -240,6 +240,28 @@
 /* Homepage
 ------------------------------ */
 
+#home1__wrap
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#map
+{
+    width: 500px;
+    height: 300px;
+    border: 1px solid #333333;
+}
+
+.leaflet-popup-content
+{
+    margin: 5px 5px;
+    color: #333333;
+    font-weight: bold;
+    font-size: 1.0em;
+}
+
 .quotes
 {
     margin: 1em;

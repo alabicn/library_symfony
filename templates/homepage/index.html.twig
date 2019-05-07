@@ -12,11 +12,15 @@
     Header
     {% endif %}
 
-    {% for genre in genres %}
-    <a href={{ path("show_genre", {'name': genre.name}) }} class="links"><h4>{{genre.name}}</h4></a>
-    {% endfor %}
-
-    <div id="mapid"></div>
+    <div id="home1__wrap">
+        <div>
+        {% for genre in genres %}
+        <a href={{ path("show_genre", {'name': genre.name}) }} class="links"><h4>{{genre.name}}</h4></a>
+        {% endfor %}
+        </div>
+        <div id="map">
+        </div>
+    </div>
 
     <h1 class="page__title">Quotes</h1>
 
@@ -54,6 +58,41 @@
                 )
                 }, $(".quotes__content-txt em").text().length * 75); 
         })
+
+        var mymap = L.map('map').setView([48.582934, 7.747731], 15);
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            minZoom: 5,
+            maxZoom: 20,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoibWNocjcwIiwiYSI6ImNqcWY2c2s2YjRtNG80OGxjM25idGQyZ3gifQ.-T-WbbrfrUbJMp3UkBIPxA'
+        }).addTo(mymap);
+        
+        mymap.setMaxBounds(mymap.getBounds());
+    
+        var logoLibrary = L.icon({
+            iconUrl: "{{ asset('assets/img/random/location-pin (2).png') }}",
+        
+            iconSize:     [40, 40], // size of the icon
+        });
+        
+        var obj;
+        
+        $(document).ready(function(){
+    
+            $.post(
+                "{{ path('libraries') }}",
+                function(data){
+                    $("#map").html(function(){
+                        for(i=0; i<data.length; i++){
+                            var marker = L.marker([data[i].latitude, data[i].longitude], {icon: logoLibrary}).addTo(mymap);
+                            marker.bindPopup(data[i].name + '<br>' + data[i].adresse).closePopup();
+                        }
+                    })
+                }
+            );               
+        });
         
     </script>
 {% endblock %}
