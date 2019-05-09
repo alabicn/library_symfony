@@ -252,6 +252,7 @@
     width: 500px;
     height: 300px;
     border: 1px solid #333333;
+    margin: 1em;
 }
 
 .leaflet-popup-content
@@ -372,6 +373,20 @@ aside div
     text-align: justify;
     padding: 1em;
     font-weight: bold;
+}
+
+.edit__content
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit__content-img
+{
+    width: 30px;
+    margin: 1em;
 }
 
 /* Classes for star ratings

@@ -45,13 +45,8 @@ class StoreController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('show_book', ['id' => $book->getId()]);
-
-            $this->addFlash('notice', 'Your new password has been saved');
-
-            return $this->redirectToRoute('login');
         }
         
-
         return $this->render('store/book.html.twig', [
             'title' => 'Book n° ' . $book->getId(),
             'book' => $book,
@@ -84,6 +79,11 @@ class StoreController extends AbstractController
 
         if ($request->isMethod('POST')) {
 
+            $evaluation->setRating($request->request->get('rating'))
+                        ->setComment($request->request->get('comment'))
+                        ->setDateEvaluation(new \DateTime())
+                        ->setUser($this->getUser());
+
             $manager->flush();
             $this->addFlash(
                 'success',
@@ -91,7 +91,7 @@ class StoreController extends AbstractController
             );
             return $this->redirectToRoute('show_book', ['id' => $evaluation->getBook()->getId()]);
         }
-        return $this->render('admin/manage_author/editQuote.html.twig', [
+        return $this->render('store/editEvaluation.html.twig', [
 
             'form' => $form->createView(),
             'mainNavAdmin' => true,

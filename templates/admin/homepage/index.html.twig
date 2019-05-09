@@ -55,12 +55,12 @@
                 </div>
                 <h6 class="quotes__content-author"><strong>{{ quote.author.name ~ " " ~ quote.author.surname }}</strong></h6>
             </div>
-            <div class="cart_items">
+            <div class="edit__content">
                 <a href={{ path("edit_quote", {'id': quote.id}) }}>
-                    <img src="{{ asset('assets/img/random/edit.png') }}" alt="approuve.png" title="Edit Quote?" class="user__control-img"/>
+                    <img src="{{ asset('assets/img/random/edit.png') }}" alt="approuve.png" title="Edit Quote?" class="edit__content-img"/>
                 </a>
                 <a href={{ path("remove_quote", {'id' : quote.id}) }} onclick="return confirm('Are you sure?')">
-                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="approuve.png" title="Remove Quote?" class="user__control-img"/>
+                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="approuve.png" title="Remove Quote?" class="edit__content-img"/>
                 </a>
             </div>
         </div>

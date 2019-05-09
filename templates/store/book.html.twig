@@ -92,18 +92,20 @@
                         <p class="settings__info-comment">{{ evaluation.comment }}<p>
                     </div>
                 </div>
-                {% if is_granted('ROLE_ADMIN') %}
-                <a href={{path("remove_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">
-                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="remove.png" title="Remove Evaluation?" class="user__control-img" />
-                </a>
-                {% endif %}
+                <div class="edit__content">
                 {% if is_granted('ROLE_USER') %}
                     {% if app.user.id == evaluation.user.id %}
                 <a href={{path("edit_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">
-                    <img src="{{ asset('assets/img/random/edit.png') }}" alt="edit.png" title="Edit ?" class="user__control-img" />
+                    <img src="{{ asset('assets/img/random/edit.png') }}" alt="edit.png" title="Edit ?" class="edit__content-img" />
                 </a>
                     {% endif %}
                 {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href={{path("remove_evaluation", {'id': evaluation.id})}} onclick="return confirm('Are you sure?')">
+                    <img src="{{ asset('assets/img/random/remove.png') }}" alt="remove.png" title="Remove Evaluation?" class="edit__content-img" />
+                </a>
+                {% endif %}
+                </div>
             </div>
             {% endfor %}
         </section>

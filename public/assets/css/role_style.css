@@ -89,7 +89,7 @@
     border-color: #ED5944;
 }
 
-#member-img ~ a
+.member-img ~ a
 {
     display: block;
     text-align: center;
