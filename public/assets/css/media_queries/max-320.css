@@ -1,0 +1,43 @@
+@media screen and (max-width: 320px) 
+{
+    #home1__wrap 
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #home1__wrap div .links h4
+    {
+        text-align: center;
+    }
+
+    #map 
+    {
+        width: 240px;
+        height: 240px;
+    }
+
+    .genre_items
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #cart p 
+    {
+        font-size: 0.5em;
+    }
+
+    #footer__payment 
+    {
+        width: 200px;
+    }
+
+    .download__store-img 
+    {
+        width: 130px;
+        height: 45px;
+        margin: 5px;
+    }
+}

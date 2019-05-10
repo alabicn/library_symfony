@@ -1,7 +1,7 @@
 /* base */
 
-* 
-{
+* {
+    box-sizing: border-box;
     background-repeat: no-repeat;
     font-family: 'EB Garamond', serif;   
 }
@@ -40,23 +40,19 @@
 /*header_logo
 ----------------------------- */
 
-#banner_image
+#logo
 {
-    margin-top: 15px;
-    width: 960px;
-    height: 600px;
-    border-radius: 5px;
-    background: url(img/library.jpg) no-repeat;
-    position: relative;
-    box-shadow: 0px 4px 4px #1c1a19;
-    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.navbar
+#logo img 
 {
-    background-color: #333333;
-    color: white;
+    width: 59px;
+    height: 60px;
 }
+
 
 /*header
 ------------------------------ */
@@ -71,19 +67,6 @@
     display: flex;
     align-items: center;
     padding: 15px 10px 15px 50px;
-}
-
-#logo
-{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#logo img 
-{
-    width: 59px;
-    height: 60px;
 }
 
 .header__logo-txt 
@@ -106,6 +89,12 @@
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
+}
+
+.navbar
+{
+    background-color: #333333;
+    color: white;
 }
 
 .nav__wrap 
@@ -325,14 +314,14 @@
     display: block;
     text-align: center;
     margin: 0.5em auto;
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bold;
 }
 
 .store__user_comments
 {
     display: flex;
-    width: 900px;
+    max-width: 900px;
     margin: 2em auto;
 }
 
@@ -348,6 +337,14 @@
     text-align-last: end;
 }
 
+#add_to_cart button 
+{
+    border-radius: 25px;
+    background-color: #ED5944;
+    color: #FAF7EE;
+    cursor: pointer;
+}
+
 aside 
 {
     width: 20%; 
@@ -355,6 +352,40 @@ aside
     margin: 0.5em; 
     flex: 0.7;
 }
+
+#author-info
+{
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    box-shadow: 0 0 10px #333333;
+    background-color: #FAF7EE;
+    padding-top: 1em;
+
+}
+
+#auth-info-close
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1em;
+    color: #333333;
+    cursor: pointer;
+    z-index: 200;
+}
+
+#auth-info-toggle button 
+{
+    border-radius: 25px;
+    background-color: #333333;
+    color: #FAF7EE;
+    cursor: pointer;
+}
+
+#auth-info-close:hover i{color: #000;}
 
 #author__part
 {
@@ -404,6 +435,8 @@ aside div
 .genre_items
 {
     margin: 1em auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .genre_items-img
@@ -419,7 +452,7 @@ aside div
 
 form div 
 {
-    width: 900px;
+    max-width: 900px;
     margin: 1em auto;
 }
 
@@ -479,7 +512,7 @@ fieldset
 
 #login_additional
 {
-    width: 900px;
+    max-width: 900px;
     margin: 1em auto;
     display: flex;
     justify-content: space-between;
@@ -619,6 +652,7 @@ body
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: 16px;
 }
 
 /* ------------------------------------------------ */

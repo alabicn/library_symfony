@@ -1,0 +1,28 @@
+@media screen and (max-width: 1024px) 
+{
+    .store__book-img 
+    {
+        width: 250px;
+    }
+
+    .store__book-img ~ div 
+    {
+        font-size: large;
+    }
+
+    .store__user-img 
+    {
+        width: 80px;
+        height: 80px;
+    }
+
+    .personal_ratings i
+    {
+        width: 12px;
+    }
+
+    .settings__info p, #add_to_cart
+    {
+        font-size: 0.7em;
+    }
+}

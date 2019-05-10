@@ -3,8 +3,14 @@
 
 #cart
 {
-    min-width: 900px;
     position: relative;
+}
+
+#cart p 
+{
+    font-weight: bold;
+    text-align: center;
+    font-size: 2em;
 }
 
 .cart_items-img

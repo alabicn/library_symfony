@@ -28,15 +28,18 @@
                 </div>
                 <div class="settings__info">
                     {{ book.details|raw }}
-                    
                     <p class="published_by">Published by {{ book.publisher}} <span>({{book.pages}} pages)</span>  on {{book.publicationDate|date("F jS Y ") }} <span>(first published {{ book.firstPublished|date("Y") }})</span></p>
+                    <p>Author : {{ book.author.name ~ ' ' ~ book.author.surname|upper }} <span id="auth-info-toggle"><button>Show bio</button></span></p>
+                    <p>Title : {{ book.title }}</p>
                     <p>Original title : {{ book.originalTitle }}</p>
                     <p>Edition language : {{ book.editionLanguage }}</p>
                     {% for e in book.editions %}             
                     {% if (e.name == 'Hardback') or (e.name == 'Paperback') %}
-                    <p>This book exists in {{ e.name }} and you can buy it in our shops for the price of {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€</p>
+                    <p>The shop price for {{ e.name }} edition is {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€.</p>
                     {% elseif e.name == 'eBook' %}
-                    <a id="add_to_cart" class="links" href={{ path("shopping_cart", {'id': book.id})}}>The price of {{e.name}} edition is {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€. Add to Cart?</a>
+                    <p class="links">{{e.name}} edition - {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€. 
+                        <a id="add_to_cart" href={{ path("shopping_cart", {'id': book.id})}}><button>Add to Cart?</button></a>
+                    </p>
                     {% else %}
                     The eBook edition is not yet available
                     {% endif %}  
@@ -71,7 +74,7 @@
                         <img class="store__user-img" src="/assets/img/{{ evaluation.user.srcPhoto }}" alt="{{ evaluation.user.altPhoto }}" title="{{ evaluation.user.titlePhoto }}"/>
                     </a>
                     <div> 
-                        <div>
+                        <div class="personal_ratings">
                         {% set note = evaluation.rating %}         
                         {% for i in 1..5 %}       
                             {% if note >= 1 %}
@@ -109,7 +112,8 @@
             </div>
             {% endfor %}
         </section>
-        <aside>
+        <aside id="author-info">
+            <span id="auth-info-close"><i class="fas fa-close fa-3x"></i></span>
             <img src="/assets/img/{{ book.author.srcImage }}" alt="{{ book.author.altImage }}" title="{{ book.author.titleImage }}" id="author__part"/>
             <div>{{ book.author.about|raw }}</div>
         </aside>
@@ -134,6 +138,10 @@
                 }
                 else $(this).addClass("far fa-star")
                 rate = rate-1;
+            })
+
+            $("#auth-info-toggle, #auth-info-close").click(function(){
+                $("#author-info").slideToggle(1000);
             })
         })
         

@@ -2,11 +2,14 @@
 <html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"/>
         <title>
             {% block title %}
                 {% if title is defined %}
-                    {{title}}{% else %}Library{% endif %}
+                    {{title}}
+                {% else %}
+                Library
+                {% endif %}
                 | Library
             {% endblock %}
         </title>
@@ -28,6 +31,11 @@
         <link rel="stylesheet" href="{{ asset('assets/css/home_style.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/role_style.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/cart_style.css') }}">
+        <!--media queries-->
+        <link rel="stylesheet" href="{{ asset('assets/css/media_queries/max-1366.css') }}" media="screen and (max-width: 1366px)">
+        <link rel="stylesheet" href="{{ asset('assets/css/media_queries/max-1024.css') }}" media="screen and (max-width: 1024px)">
+        <link rel="stylesheet" href="{{ asset('assets/css/media_queries/max-640.css') }}" media="screen and (max-width: 640px)">
+        <link rel="stylesheet" href="{{ asset('assets/css/media_queries/max-320.css') }}" media="screen and (max-width: 320px)">
         {% endblock %}
         <!--logo's icon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>

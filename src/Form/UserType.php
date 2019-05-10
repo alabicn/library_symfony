@@ -24,7 +24,7 @@ class UserType extends AbstractType
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options' => array('label' => 'Password'),
-                'second_options' => array('label' => 'Retype password'),
+                'second_options' => array('label' => 'Confirm password'),
             ))
             ->add('birthdate', BirthdayType::class, [
                 'widget' => 'single_text',
