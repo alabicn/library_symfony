@@ -1,16 +1,12 @@
 /* cart
 ------------------------------ */
 
-#cart
-{
-    position: relative;
-}
+#cart {position: relative;}
 
 #cart p 
 {
     font-weight: bold;
     text-align: center;
-    font-size: 2em;
 }
 
 .cart_items-img
@@ -28,10 +24,7 @@
     align-items: center;
 }
 
-.cart_items a 
-{
-    text-decoration: none;
-}
+.cart_items a {text-decoration: none;}
 
 .cart_items a:hover
 {
@@ -67,10 +60,7 @@
     border-top: 2px solid #333333;
 }
 
-#total_box
-{
-    margin-bottom: 3em;
-}
+#total_box {margin-bottom: 3em;}
 
 #total_box a img 
 {

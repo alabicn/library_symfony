@@ -1,5 +1,28 @@
 @media screen and (max-width: 320px) 
 {
+    h1, h4 {font-size: 1.5em;}
+    h6, p {font-size: 0.8em;}
+
+    /* header
+    -------------------------- */
+
+    .header__content {padding: 10px 5px 10px 13px;}
+
+    #logo img 
+    {
+        width: 44px;
+        height: 45px;
+    }
+
+    .header__logo-txt {font-size: 0.6em;}
+
+    .nav__item {padding: 5px;}
+
+    .nav__item-link {font-size: 0.8em;}
+
+    /* homepage
+    -------------------------- */
+
     #home1__wrap 
     {
         display: flex;
@@ -7,10 +30,7 @@
         justify-content: space-between;
     }
 
-    #home1__wrap div .links h4
-    {
-        text-align: center;
-    }
+    #home1__wrap div .links h4 {text-align: center;}
 
     #map 
     {
@@ -24,15 +44,68 @@
         align-items: center;
     }
 
-    #cart p 
+    .quotes__content-txt, .quotes__content-author {font-size: small}
+
+    /* store
+    -------------------------- */
+
+    .settings
     {
-        font-size: 0.5em;
+        display: flex;
+        align-items: center;
     }
 
-    #footer__payment 
+    .settings > div {text-align: center;}
+
+    .store__book-img {width: 200px;}
+
+    #store__content {flex-direction: column;}
+
+    .br-theme-fontawesome-stars .br-widget a {font-size: x-large;}
+
+    .store__user_comments {margin: 2em 0;}
+
+    .personal_ratings
     {
-        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0.5em;
     }
+
+    .personal_ratings i {width: 20px;}
+
+    .member_name > h5 {font-size: x-small;}
+
+    .store__user-img 
+    {
+        width: 40px;
+        height: 40px;
+    }
+
+    #author__part 
+    {
+        width: 100px;
+        height: 120px; 
+    }
+
+    #author-info {width: 95%;}
+
+    /* member page 
+    -------------------------- */
+
+    .member-img 
+    {
+        width: 125px;
+        height: 125px;
+    }
+
+    /* footer
+    -------------------------- */
+
+    #footer__payment {width: 200px;}
+
+    .footer__section-contents-details-text, .links {font-size: 0.7em;}
 
     .download__store-img 
     {

@@ -37,8 +37,10 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <!--script for Quotes-->
+    <!--script for Quotes and Leaflet-->
     <script>
+
+        // quotes
     
         $(document).ready(function(){
     
@@ -59,6 +61,8 @@
                 }, $(".quotes__content-txt em").text().length * 75); 
         })
 
+        // leaflet
+
         var mymap = L.map('map').setView([48.582934, 7.747731], 15);
 
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -72,7 +76,7 @@
         mymap.setMaxBounds(mymap.getBounds());
     
         var logoLibrary = L.icon({
-            iconUrl: "{{ asset('assets/img/random/location-pin (2).png') }}",
+            iconUrl: "{{ asset('assets/img/random/location.png') }}",
         
             iconSize:     [40, 40], // size of the icon
         });

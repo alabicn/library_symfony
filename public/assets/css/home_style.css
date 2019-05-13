@@ -235,6 +235,8 @@
     justify-content: space-between;
 }
 
+.links > h4 {font-weight: bold;}
+
 
 #map
 {

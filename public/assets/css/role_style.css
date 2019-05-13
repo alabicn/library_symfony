@@ -22,7 +22,7 @@
     font-weight: bold;
 }
 
-.member_name h2
+.member_name > h2
 {
     display: flex;
     justify-content: space-between;
