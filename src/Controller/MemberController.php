@@ -64,9 +64,6 @@ class MemberController extends Controller
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($user->getId());
 
-
-
-
         return $this->render('member/user.html.twig', [
             'user' => $user,
             'title' => $user->getUname() . '\'s profile page'

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block body %}
+    {% if title is defined %}
+        <h1 class="page__title">{{title}}</h1>
+    {% else %}
+        <h1>Header</h1>
+    {% endif %}
+    <ol class="number__list">
+    {% for book in books %}
+        <li><a href={{ path("edit_book", {'id': book.id}) }} class="links">{{ book.author.name ~ " " ~ book.author.surname|upper ~ " - " ~ book.title }}</a></li>
+    {% endfor %}
+    </ol>
+{% endblock %}

@@ -120,10 +120,7 @@
     text-align: center;
 }
 
-#admin__options div p
-{
-    text-align: center;
-}
+#admin__options div p {text-align: center;}
 
 #modify__quotes
 {
@@ -150,15 +147,9 @@
     border: solid #333333 2px;
 }
 
-.admin__edit-form
-{
-    display: none;
-}
+.admin__edit-form {display: none;}
 
-.show
-{
-    width: 20%;
-}
+.show {width: 20%;}
 
 .hide 
 {
@@ -171,6 +162,10 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.number__list {font-weight: bold;}
+
+.number__list li {padding: 0.2em;}
 
 /* Super Admin
 ------------------------------ */
@@ -188,6 +183,8 @@
     padding: 1em;
 }
 
+.users__list div {align-self: center;}
+
 .users_photos
 {
     width: 30px;
@@ -195,10 +192,7 @@
     border-radius: 50%;
 }
 
-.users_photos ~ a
-{
-    text-decoration: none;
-}
+.users_photos ~ a {text-decoration: none;}
 
 .user__control-img
 {

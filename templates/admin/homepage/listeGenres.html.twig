@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block body %}
+    {% if title is defined %}
+        <h1 class="page__title">{{title}}</h1>
+    {% else %}
+        <h1>Header</h1>
+    {% endif %}
+    <ol class="number__list">
+    {% for genre in genres %}
+        <li><a href={{ path("edit_genre", {'name': genre.name}) }} class="links">{{ genre.name }}</a></li>
+    {% endfor %}
+    </ol>
+{% endblock %}

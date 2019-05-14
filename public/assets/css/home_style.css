@@ -12,10 +12,7 @@
     background-color: #FAF7EE;
 }
 
-#content
-{
-    padding: 1em 10%;
-}
+#content {padding: 1em 10%;}
 
 .page__title
 {
@@ -57,10 +54,7 @@
 /*header
 ------------------------------ */
 
-#header 
-{
-    background-color: #333333;
-}
+#header {background-color: #333333;}
 
 .header__content 
 {
@@ -79,10 +73,7 @@
     margin-top: 4px;
 }
 
-.header__nav 
-{
-    flex: 1 auto;
-}
+.header__nav {flex: 1 auto;}
 
 .nav 
 {
@@ -103,10 +94,7 @@
     align-items: center;
 }
 
-.nav__item 
-{
-    padding: 10px;    
-}
+.nav__item {padding: 10px;}
 
 .nav__item-link 
 {
@@ -164,10 +152,7 @@
     border-bottom-right-radius: 0;
 }
 
-.user:hover 
-{
-    background-color: #5a5a5a;
-}
+.user:hover {background-color: #5a5a5a;}
 
 .user:hover .user__dd 
 {
@@ -215,10 +200,7 @@
     padding-right: 5px;
 }
 
-.user__dd-item:hover 
-{
-    background-color: #333333;
-}
+.user__dd-item:hover {background-color: #333333;}
 
 .nav__item-link:hover 
 {
@@ -334,10 +316,7 @@
     border-radius: 50%;
 }
 
-.published_by
-{
-    text-align-last: end;
-}
+.published_by {text-align-last: end;}
 
 #add_to_cart button 
 {
@@ -500,10 +479,7 @@ fieldset
     border-color: #ED5944;
 }
 
-.custom-file-label 
-{
-    border: 1px solid #333333;
-}
+.custom-file-label {border: 1px solid #333333;}
 
 .custom-file-label::after
 {
@@ -560,10 +536,7 @@ fieldset
     margin-bottom: 10px;
 }
 
-.footer__section-contents 
-{
-    min-height: 230px;
-}
+.footer__section-contents {min-height: 230px;}
 
 .footer__section-contents-details 
 {
@@ -592,15 +565,9 @@ fieldset
     padding-left: 5px;
 }
 
-.footer__section-contents-details li 
-{
-    margin: 10px;
-}
+.footer__section-contents-details li {margin: 10px;}
 
-.footer__section-contents-details:hover 
-{
-    text-decoration: none;
-}
+.footer__section-contents-details:hover {text-decoration: none;}
 
 /* download */
 
@@ -634,10 +601,7 @@ fieldset
     padding: 20px 50px 20px 50px;
 }
 
-#signature 
-{
-    text-align: center;
-}
+#signature {text-align: center;}
 
 /* Sticky footer styles
 -------------------------------------------------- */

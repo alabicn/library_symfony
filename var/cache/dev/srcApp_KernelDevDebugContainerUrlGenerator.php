@@ -21,6 +21,10 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         if (null === self::$declaredRoutes) {
             self::$declaredRoutes = [
         'home_admin' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::index'], [], [['text', '/admin/']], [], []],
+        'all_authors' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::listeAuthors'], [], [['text', '/admin/allAuthors']], [], []],
+        'all_books' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::listeBooks'], [], [['text', '/admin/allBooks']], [], []],
+        'all_genres' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::listeGenres'], [], [['text', '/admin/allGenres']], [], []],
+        'all_editions' => [[], ['_controller' => 'App\\Controller\\Admin\\HomepageController::listeEditions'], [], [['text', '/admin/allEditions']], [], []],
         'remove_evaluation' => [['id'], ['_controller' => 'App\\Controller\\Admin\\HomepageController::removeEvaluation'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/evaluation']], [], []],
         'add_author' => [[], ['_controller' => 'App\\Controller\\Admin\\ManageAuthorController::insertAuthor'], [], [['text', '/admin/manage/author/addAuthor']], [], []],
         'edit_author' => [['surname'], ['_controller' => 'App\\Controller\\Admin\\ManageAuthorController::editAuthorDetails'], [], [['variable', '/', '[^/]++', 'surname', true], ['text', '/admin/manage/author']], [], []],

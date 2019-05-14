@@ -21,23 +21,67 @@ class HomepageController extends Controller
      */
     public function index()
     {
-
-        $authors = $this->getDoctrine()->getRepository(Author::class)->findAllOrderedByName();
-        $books = $this->getDoctrine()->getRepository(Book::class)->findAllOrderedByAuthorSurname();
-        $genres = $this->getDoctrine()->getRepository(Genre::class)->findAllOrderedByName();
-        $editions = $this->getDoctrine()->getRepository(Edition::class)->findAllOrderedByName();
         $quotes = $this->getDoctrine()->getRepository(Quote::class)->findAllOrderedByName();
 
         return $this->render('admin/homepage/index.html.twig', [
-            'authors' => $authors,
-            'books' => $books,
-            'genres' => $genres,
-            'editions' => $editions,
             'quotes' => $quotes,
             'mainNavAdmin' => true, 
             'title' => 'Admin\'s page' 
         ]);
     }
+
+    /**
+     * @Route("/allAuthors", name="all_authors")
+     */
+    public function listeAuthors()
+    {
+        $authors = $this->getDoctrine()->getRepository(Author::class)->findAllOrderedByName();
+
+        return $this->render('admin/homepage/listeAuthors.html.twig', [
+            'authors' => $authors,
+            'title' => 'Authors\' list'
+        ]);
+    }
+
+    /**
+     * @Route("/allBooks", name="all_books")
+     */
+    public function listeBooks()
+    {
+        $books = $this->getDoctrine()->getRepository(Book::class)->findAllOrderedByAuthorSurname();
+
+        return $this->render('admin/homepage/listeBooks.html.twig', [
+            'books' => $books,
+            'title' => 'Books\' list'
+        ]);
+    }
+
+    /**
+     * @Route("/allGenres", name="all_genres")
+     */
+    public function listeGenres()
+    {
+        $genres = $this->getDoctrine()->getRepository(Genre::class)->findAllOrderedByName();
+
+        return $this->render('admin/homepage/listeGenres.html.twig', [
+            'genres' => $genres,
+            'title' => 'Genres\' list'
+        ]);
+    }
+
+    /**
+     * @Route("/allEditions", name="all_editions")
+     */
+    public function listeEditions()
+    {
+        $editions = $this->getDoctrine()->getRepository(Edition::class)->findAllOrderedByName();
+
+        return $this->render('admin/homepage/listeEditions.html.twig', [
+            'editions' => $editions,
+            'title' => 'Editions\' list'
+        ]);
+    }
+
 
     /**
      *@Route("/evaluation/{id}", name="remove_evaluation")

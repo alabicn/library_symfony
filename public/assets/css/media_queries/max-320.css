@@ -1,7 +1,7 @@
 @media screen and (max-width: 320px) 
 {
     h1, h4 {font-size: 1.5em;}
-    h6, p {font-size: 0.8em;}
+    h6, p, .nav__item-link {font-size: 0.8em;}
 
     /* header
     -------------------------- */
@@ -17,8 +17,6 @@
     .header__logo-txt {font-size: 0.6em;}
 
     .nav__item {padding: 5px;}
-
-    .nav__item-link {font-size: 0.8em;}
 
     /* homepage
     -------------------------- */
@@ -36,6 +34,7 @@
     {
         width: 240px;
         height: 240px;
+        margin: 0px auto;
     }
 
     .genre_items
@@ -46,16 +45,22 @@
 
     .quotes__content-txt, .quotes__content-author {font-size: small}
 
+    .form-group label, #photo_upload-form .form-group .btn-primary {font-size: 0.8em;}
+
     /* store
     -------------------------- */
 
     .settings
     {
         display: flex;
+        flex-direction: column;
         align-items: center;
     }
 
-    .settings > div {text-align: center;}
+    .settings > div 
+    {
+        text-align: center;
+    }
 
     .store__book-img {width: 200px;}
 
@@ -91,6 +96,8 @@
 
     #author-info {width: 95%;}
 
+    .published_by {text-align-last: center;}
+
     /* member page 
     -------------------------- */
 
@@ -98,6 +105,84 @@
     {
         width: 125px;
         height: 125px;
+    }
+
+    .member_name > h2 
+    {
+        font-size: 1em;
+        display: grid;
+    }
+
+    .member_name > h2 > span {margin: 0.3em;}
+
+    /* admin page
+    --------------------------- */
+
+    #admin__options .links {font-size: 1em;}
+
+    #admin__edit__author-img {width: 170px;}
+
+    .edit__content-img 
+    {
+        width: 15px;
+        margin: 0.1em;
+    }
+
+    .admin__edit-buttons {justify-content: center;}
+
+    .show, .hide {width: 100%;}
+
+    /* super admin page
+    -------------------------- */
+
+    #super_admin_page ul {padding: 0.2em;}
+
+    .users__list 
+    {
+        padding: 0;
+        margin: 0.8em;
+    }
+
+    .users__list-text {font-size: 0.7em;}
+
+    .user__control-img 
+    {
+        width: 15px;
+        margin-left: 0.5em;
+    }
+
+    /* user
+    -------------------------- */
+
+    .favorite_books-img 
+    {
+        width: 75px;
+        height: 125px;
+    }
+
+    /* cart
+    -------------------------- */
+
+    .cart__wrap {margin: 0.3em;}
+
+    #cart ul {padding: 0.2em}
+
+    .cart_items-text {font-size: 0.7em;}
+
+    .cart_items-img 
+    {
+        width: 40px;
+        height: 60px;
+    }
+
+    .cart_items-remove {width: 25px;}
+
+    #total {right: 38px;}
+
+    #total_box a img 
+    {
+        width: 25px;
+        right: 8px;
     }
 
     /* footer

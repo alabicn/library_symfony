@@ -1,0 +1,7 @@
+@media screen and (max-width: 360px) 
+{
+    .download__store-list {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}

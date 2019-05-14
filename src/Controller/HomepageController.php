@@ -34,8 +34,6 @@ class HomepageController extends Controller
     {
         $all_libraries = $this->getDoctrine()->getRepository(Library::class)->findAll();
 
-        //$library = $all_libraries[0];
-
         $libraries = array();
 
         foreach ($all_libraries as $library) {

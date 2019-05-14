@@ -16,6 +16,10 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         $this->context = $context;
         $this->staticRoutes = [
             '/admin' => [[['_route' => 'home_admin', '_controller' => 'App\\Controller\\Admin\\HomepageController::index'], null, null, null, true, false, null]],
+            '/admin/allAuthors' => [[['_route' => 'all_authors', '_controller' => 'App\\Controller\\Admin\\HomepageController::listeAuthors'], null, null, null, false, false, null]],
+            '/admin/allBooks' => [[['_route' => 'all_books', '_controller' => 'App\\Controller\\Admin\\HomepageController::listeBooks'], null, null, null, false, false, null]],
+            '/admin/allGenres' => [[['_route' => 'all_genres', '_controller' => 'App\\Controller\\Admin\\HomepageController::listeGenres'], null, null, null, false, false, null]],
+            '/admin/allEditions' => [[['_route' => 'all_editions', '_controller' => 'App\\Controller\\Admin\\HomepageController::listeEditions'], null, null, null, false, false, null]],
             '/admin/manage/author/addAuthor' => [[['_route' => 'add_author', '_controller' => 'App\\Controller\\Admin\\ManageAuthorController::insertAuthor'], null, null, null, false, false, null]],
             '/admin/addQuote' => [[['_route' => 'add_quote', '_controller' => 'App\\Controller\\Admin\\ManageAuthorController::addQuote'], null, null, null, false, false, null]],
             '/admin/addBook' => [[['_route' => 'add_book', '_controller' => 'App\\Controller\\Admin\\ManageBookController::insertBook'], null, null, null, false, false, null]],

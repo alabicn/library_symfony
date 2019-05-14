@@ -14,31 +14,19 @@
         <div id="admin__options">
             <div>
                 <p><a href={{ path("add_author") }} class="links" >Add Author</a></p>
-                <h6 class="admin__edit-title">Edit :</h6>
-        {% for author in authors %}
-                <p><a href={{ path("edit_author", {'surname': author.surname} ) }} class="links">{{author.name ~ " " ~ author.surname|upper}}</a></p>
-        {% endfor %}
+                <p><a href={{ path("all_authors") }} class="links">Edit Authors</a></p>
             </div>
             <div>
                 <p><a href={{ path("add_book") }} class="links" >Add Book</a></p>
-                <h6 class="admin__edit-title">Edit :</h6>
-        {% for book in books %}
-                <p><a href={{ path("edit_book", {'id': book.id}) }} class="links">{{ book.author.name ~ " " ~ book.author.surname|upper ~ " - " ~ book.title }}</a></p>
-        {% endfor %}
+                <p><a href={{ path("all_books") }} class="links">Edit Books</a></p>
             </div>
             <div>
                 <p><a href={{ path("add_genre") }} class="links" >Add Genre</a></p>
-                <h6 class="admin__edit-title">Edit :</h6>
-        {% for genre in genres %}
-                <p><a href={{ path("edit_genre", {'name': genre.name}) }} class="links">{{ genre.name }}</a></p>
-        {% endfor %}
+                <p><a href={{ path("all_genres") }} class="links">Edit Genres</a></p>
             </div>
             <div>
                 <p><a href={{ path("add_edition") }} class="links" >Add Edition</a></p>
-                <h6 class="admin__edit-title">Edit :</h6>
-        {% for edition in editions %}
-                <p><a href={{ path("edit_edition", {'name': edition.name}) }} class="links">{{ edition.name }}</a></p>
-        {% endfor %}
+                <p><a href={{ path("all_editions") }} class="links">Edit Editions</a></p>
             </div>
             <div>
             <p><a href={{ path("add_quote") }} class="links" >Add Quote</a></p>
