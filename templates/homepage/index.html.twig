@@ -13,11 +13,11 @@
     {% endif %}
 
     <div id="home1__wrap">
-        <div>
+        <ul class="list_genres">
         {% for genre in genres %}
-        <a href={{ path("show_genre", {'name': genre.name}) }} class="links"><h4>{{genre.name}}</h4></a>
+        <li><a href={{ path("show_genre", {'name': genre.name}) }} class="links">{{genre.name}}</a></li>
         {% endfor %}
-        </div>
+        </ul>
         <div id="map">
         </div>
     </div>

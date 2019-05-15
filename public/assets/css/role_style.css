@@ -1,20 +1,17 @@
 /* member
 ------------------------------ */
 
-.settings 
-{
+.settings {
     display: flex;
     flex-wrap: wrap;
 }
 
-.settings__info
-{
+.settings__info {
     flex: 1;
     margin: 0.5em;
 }
 
-.settings__info p
-{
+.settings__info p {
     border: none;
     background-color: transparent;
     width: 100%;
@@ -22,8 +19,7 @@
     font-weight: bold;
 }
 
-.member_name > h2
-{
+.member_name > h2 {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
@@ -31,8 +27,7 @@
     padding: 10px;
 }
 
-.member_name h5
-{
+.member_name h5 {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
@@ -40,41 +35,35 @@
     padding-left: 1em;
 }
 
-.member-img 
-{
+.member-img {
     width: 250px;
     height: 250px;
     border-radius: 50%;
     margin: 1em;
 }
 
-.member_info p
-{
+.member_info p {
     margin: 1em;
     font-weight: bold;
     color: #333333;
 }
 
-.settings__info-comment
-{
+.settings__info-comment {
     font-style: oblique;
     padding: 1em;
 }
 
-#photo_upload-form  div
-{
+#photo_upload-form  div {
     max-width: 260px;
     margin: 1px auto;
 }
 
-#photo_upload-form  .form-group .required
-{
+#photo_upload-form  .form-group .required {
     margin: 0px;
     display: none;
 }
 
-#photo_upload-form  .form-group .btn-primary
-{
+#photo_upload-form  .form-group .btn-primary {
     color: #FAF7EE;
     background-color: #333333;
     border-color: #333333;
@@ -82,22 +71,19 @@
     width: 100%;
 }
 
-#photo_upload-form  .form-group .btn-primary:hover
-{
+#photo_upload-form  .form-group .btn-primary:hover {
     color: #333333;
     background-color: #ED5944;
     border-color: #ED5944;
 }
 
-.member-img ~ a
-{
+.member-img ~ a {
     display: block;
     text-align: center;
     margin: 1em auto;
 }
 
-.favorite_books-img
-{
+.favorite_books-img {
     width: 100px;
     height: 150px;
     border: solid #333333 2px;
@@ -107,41 +93,35 @@
 /* Admin
 ------------------------------ */
 
-#admin__options
-{
+#admin__options {
     display: flex;
     justify-content: space-around;
     padding: 1em;
 }
 
-.admin__edit-title
-{
+.admin__edit-title {
     font-weight: bold;
     text-align: center;
 }
 
 #admin__options div p {text-align: center;}
 
-#modify__quotes
-{
+#modify__quotes {
     display: flex;
     justify-content: space-between;
 }
 
-#modify__quotes .quotes
-{
+#modify__quotes .quotes {
     max-width: 100%;
 }
 
-#admin__edit__author-img ~ a
-{
+#admin__edit__author-img ~ a {
     display: block;
     text-align: center;
     margin: 0.5em auto;
 }
 
-#admin__edit__author-img
-{
+#admin__edit__author-img {
     width: 250px;
     margin: 0.5em;
     border: solid #333333 2px;
@@ -151,14 +131,12 @@
 
 .show {width: 20%;}
 
-.hide 
-{
+.hide {
     display: none;
     width: 20%;
 }
 
-.admin__edit-buttons
-{
+.admin__edit-buttons {
     display: flex;
     justify-content: flex-end;
 }
@@ -170,14 +148,12 @@
 /* Super Admin
 ------------------------------ */
 
-#super_admin_page
-{
+#super_admin_page {
     width: 100%;
     margin: 1em auto;
 }
 
-.users__list
-{
+.users__list {
     display: flex;
     justify-content: space-between;
     padding: 1em;
@@ -185,8 +161,7 @@
 
 .users__list div {align-self: center;}
 
-.users_photos
-{
+.users_photos {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -194,14 +169,12 @@
 
 .users_photos ~ a {text-decoration: none;}
 
-.user__control-img
-{
+.user__control-img {
     width: 30px;
     margin-left: 2em;
 }
 
-.users__list-text
-{
+.users__list-text {
     color: #333333;
     font-weight: bold;
 }

@@ -1,0 +1,197 @@
+@media screen and (max-width: 760px) {
+
+    #content {padding: 1em 5%;}
+
+    h1, h4 {font-size: 8vw;}
+
+    h6, p, .nav__item-link {font-size: 4.5vw;}
+
+    /* header
+    -------------------------- */
+
+    .header__content {padding: 10px 5px 10px 13px;}
+
+    #logo img {
+        width: 12vw;
+        height: 12vw;
+    }
+
+    .header__logo-txt {font-size: 3vw;}
+
+    .nav__item {padding: 5px;}
+
+    /* homepage
+    -------------------------- */
+
+    #home1__wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #home1__wrap div .links h4 {text-align: center;}
+
+    #map {
+        width: 95%;
+        height: 75vw;
+        margin: 1em auto;
+    }
+
+    .genre_items {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quotes__content-txt, .quotes__content-author {font-size: 4vw}
+
+    .form-group label, #photo_upload-form .form-group .btn-primary {font-size: 0.8em;}
+
+    /* store
+    -------------------------- */
+
+    .settings {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .settings > div {text-align: center;}
+
+    .settings__info p, .store__user_comments {margin: 2em 0}
+
+    .store__book-img {width: 65vw;}
+
+    #store__content {flex-direction: column;}
+
+    .br-theme-fontawesome-stars .br-widget a {font-size: x-large;}
+
+    .personal_ratings {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0.5em;
+    }
+
+    .personal_ratings i {width: 40%;}
+
+    .member_name > h5 {font-size: 3.6vw;}
+
+    .store__user-img {
+        width: 13vw;
+        height: 13vw;
+    }
+
+    #author__part {
+        width: 25vw;
+        height: 30vw; 
+    }
+
+    #author-info {width: 95%;}
+
+    .published_by {text-align-last: center;}
+
+    /* member page 
+    -------------------------- */
+
+    .member-img {
+        width: 40vw;
+        height: 40vw;
+    }
+
+    .member_name > h2 {
+        font-size: 4vw;
+        display: inline-grid;
+    }
+
+    .member_name > h2 > span {margin: 0.3em;}
+
+    /* admin page
+    --------------------------- */
+
+    #admin__options .links {font-size: 4.5vw;}
+
+    #admin__edit__author-img {width: 48vw;}
+
+    .edit__content-img {
+        width: 4.3vw;
+        margin: 0.1em;
+    }
+
+    .admin__edit-buttons {justify-content: center;}
+
+    .show, .hide {width: 100%;}
+
+    /* super admin page
+    -------------------------- */
+
+    #super_admin_page ul {padding: 0.2em;}
+
+    .users__list {
+        padding: 0;
+        margin: 0.8em;
+    }
+
+    .users__list-text {font-size: 3.5vw;}
+
+    .user__control-img {
+        width: 5vw;
+        margin-left: 0.5em;
+    }
+
+    /* user
+    -------------------------- */
+
+    .favorite_books-img {
+        width: 25vw;
+        height: 40vw;
+    }
+
+    /* cart
+    -------------------------- */
+
+    .cart__wrap {margin: 0.3em;}
+
+    #cart ul {padding: 0.2em}
+
+    .cart_items-text {font-size: 3.75vw;}
+
+    .cart_items-img {
+        width: 15vw;
+        height: 21vw;
+    }
+
+    .cart_items-remove {width: 8vw;}
+
+    #total {right: 12vw;}
+
+    #total_box a img {
+        width: 8vw;
+        right: 8px;
+    }
+
+    /* footer
+    -------------------------- */
+
+    .footer__section {padding: 0.2em}
+
+    #footer__payment {
+        display: block;
+        width: 70vw;
+        margin: 0px auto;
+    }
+
+    .footer__section-contents-details li {margin: 4px;}
+
+    .footer__section-contents-details-text, .links {font-size: 4vw;}
+
+    .download__store-list {
+        flex-direction: column-reverse;
+    }
+
+    .download__store-img {
+        display: block;
+        width: 50%;
+        height: 15vw;
+        margin: 5px auto;
+    }
+}
