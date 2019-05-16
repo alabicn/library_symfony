@@ -193,19 +193,7 @@
     justify-content: space-between;
 }
 
-/*ul.list_genres {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-}
-
-ul.list_genres li {
-    display: inline;
-    margin: 1em;
-    font-size: 1.4em;
-    font-weight: bold;
-    text-align: center;
-}*/
+ul.list_genres {list-style: none;}
 
 #map {
     width: 500px;
@@ -292,6 +280,8 @@ ul.list_genres li {
 
 .published_by {text-align-last: end;}
 
+#eBook_price {color: #ED5944;}
+
 #add_to_cart button {
     border-radius: 25px;
     background-color: #ED5944;
@@ -377,6 +367,7 @@ aside div {
 .genre_items {
     margin: 1em auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -454,10 +445,7 @@ fieldset {
 /* footer
 ------------------------------ */
 
-#footer {
-    background-color: #FAF7EE;
-    padding: 1em;
-}
+#footer {background-color: #FAF7EE;}
 
 .footer__section {
     display: flex;

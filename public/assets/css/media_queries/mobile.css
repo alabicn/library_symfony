@@ -2,7 +2,7 @@
 
     #content {padding: 1em 5%;}
 
-    h1, h4 {font-size: 8vw;}
+    h1 {font-size: 8vw;}
 
     h6, p, .nav__item-link {font-size: 4.5vw;}
 
@@ -29,7 +29,11 @@
         justify-content: space-between;
     }
 
-    #home1__wrap div .links h4 {text-align: center;}
+    ul.list_genres {padding: 0px;}
+
+    ul.list_genres li {text-align: center;}
+
+    h4 .links {font-size: 6vw;}
 
     #map {
         width: 95%;
@@ -38,11 +42,24 @@
     }
 
     .genre_items {
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .quotes__content-txt, .quotes__content-author {font-size: 4vw}
+    .quotes div {
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    .quotes__author-img {
+        width: 22vw;
+        height: 25vw;
+    }
+
+    .quotes__content-txt, .quotes__content-author {
+        font-size: 4.5vw;
+        margin: 1em; 
+    }
 
     .form-group label, #photo_upload-form .form-group .btn-primary {font-size: 0.8em;}
 
@@ -109,6 +126,10 @@
     --------------------------- */
 
     #admin__options .links {font-size: 4.5vw;}
+
+    .modify__quotes {flex-direction: column-reverse;}
+
+    .edit__content {flex-direction: row;}
 
     #admin__edit__author-img {width: 48vw;}
 

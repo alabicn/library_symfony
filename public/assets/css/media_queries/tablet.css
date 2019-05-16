@@ -1,0 +1,19 @@
+@media screen and (max-width: 1020px) and (min-width: 768px) {
+
+    .list_genres {padding-right: 40px;}
+
+    ul.list_genres li {text-align: center;}
+
+    .settings {flex-direction: column;}
+
+    .member-img {
+        display: block;
+        margin: 1em auto;
+    }
+
+    .member_name > h2 {font-size: 3vw;}
+
+    .settings > div {text-align: center;}
+
+    .footer__section {padding: 0.2em;}
+}

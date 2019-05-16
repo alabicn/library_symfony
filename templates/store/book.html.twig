@@ -37,8 +37,8 @@
                     {% if (e.name == 'Hardback') or (e.name == 'Paperback') %}
                     <p>The shop price for {{ e.name }} edition is {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€.</p>
                     {% elseif e.name == 'eBook' %}
-                    <p class="links">{{e.name}} edition - {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€. 
-                        <a id="add_to_cart" href={{ path("shopping_cart", {'id': book.id})}}><button>Add to Cart?</button></a>
+                    <p id="eBook_price">{{e.name}} edition - {{ book.prices[e.id]|number_format(2, '.', ' ') }}&nbsp;€. 
+                        <a id="add_to_cart" href={{ path("shopping_cart", {'id': book.id})}} class="links" ><button>Add to Cart?</button></a>
                     </p>
                     {% else %}
                     The eBook edition is not yet available

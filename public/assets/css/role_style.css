@@ -106,12 +106,12 @@
 
 #admin__options div p {text-align: center;}
 
-#modify__quotes {
+.modify__quotes {
     display: flex;
     justify-content: space-between;
 }
 
-#modify__quotes .quotes {
+.modify__quotes .quotes {
     max-width: 100%;
 }
 

@@ -15,7 +15,7 @@
     <div id="home1__wrap">
         <ul class="list_genres">
         {% for genre in genres %}
-        <li><a href={{ path("show_genre", {'name': genre.name}) }} class="links">{{genre.name}}</a></li>
+        <li><h4><a href={{ path("show_genre", {'name': genre.name}) }} class="links">{{genre.name}}</a></h4></li>
         {% endfor %}
         </ul>
         <div id="map">
