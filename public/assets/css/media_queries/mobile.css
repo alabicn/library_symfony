@@ -41,10 +41,7 @@
         margin: 1em auto;
     }
 
-    .genre_items {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+    .genre_items {justify-content: center;}
 
     .quotes div {
         flex-direction: column;

@@ -3,35 +3,17 @@
 {{title}}
 {% endblock %}
 {% block body %}
-
-{% if title is defined %}
+    {% if title is defined %}
         <h1 class="page__title">{{title}}</h1>
     {% else %}
         <h1>Header</h1>
     {% endif %}
-    <div class="example-wrapper">
-        <h1>Hello ✅</h1>
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at
-                <code>
-                    <a href="{{ 'C:/wamp/www/library/src/Controller/BookController.php'|file_link(0) }}">src/Controller/BookController.php</a>
-                </code>
-            </li>
-            <li>Your template at
-                <code>
-                    <a href="{{ 'C:/wamp/www/library/templates/book/index.html.twig'|file_link(0) }}">templates/book/index.html.twig</a>
-                </code>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <h1>{{ book.author.name ~ " " ~ book.author.surname|upper}} </h1>
-            <h3>{{ book.title }}</h3>
-
-            <img src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}" style="width : 100px;"/>
-            
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
-    {% endblock %}
+        <div class="settings">
+            <div>      
+                <img id="admin__edit__author-img" src="/assets/img/{{ book.srcImage }}" alt="{{ book.altImage }}" title="{{ book.titleImage }}"/>
+                <div>
+                    {{ form(form, {'attr': {'id': 'photo_upload-form'}}) }}
+                </div>
+            </div>
+        </div>
+{% endblock %}
