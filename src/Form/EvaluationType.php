@@ -12,7 +12,6 @@ class EvaluationType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add('comment', TextType::class)
-
                 ->add('save', SubmitType::class, array('label' => 'Submit'))
                 ;
     }

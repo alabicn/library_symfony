@@ -27,7 +27,9 @@
     
     <div class="quotes">
         <div>
-            <img src="/assets/img/{{ quote['img']['src'] }}" alt="{{ quote['img']['alt'] }}" title="{{ quote['img']['title'] }}" class="quotes__author-img"/>
+            <div style="min-width: 75px; min-height: 75px;">
+                <img src="/assets/img/{{ quote['img']['src'] }}" alt="{{ quote['img']['alt'] }}" title="{{ quote['img']['title'] }}" class="quotes__author-img"/>
+            </div>
             <q class="quotes__content-txt"><em>{{ quote['text'] }}</em></q>
         </div>
         <h6 class="quotes__content-author"><strong>{{ quote['author'] }}</strong></h6>

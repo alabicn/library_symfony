@@ -200,16 +200,25 @@ class SecurityController extends Controller
      */
     public function resetPassword(Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder)
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $user = $entityManager->getRepository(User::class)->findOneByResetToken($token);
+
+        if ($user === null) {
+            $this->addFlash('danger', 'Unknown token');
+            return $this->redirectToRoute('login');
+        }
+        
         if ($request->isMethod('POST')) {
 
-            $entityManager = $this->getDoctrine()->getManager();
+            /*$entityManager = $this->getDoctrine()->getManager();
 
             $user = $entityManager->getRepository(User::class)->findOneByResetToken($token);
 
             if ($user === null) {
                 $this->addFlash('danger', 'Unknown token');
-                return $this->redirectToRoute('reset_password');
-            }
+                return $this->redirectToRoute('login');
+            }*/
 
             $user->setResetToken(null);
 

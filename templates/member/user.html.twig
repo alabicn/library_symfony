@@ -29,8 +29,6 @@
                         <a href={{ path("show_book", {'id': evaluation.book.id}) }}>
                             <img src="/assets/img/{{ evaluation.book.srcImage }}" alt="{{ evaluation.book.altImage }}" title="{{ evaluation.book.titleImage }}" class="favorite_books-img" />
                         </a> 
-                        {% else %}
-                        <p> No favorite books</p>
                         {% endif %}
                         {% endfor %}
                     </div>

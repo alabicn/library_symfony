@@ -11,7 +11,7 @@
     {% endif %}
     <ol class="number__list">
     {% for author in authors %}
-        <li><a href={{ path("edit_author", {'surname': author.surname} ) }} class="links">{{author.name ~ " " ~ author.surname|upper}}</a></li>
+        <li><a href={{ path("edit_author", {'id': author.id} ) }} class="links">{{author.name ~ " " ~ author.surname|upper}}</a></li>
     {% endfor %}
     </ol>
 {% endblock %}

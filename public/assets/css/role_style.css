@@ -58,11 +58,6 @@
     margin: 1px auto;
 }
 
-#photo_upload-form  .form-group .required {
-    margin: 0px;
-    display: none;
-}
-
 #photo_upload-form  .form-group .btn-primary {
     color: #FAF7EE;
     background-color: #333333;

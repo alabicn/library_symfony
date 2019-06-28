@@ -50,7 +50,7 @@ class ManageAuthorController extends AbstractController
     }
 
     /**
-     * @Route("/manage/author/{surname}", name="edit_author")
+     * @Route("/manage/author/{id}", name="edit_author")
      */
     public function editAuthorDetails(Author $author, Request $request, ObjectManager $manager)
     {
@@ -66,7 +66,7 @@ class ManageAuthorController extends AbstractController
                 'success',
                 "You have modified " . $author->getName() . " " . $author->getSurname() . "'s details"
             );
-            return $this->redirectToRoute('edit_author', ['surname' => $author->getSurname()]);
+            return $this->redirectToRoute('edit_author', ['id' => $author->getId()]);
         }
         return $this->render('admin/manage_author/editAuthor.html.twig', [
             'author' => $author,
